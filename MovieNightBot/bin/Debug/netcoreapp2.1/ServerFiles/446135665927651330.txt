@@ -1,0 +1,54 @@
+{
+  "ServerName": "Wynvin's hideout",
+  "ServerId": "446135665927651330",
+  "DateCreated": "1/19/2019 3:15:11 PM",
+  "MovieVoteCount": 5,
+  "waitingMovies": [
+    {
+      "Title": "Shrek 3",
+      "suggestDate": "1/19/2019 5:36:12 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Mac and Me",
+      "suggestDate": "1/19/2019 5:37:13 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Blade Runner",
+      "suggestDate": "1/19/2019 5:37:25 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Birdemic 2",
+      "suggestDate": "1/19/2019 5:37:33 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Sharknado",
+      "suggestDate": "1/19/2019 5:37:38 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "The Interview",
+      "suggestDate": "1/19/2019 5:37:40 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "UHF",
+      "suggestDate": "1/19/2019 5:37:54 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Black Mirror",
+      "suggestDate": "1/19/2019 5:38:06 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Pokémon: The First Movie",
+      "suggestDate": "1/19/2019 5:38:24 PM",
+      "watchedDate": ""
+    }
+  ],
+  "watchedMovies": []
+}

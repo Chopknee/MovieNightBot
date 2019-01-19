@@ -47,42 +47,42 @@ namespace MovieNightBot.Core.Data {
 
         public static MovieCollection GetServerMovies(string serverId, string serverName) {
             //Gets the movies associated with the specified server
-            Console.WriteLine($"Number of loaded server files] {serverMovies.Count}");
+            Console.WriteLine($"Looking for server {serverId}:{serverName} data.");
             //Loads it if necessarry
             if (!serverMovies.ContainsKey(serverId)) {
+                Console.WriteLine($"Server {serverId}:{serverName} is not loaded.");
                 LoadMoviesFile(serverId, serverName);
             }
+            Console.WriteLine($"Server {serverId}:{serverName} is now loaded.");
             return serverMovies[serverId];
         }
 
         public static Movie[] GetMovieVote(string serverId, string serverName) {
-            Movie[] movies = new Movie[5];
-            List<Movie> movs = new List<Movie>();
-            MovieCollection mc = GetServerMovies(serverId, serverName);
-            movs.AddRange(mc.waitingMovies);
-            for (int i = 0; i < Math.Min(mc.MovieVoteCount, movs.Count); i++) {
-                int ind = (int)Math.Floor(rand.NextDouble() * movs.Count);
-                movies[i] = movs[ind];
-                movs.RemoveAt(ind);
+            MovieCollection serverMoviesCollection = GetServerMovies(serverId, serverName);
+            List<Movie> allMovies = new List<Movie>();
+            allMovies.AddRange(serverMoviesCollection.waitingMovies);
+            int count = Math.Min(serverMoviesCollection.MovieVoteCount, allMovies.Count);
+            Movie[] movies = new Movie[count];
+            for (int i = 0; i < count; i++) {
+                int randomIndex = rand.Next(0, allMovies.Count);
+                movies[i] = allMovies[randomIndex];
+                allMovies.RemoveAt(randomIndex);
             }
             return movies;
         }
 
         private static void LoadMoviesFile(string serverId, string serverName) {
             if (!File.Exists(@"ServerFiles\" + $"{serverId}.txt")) {
-                Console.WriteLine($"No file for server {serverName} (ID:{serverId} exists! Creating blank file in stead.");
-                //Create the required object
                 MovieCollection mc = new MovieCollection{ ServerName = serverName, ServerId = serverId, DateCreated = DateTime.Now.ToString() };
                 serverMovies.Add(serverId, mc);
-                SaveMoviesFile(serverId, serverName);//Force the file to save for the first time
+                SaveMoviesFile(serverId, serverName);
                 return;
             }
             string fileText;
-            using (System.IO.StreamReader file = new System.IO.StreamReader(serverId + serverName)) {
+            using (System.IO.StreamReader file = new System.IO.StreamReader(@"ServerFiles\" + $"{serverId}.txt")) {
                 fileText = file.ReadToEnd();
             }
-            if (fileText == "") {
-                Console.WriteLine($"File for server {serverName} (ID:{serverId} is empty! Creating blank file in stead.");
+            if (fileText.Equals("")) {
                 MovieCollection mc = new MovieCollection { ServerName = serverName, ServerId = serverId, DateCreated = DateTime.Now.ToString() };
                 serverMovies.Add(serverId, mc);
                 SaveMoviesFile(serverId, serverName);
@@ -93,8 +93,7 @@ namespace MovieNightBot.Core.Data {
         }
 
         private static void SaveMoviesFile(string serverId, string serverName) {
-            Console.WriteLine("Saving a file!");
-            File.WriteAllText(@"ServerFiles\" + $"{serverId}.txt", JsonConvert.SerializeObject(serverMovies[serverId]));
+            File.WriteAllText(@"ServerFiles\" + $"{serverId}.txt", JsonConvert.SerializeObject(serverMovies[serverId], Formatting.Indented));
         }
     }
 
@@ -105,25 +104,6 @@ namespace MovieNightBot.Core.Data {
         public string DateCreated;
         public int MovieVoteCount = 5;//By default set to 5
         //These fields are for the use of JSON when being converted into text objects. (I hope)
-        public Movie[] MoviesInWaiting {
-            get {
-                return waitingMovies.ToArray();
-            }
-            set {
-                waitingMovies.Clear();
-                waitingMovies.AddRange(value);
-            }
-        }
-        public Movie[] MoviesWatched {
-            get {
-                return watchedMovies.ToArray();
-            }
-            set {
-                waitingMovies.Clear();
-                waitingMovies.AddRange(value);
-            }
-        }
-        //These are the active data fields. (They are not serializable so they won't be saved in the file)
         public List<Movie> waitingMovies = new List<Movie>();
         public List<Movie> watchedMovies = new List<Movie>();
     }

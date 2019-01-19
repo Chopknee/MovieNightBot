@@ -1,1 +1,39 @@
-{"ServerName":"JustaTestServer","ServerId":"536019646554439689","DateCreated":"1/19/2019 1:35:48 PM","waitingMovies":[{"Title":"movie","suggestDate":"1/19/2019 1:35:48 PM","watchedDate":""}],"watchedMovies":[],"MoviesInWaiting":[{"Title":"movie","suggestDate":"1/19/2019 1:35:48 PM","watchedDate":""}],"MoviesWatched":[]}
+{
+  "ServerName": "JustaTestServer",
+  "ServerId": "536019646554439689",
+  "DateCreated": "1/19/2019 3:32:51 PM",
+  "MovieVoteCount": 5,
+  "waitingMovies": [
+    {
+      "Title": "file",
+      "suggestDate": "1/19/2019 3:32:51 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Test",
+      "suggestDate": "1/19/2019 3:40:48 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Test 2",
+      "suggestDate": "1/19/2019 3:40:52 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Test3",
+      "suggestDate": "1/19/2019 3:40:58 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Test4",
+      "suggestDate": "1/19/2019 3:41:16 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "None",
+      "suggestDate": "1/19/2019 4:37:33 PM",
+      "watchedDate": ""
+    }
+  ],
+  "watchedMovies": []
+}
