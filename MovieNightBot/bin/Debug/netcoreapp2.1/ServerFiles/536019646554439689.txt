@@ -1,0 +1,1 @@
+{"ServerName":"JustaTestServer","ServerId":"536019646554439689","DateCreated":"1/19/2019 1:35:48 PM","waitingMovies":[{"Title":"movie","suggestDate":"1/19/2019 1:35:48 PM","watchedDate":""}],"watchedMovies":[],"MoviesInWaiting":[{"Title":"movie","suggestDate":"1/19/2019 1:35:48 PM","watchedDate":""}],"MoviesWatched":[]}
