@@ -6,6 +6,7 @@ using System.Text;
 using Discord;
 using Discord.Commands;
 using MovieNightBot.Core.Data;
+using System.Globalization;
 
 namespace MovieNightBot.Core.Commands {
     public class SuggestMovie : ModuleBase<SocketCommandContext> {
@@ -20,7 +21,11 @@ namespace MovieNightBot.Core.Commands {
         [Command("suggest"), Summary("Add movie command")]
         public async Task Suggest([Remainder]string Input = "") {
             if (Input.Equals(""))  return; //Filter out empty suggestions
-            string fileName = Context.Guild.Name + Context.Guild.Id + ".txt";
+            if (Input.Length > 150) return;//Title too long, probably spam
+            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+            Input = Input.Trim();//Clear spaces
+            Input = myTI.ToTitleCase(Input);//Make it so every word starts with an upper case
+
             if (!Movies.HasMovie(Context.Guild.Id + "", Context.Guild.Name, Input)) {
                 Movies.SuggestMovie(Context.Guild.Id + "", Context.Guild.Name, Input);
                 await Context.Channel.SendMessageAsync($"Your suggestion of {Input} has been added to the list.");

@@ -10,7 +10,7 @@
       "watchedDate": ""
     },
     {
-      "Title": "Mac and Me",
+      "Title": "Mac And Me",
       "suggestDate": "1/19/2019 5:37:13 PM",
       "watchedDate": ""
     },
@@ -47,6 +47,31 @@
     {
       "Title": "Pokémon: The First Movie",
       "suggestDate": "1/19/2019 5:38:24 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Finding Nemo",
+      "suggestDate": "1/19/2019 9:28:28 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Ghost Busters",
+      "suggestDate": "1/19/2019 10:45:25 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Alien",
+      "suggestDate": "1/19/2019 10:45:33 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Aliens",
+      "suggestDate": "1/19/2019 10:45:39 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Chopknee's Choice",
+      "suggestDate": "1/19/2019 10:46:25 PM",
       "watchedDate": ""
     }
   ],

@@ -39,6 +39,38 @@ namespace MovieNightBot.Core.Data {
             return res;
         }
 
+        public static void SetMovieToWatched(string serverId, string serverName, string movieTitle) {
+            MovieCollection movs = GetServerMovies(serverId, serverName);
+            Movie theMovie = null;
+            for (int i = 0; i < movs.waitingMovies.Count; i++) {
+                if (movs.waitingMovies[i].Title.Equals(movieTitle)) {
+                    theMovie = movs.waitingMovies[i];
+                    movs.waitingMovies.RemoveAt(i);
+                    movs.watchedMovies.Add(theMovie);
+                    theMovie.watchedDate = DateTime.Now.ToString();
+                    SaveMoviesFile(serverId, serverName);
+                    return;
+                }
+            }
+            Console.WriteLine($"Attempting to set movie {movieTitle} to watched has failed. Could not find it in suggested movies.");
+        }
+
+        public static void SetMovieToUnwatched(string serverId, string serverName, string movieTitle) {
+            MovieCollection movs = GetServerMovies(serverId, serverName);
+            Movie theMovie = null;
+            for (int i = 0; i < movs.watchedMovies.Count; i++) {
+                if (movs.watchedMovies[i].Title.Equals(movieTitle)) {
+                    theMovie = movs.watchedMovies[i];
+                    movs.watchedMovies.RemoveAt(i);
+                    movs.waitingMovies.Add(theMovie);
+                    theMovie.watchedDate = "";
+                    SaveMoviesFile(serverId, serverName);
+                    return;
+                }
+            }
+            Console.WriteLine($"Attempting to set movie {movieTitle} to suggestions has failed. Could not find it in suggested movies.");
+        }
+
         public static void SuggestMovie(string serverId, string serverName, string movieTitle) {
             MovieCollection movs = GetServerMovies(serverId, serverName);
             movs.waitingMovies.Add(new Movie { Title = movieTitle, suggestDate = DateTime.Now.ToString(), watchedDate="" });

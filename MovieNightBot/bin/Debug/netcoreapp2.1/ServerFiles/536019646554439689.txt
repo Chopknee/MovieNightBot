@@ -5,33 +5,118 @@
   "MovieVoteCount": 5,
   "waitingMovies": [
     {
-      "Title": "file",
+      "Title": "The Interview",
       "suggestDate": "1/19/2019 3:32:51 PM",
       "watchedDate": ""
     },
     {
-      "Title": "Test",
+      "Title": "Birdemic 2",
       "suggestDate": "1/19/2019 3:40:48 PM",
       "watchedDate": ""
     },
     {
-      "Title": "Test 2",
+      "Title": "Blade Runner",
       "suggestDate": "1/19/2019 3:40:52 PM",
       "watchedDate": ""
     },
     {
-      "Title": "Test3",
+      "Title": "Pokemon: The First Movie",
       "suggestDate": "1/19/2019 3:40:58 PM",
       "watchedDate": ""
     },
     {
-      "Title": "Test4",
+      "Title": "Shrek 3",
       "suggestDate": "1/19/2019 3:41:16 PM",
       "watchedDate": ""
     },
     {
-      "Title": "None",
+      "Title": "Mac and Me",
       "suggestDate": "1/19/2019 4:37:33 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Ghost Busters",
+      "suggestDate": "1/19/2019 10:43:39 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Sharknado",
+      "suggestDate": "1/19/2019 7:48:45 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Coraline",
+      "suggestDate": "1/19/2019 10:47:25 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Avatar The Last Airbender",
+      "suggestDate": "1/19/2019 10:47:33 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Space Jam",
+      "suggestDate": "1/19/2019 10:47:39 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "The Blair Witch Project",
+      "suggestDate": "1/19/2019 10:47:46 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "The 5Th Element",
+      "suggestDate": "1/19/2019 10:47:54 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "The Star Wars Holiday Special",
+      "suggestDate": "1/19/2019 10:48:05 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "The Martian",
+      "suggestDate": "1/19/2019 10:48:15 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Ghost In The Shell (1995)",
+      "suggestDate": "1/19/2019 10:48:26 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "The Room",
+      "suggestDate": "1/19/2019 10:48:32 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Naussica Valley Of The Winds",
+      "suggestDate": "1/19/2019 10:48:40 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "The Nightmare Before Christmas",
+      "suggestDate": "1/19/2019 10:48:54 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Birdemic: Shock And Terror",
+      "suggestDate": "1/19/2019 10:49:05 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Shrek",
+      "suggestDate": "1/19/2019 10:49:09 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Paul Blart Mall Cop",
+      "suggestDate": "1/19/2019 10:49:17 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Shrek 2",
+      "suggestDate": "1/19/2019 10:49:30 PM",
       "watchedDate": ""
     }
   ],
