@@ -18,7 +18,7 @@ namespace MovieNightBot.Core.Commands {
         [Command("beginvote"), Summary("Start the voging process for a movie.")]
         public async Task BeginVote() {
             if (movieVoteOptions.ContainsKey("" + Context.Guild.Id)) {
-                await Context.Channel.SendMessageAsync($"{Context.User.Username}, a vote has already been started. If you wish to end the current vote, use m!showvote.");
+                await Context.Channel.SendMessageAsync($"{Context.User.Username}, a vote has already been started. If you wish to end the current vote, use **m!showvote**.");
                 return;
             }
 
@@ -36,7 +36,7 @@ namespace MovieNightBot.Core.Commands {
                     .WithName("Movie Night Bot");
                 });
             for (int i = 0; i < movs.Length; i++) {
-                builder.AddField($"{(i+1)}] {movs[i].Title}", $"m!vote {(i+1)}");
+                builder.AddField($"{(i+1)}] {movs[i].Title}", $"**m!vote** {(i+1)}");
             }
             Embed embed = builder.Build();
             currentVotes.Add("" + Context.Guild.Id, new Dictionary<string, int>());
@@ -47,11 +47,11 @@ namespace MovieNightBot.Core.Commands {
         public async Task ShowVote() {
             try {
                 if (!movieVoteOptions.ContainsKey("" + Context.Guild.Id)) {
-                    await Context.Channel.SendMessageAsync($"{Context.User.Username}, no vote has been started. If you wish to start a vote please use m!beginvote.");
+                    await Context.Channel.SendMessageAsync($"{Context.User.Username}, no vote has been started. If you wish to start a vote please use **m!beginvote**.");
                     return;
                 }
                 if (!currentVotes.ContainsKey(Context.Guild.Id + "")) {
-                    await Context.Channel.SendMessageAsync($"Apologies, an unexpected error has prevented the vote from completing successfully. Please restart the vote by using m!beginvote.");
+                    await Context.Channel.SendMessageAsync($"Apologies, an unexpected error has prevented the vote from completing successfully. Please restart the vote by using **m!beginvote**.");
                 }
                 Movie[] movies = movieVoteOptions["" + Context.Guild.Id];
                 //Build an array to count the votes
@@ -67,7 +67,7 @@ namespace MovieNightBot.Core.Commands {
                     max = Math.Max(option, max);
                 }
                 if (max == 0) {
-                    await Context.Channel.SendMessageAsync($"The voting was ended before anyone cast a vote. To restart voting, use m!beginvote.");
+                    await Context.Channel.SendMessageAsync($"The voting was ended before anyone cast a vote. To restart voting, use **m!beginvote**.");
                     movieVoteOptions.Remove("" + Context.Guild.Id);
                     currentVotes.Remove("" + Context.Guild.Id);
                     return;
@@ -82,7 +82,7 @@ namespace MovieNightBot.Core.Commands {
                 Console.WriteLine(winners[0]);
                 if (winners.Count == 1) {
                     //We have a single winner
-                    await Context.Channel.SendMessageAsync($"The winner of this movie night vote is {movies[winners[0]].Title}.");
+                    await Context.Channel.SendMessageAsync($"The winner of this movie night vote is {movies[winners[0]].Title}.\nTo remove it from future votes, use **m!setwatched {movies[winners[0]].Title}**");
                     //The movie needs to be added to the already watched list, then the vote system needs to be reset.
                     movieVoteOptions.Remove("" + Context.Guild.Id);
                     currentVotes.Remove("" + Context.Guild.Id);
@@ -129,17 +129,21 @@ namespace MovieNightBot.Core.Commands {
                 Dictionary<string, int> serverVotes = currentVotes[Context.Guild.Id + ""];
                 //If the votes dictionary for this server does not exist, create it.
                 if (serverVotes == null) { serverVotes = new Dictionary<string, int>(); currentVotes.Add(Context.Guild.Id + "", serverVotes); }
-                //
+                    
                 if (serverVotes.ContainsKey(Context.User.Id + "")) {
-                    //Update the user vote
-                    serverVotes[Context.User.Id + ""] = vote;
-                    await Context.Channel.SendMessageAsync($"{Context.User.Username}, your vote has been updated to option {vote + 1}.");
+                    if (serverVotes[Context.User.Id + ""] == vote) {
+                        await Context.Channel.SendMessageAsync($"{Context.User.Username}, your vote was already cast for option {vote + 1}.");
+                    } else {
+                        //Update the user vote
+                        serverVotes[Context.User.Id + ""] = vote;
+                        await Context.Channel.SendMessageAsync($"{Context.User.Username}, your vote has been updated to option {vote + 1}.");
+                    }
                 } else {
                     serverVotes[Context.User.Id + ""] = vote;
                     await Context.Channel.SendMessageAsync($"{Context.User.Username}, you have cast your vote for option {vote + 1}.");
                 }
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
             }
         }
     }

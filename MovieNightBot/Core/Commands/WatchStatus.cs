@@ -27,7 +27,7 @@ namespace MovieNightBot.Core.Commands {
                 return;
             }
             Movies.SetMovieToWatched(Context.Guild.Id + "", Context.Guild.Name, Input);
-            await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} is now set to watched and will no longer appear on votes.\nTo undo this, you can use m!unwatch.");
+            await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} is now set to watched and will no longer appear on votes.\nTo undo this, you can use **m!unwatch {Input}**.");
         }
 
         [Command("unwatch"), Summary("Returns a previously watched movie to the voting lists.")]
@@ -44,7 +44,7 @@ namespace MovieNightBot.Core.Commands {
                 return;
             }
             Movies.SetMovieToUnwatched(Context.Guild.Id + "", Context.Guild.Name, Input);
-            await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} has been added back to the wait list and will show in future votes.\nTo undo this, you can use m!setwatched.");
+            await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} has been added back to the wait list and will show in future votes.\nTo undo this, you can use **m!setwatched {Input}**.");
         }
     }
 }

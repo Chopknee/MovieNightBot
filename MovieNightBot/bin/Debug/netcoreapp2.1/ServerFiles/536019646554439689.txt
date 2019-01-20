@@ -35,11 +35,6 @@
       "watchedDate": ""
     },
     {
-      "Title": "Shrek 2",
-      "suggestDate": "1/19/2019 10:49:30 PM",
-      "watchedDate": ""
-    },
-    {
       "Title": "Pokemon: The First Movie",
       "suggestDate": "1/19/2019 3:40:58 PM",
       "watchedDate": ""
@@ -115,6 +110,11 @@
       "Title": "Paul Blart Mall Cop",
       "suggestDate": "1/19/2019 10:49:17 PM",
       "watchedDate": "1/20/2019 12:47:34 PM"
+    },
+    {
+      "Title": "Shrek 2",
+      "suggestDate": "1/19/2019 10:49:30 PM",
+      "watchedDate": "1/20/2019 1:59:35 PM"
     }
   ]
 }

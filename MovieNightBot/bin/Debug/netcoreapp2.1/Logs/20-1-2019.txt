@@ -436,3 +436,737 @@
 13:25:56 Gateway     Received Dispatch (TYPING_START)
 13:25:57 Gateway     Received Dispatch (MESSAGE_CREATE)
 13:26:05 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:30:29 Discord     Discord.Net v2.0.1 (API v6)
+13:30:29 Rest        GET voice/regions: 500.38 ms
+13:30:30 Gateway     Connecting
+13:30:30 Gateway     Connecting ApiClient
+13:30:30 Rest        GET gateway: 39.07 ms
+13:30:30 Gateway     Received Hello
+13:30:30 Gateway     Heartbeat Started
+13:30:30 Gateway     Identifying
+13:30:30 Gateway     Sent Heartbeat
+13:30:30 Gateway     Sent Identify
+13:30:30 Gateway     Received HeartbeatAck
+13:30:30 Gateway     Latency = 141 ms
+13:30:30 Gateway     Received Dispatch (READY)
+13:30:30 Gateway     GuildDownloader Started
+13:30:30 Gateway     Sending Status
+13:30:30 Gateway     Sent StatusUpdate
+13:30:30 Gateway     Connected
+13:30:30 Gateway     Raising Event
+13:30:30 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:30:30 Gateway     Connected to Wynvin's hideout
+13:30:30 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:30:30 Gateway     Connected to JustaTestServer
+13:30:31 Gateway     GuildDownloader Stopped
+13:30:31 Gateway     Sent StatusUpdate
+13:30:31 Gateway     Ready
+13:30:33 Gateway     Received Dispatch (TYPING_START)
+13:30:34 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:30:35 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:30:36 Gateway     Received Dispatch (TYPING_START)
+13:30:38 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:31:46 Discord     Discord.Net v2.0.1 (API v6)
+13:31:46 Rest        GET voice/regions: 538.31 ms
+13:31:46 Gateway     Connecting
+13:31:46 Gateway     Connecting ApiClient
+13:31:47 Rest        GET gateway: 33.98 ms
+13:31:47 Gateway     Received Hello
+13:31:47 Gateway     Heartbeat Started
+13:31:47 Gateway     Identifying
+13:31:47 Gateway     Sent Heartbeat
+13:31:47 Gateway     Sent Identify
+13:31:47 Gateway     Received HeartbeatAck
+13:31:47 Gateway     Latency = 156 ms
+13:31:48 Gateway     Received Dispatch (READY)
+13:31:48 Gateway     GuildDownloader Started
+13:31:48 Gateway     Sending Status
+13:31:48 Gateway     Sent StatusUpdate
+13:31:48 Gateway     Connected
+13:31:48 Gateway     Raising Event
+13:31:48 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:31:48 Gateway     Connected to Wynvin's hideout
+13:31:48 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:31:48 Gateway     Connected to JustaTestServer
+13:31:48 Gateway     GuildDownloader Stopped
+13:31:48 Gateway     Sent StatusUpdate
+13:31:48 Gateway     Ready
+13:31:49 Gateway     Received Dispatch (TYPING_START)
+13:31:51 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:31:53 Gateway     Received Dispatch (TYPING_START)
+13:31:55 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:32:48 Discord     Discord.Net v2.0.1 (API v6)
+13:32:49 Rest        GET voice/regions: 558.87 ms
+13:32:49 Gateway     Connecting
+13:32:49 Gateway     Connecting ApiClient
+13:32:49 Rest        GET gateway: 53.25 ms
+13:32:50 Gateway     Received Hello
+13:32:50 Gateway     Heartbeat Started
+13:32:50 Gateway     Identifying
+13:32:50 Gateway     Sent Heartbeat
+13:32:50 Gateway     Sent Identify
+13:32:50 Gateway     Received HeartbeatAck
+13:32:50 Gateway     Latency = 141 ms
+13:32:50 Gateway     Received Dispatch (READY)
+13:32:50 Gateway     GuildDownloader Started
+13:32:50 Gateway     Sending Status
+13:32:50 Gateway     Sent StatusUpdate
+13:32:50 Gateway     Connected
+13:32:50 Gateway     Raising Event
+13:32:50 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:32:50 Gateway     Connected to Wynvin's hideout
+13:32:50 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:32:50 Gateway     Connected to JustaTestServer
+13:32:50 Gateway     GuildDownloader Stopped
+13:32:50 Gateway     Sent StatusUpdate
+13:32:50 Gateway     Ready
+13:32:53 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:32:54 Gateway     Received Dispatch (TYPING_START)
+13:32:58 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:36:02 Discord     Discord.Net v2.0.1 (API v6)
+13:36:03 Rest        GET voice/regions: 643.05 ms
+13:36:03 Gateway     Connecting
+13:36:03 Gateway     Connecting ApiClient
+13:36:03 Rest        GET gateway: 35.49 ms
+13:36:03 Gateway     Received Hello
+13:36:03 Gateway     Heartbeat Started
+13:36:04 Gateway     Identifying
+13:36:04 Gateway     Sent Heartbeat
+13:36:04 Gateway     Sent Identify
+13:36:04 Gateway     Received HeartbeatAck
+13:36:04 Gateway     Latency = 156 ms
+13:36:05 Gateway     Received Dispatch (READY)
+13:36:05 Gateway     GuildDownloader Started
+13:36:05 Gateway     Sending Status
+13:36:05 Gateway     Sent StatusUpdate
+13:36:05 Gateway     Connected
+13:36:05 Gateway     Raising Event
+13:36:05 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:36:05 Gateway     Connected to Wynvin's hideout
+13:36:05 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:36:05 Gateway     Connected to JustaTestServer
+13:36:06 Gateway     GuildDownloader Stopped
+13:36:06 Gateway     Sent StatusUpdate
+13:36:06 Gateway     Ready
+13:36:07 Gateway     Received Dispatch (TYPING_START)
+13:36:07 Gateway     Ignored Dispatch (PRESENCES_REPLACE)
+13:36:10 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:38:22 Discord     Discord.Net v2.0.1 (API v6)
+13:38:23 Rest        GET voice/regions: 581.81 ms
+13:38:23 Gateway     Connecting
+13:38:23 Gateway     Connecting ApiClient
+13:38:23 Rest        GET gateway: 40.58 ms
+13:38:24 Gateway     Received Hello
+13:38:24 Gateway     Heartbeat Started
+13:38:24 Gateway     Identifying
+13:38:24 Gateway     Sent Heartbeat
+13:38:24 Gateway     Sent Identify
+13:38:24 Gateway     Received HeartbeatAck
+13:38:24 Gateway     Latency = 140 ms
+13:38:24 Gateway     Received Dispatch (READY)
+13:38:24 Gateway     GuildDownloader Started
+13:38:24 Gateway     Sending Status
+13:38:24 Gateway     Sent StatusUpdate
+13:38:24 Gateway     Connected
+13:38:24 Gateway     Raising Event
+13:38:24 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:38:24 Gateway     Connected to Wynvin's hideout
+13:38:24 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:38:24 Gateway     Connected to JustaTestServer
+13:38:25 Gateway     GuildDownloader Stopped
+13:38:25 Gateway     Sent StatusUpdate
+13:38:25 Gateway     Ready
+13:38:26 Gateway     Received Dispatch (TYPING_START)
+13:38:29 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:38:29 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:38:29 Rest        POST channels/536019646554439691/messages: 184.7 ms
+13:38:31 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:38:37 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:39:33 Discord     Discord.Net v2.0.1 (API v6)
+13:39:34 Rest        GET voice/regions: 511.97 ms
+13:39:34 Gateway     Connecting
+13:39:34 Gateway     Connecting ApiClient
+13:39:34 Rest        GET gateway: 44.85 ms
+13:39:35 Gateway     Received Hello
+13:39:35 Gateway     Heartbeat Started
+13:39:35 Gateway     Identifying
+13:39:35 Gateway     Sent Heartbeat
+13:39:35 Gateway     Sent Identify
+13:39:35 Gateway     Received HeartbeatAck
+13:39:35 Gateway     Latency = 141 ms
+13:39:35 Gateway     Received Dispatch (READY)
+13:39:35 Gateway     GuildDownloader Started
+13:39:35 Gateway     Sending Status
+13:39:35 Gateway     Sent StatusUpdate
+13:39:35 Gateway     Connected
+13:39:35 Gateway     Raising Event
+13:39:35 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:39:35 Gateway     Connected to Wynvin's hideout
+13:39:35 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:39:35 Gateway     Connected to JustaTestServer
+13:39:35 Gateway     GuildDownloader Stopped
+13:39:35 Gateway     Sent StatusUpdate
+13:39:35 Gateway     Ready
+13:39:35 Gateway     Received Dispatch (TYPING_START)
+13:39:38 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:40:46 Discord     Discord.Net v2.0.1 (API v6)
+13:40:46 Rest        GET voice/regions: 534.86 ms
+13:40:46 Gateway     Connecting
+13:40:46 Gateway     Connecting ApiClient
+13:40:46 Rest        GET gateway: 36.17 ms
+13:40:47 Gateway     Received Hello
+13:40:47 Gateway     Heartbeat Started
+13:40:47 Gateway     Identifying
+13:40:47 Gateway     Sent Heartbeat
+13:40:47 Gateway     Sent Identify
+13:40:47 Gateway     Received HeartbeatAck
+13:40:47 Gateway     Latency = 140 ms
+13:40:47 Gateway     Received Dispatch (READY)
+13:40:47 Gateway     GuildDownloader Started
+13:40:47 Gateway     Sending Status
+13:40:47 Gateway     Sent StatusUpdate
+13:40:47 Gateway     Connected
+13:40:47 Gateway     Raising Event
+13:40:47 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:40:47 Gateway     Connected to Wynvin's hideout
+13:40:47 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:40:47 Gateway     Connected to JustaTestServer
+13:40:48 Gateway     GuildDownloader Stopped
+13:40:48 Gateway     Sent StatusUpdate
+13:40:48 Gateway     Ready
+13:40:48 Gateway     Received Dispatch (TYPING_START)
+13:40:51 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:40:54 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:41:04 Discord     Discord.Net v2.0.1 (API v6)
+13:41:05 Rest        GET voice/regions: 511.6 ms
+13:41:05 Gateway     Connecting
+13:41:05 Gateway     Connecting ApiClient
+13:41:05 Rest        GET gateway: 45.16 ms
+13:41:06 Gateway     Received Hello
+13:41:06 Gateway     Heartbeat Started
+13:41:06 Gateway     Identifying
+13:41:06 Gateway     Sent Heartbeat
+13:41:06 Gateway     Sent Identify
+13:41:06 Gateway     Received HeartbeatAck
+13:41:06 Gateway     Latency = 422 ms
+13:41:07 Gateway     Received Dispatch (READY)
+13:41:07 Gateway     GuildDownloader Started
+13:41:07 Gateway     Sending Status
+13:41:07 Gateway     Sent StatusUpdate
+13:41:07 Gateway     Connected
+13:41:07 Gateway     Raising Event
+13:41:07 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:41:07 Gateway     Connected to Wynvin's hideout
+13:41:07 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:41:07 Gateway     Connected to JustaTestServer
+13:41:07 Gateway     GuildDownloader Stopped
+13:41:07 Gateway     Sent StatusUpdate
+13:41:07 Gateway     Ready
+13:41:10 Gateway     Received Dispatch (TYPING_START)
+13:41:11 Gateway     Received Dispatch (TYPING_START)
+13:41:12 Gateway     Received Dispatch (TYPING_START)
+13:41:15 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:42:01 Discord     Discord.Net v2.0.1 (API v6)
+13:42:02 Rest        GET voice/regions: 512.13 ms
+13:42:02 Gateway     Connecting
+13:42:02 Gateway     Connecting ApiClient
+13:42:02 Rest        GET gateway: 38.27 ms
+13:42:03 Gateway     Received Hello
+13:42:03 Gateway     Heartbeat Started
+13:42:03 Gateway     Identifying
+13:42:03 Gateway     Sent Heartbeat
+13:42:03 Gateway     Sent Identify
+13:42:03 Gateway     Received HeartbeatAck
+13:42:03 Gateway     Latency = 187 ms
+13:42:03 Gateway     Received Dispatch (READY)
+13:42:03 Gateway     GuildDownloader Started
+13:42:03 Gateway     Sending Status
+13:42:03 Gateway     Sent StatusUpdate
+13:42:03 Gateway     Connected
+13:42:03 Gateway     Raising Event
+13:42:03 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:42:03 Gateway     Connected to JustaTestServer
+13:42:03 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:42:03 Gateway     Connected to Wynvin's hideout
+13:42:03 Gateway     GuildDownloader Stopped
+13:42:03 Gateway     Sent StatusUpdate
+13:42:03 Gateway     Ready
+13:42:04 Gateway     Received Dispatch (TYPING_START)
+13:42:06 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:42:22 Discord     Discord.Net v2.0.1 (API v6)
+13:42:22 Rest        GET voice/regions: 528.32 ms
+13:42:22 Gateway     Connecting
+13:42:22 Gateway     Connecting ApiClient
+13:42:22 Rest        GET gateway: 37.53 ms
+13:42:23 Gateway     Received Hello
+13:42:23 Gateway     Heartbeat Started
+13:42:23 Gateway     Identifying
+13:42:23 Gateway     Sent Heartbeat
+13:42:23 Gateway     Sent Identify
+13:42:23 Gateway     Received HeartbeatAck
+13:42:23 Gateway     Latency = 172 ms
+13:42:23 Gateway     Received Dispatch (READY)
+13:42:23 Gateway     GuildDownloader Started
+13:42:23 Gateway     Sending Status
+13:42:23 Gateway     Sent StatusUpdate
+13:42:23 Gateway     Connected
+13:42:23 Gateway     Raising Event
+13:42:23 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:42:23 Gateway     Connected to Wynvin's hideout
+13:42:23 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:42:23 Gateway     Connected to JustaTestServer
+13:42:24 Gateway     GuildDownloader Stopped
+13:42:24 Gateway     Sent StatusUpdate
+13:42:24 Gateway     Ready
+13:42:25 Gateway     Received Dispatch (TYPING_START)
+13:42:28 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:42:58 Discord     Discord.Net v2.0.1 (API v6)
+13:42:59 Rest        GET voice/regions: 505.4 ms
+13:42:59 Gateway     Connecting
+13:42:59 Gateway     Connecting ApiClient
+13:42:59 Rest        GET gateway: 34.46 ms
+13:42:59 Gateway     Received Hello
+13:42:59 Gateway     Heartbeat Started
+13:42:59 Gateway     Identifying
+13:42:59 Gateway     Sent Heartbeat
+13:42:59 Gateway     Sent Identify
+13:43:00 Gateway     Received HeartbeatAck
+13:43:00 Gateway     Latency = 141 ms
+13:43:00 Gateway     Received Dispatch (READY)
+13:43:00 Gateway     GuildDownloader Started
+13:43:00 Gateway     Sending Status
+13:43:00 Gateway     Sent StatusUpdate
+13:43:00 Gateway     Connected
+13:43:00 Gateway     Raising Event
+13:43:00 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:43:00 Gateway     Connected to Wynvin's hideout
+13:43:00 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:43:00 Gateway     Connected to JustaTestServer
+13:43:00 Gateway     GuildDownloader Stopped
+13:43:00 Gateway     Sent StatusUpdate
+13:43:00 Gateway     Ready
+13:43:03 Gateway     Received Dispatch (TYPING_START)
+13:43:06 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:43:07 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:43:14 Discord     Discord.Net v2.0.1 (API v6)
+13:43:14 Rest        GET voice/regions: 519.96 ms
+13:43:15 Gateway     Connecting
+13:43:15 Gateway     Connecting ApiClient
+13:43:15 Rest        GET gateway: 36.68 ms
+13:43:15 Gateway     Received Hello
+13:43:15 Gateway     Heartbeat Started
+13:43:15 Gateway     Identifying
+13:43:15 Gateway     Sent Heartbeat
+13:43:15 Gateway     Sent Identify
+13:43:15 Gateway     Received HeartbeatAck
+13:43:15 Gateway     Latency = 141 ms
+13:43:16 Gateway     Received Dispatch (READY)
+13:43:16 Gateway     GuildDownloader Started
+13:43:16 Gateway     Sending Status
+13:43:16 Gateway     Sent StatusUpdate
+13:43:16 Gateway     Connected
+13:43:16 Gateway     Raising Event
+13:43:16 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:43:16 Gateway     Connected to Wynvin's hideout
+13:43:16 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:43:16 Gateway     Connected to JustaTestServer
+13:43:16 Gateway     GuildDownloader Stopped
+13:43:16 Gateway     Sent StatusUpdate
+13:43:16 Gateway     Ready
+13:43:17 Gateway     Received Dispatch (TYPING_START)
+13:43:20 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:43:34 Discord     Discord.Net v2.0.1 (API v6)
+13:43:47 Discord     Discord.Net v2.0.1 (API v6)
+13:45:38 Discord     Discord.Net v2.0.1 (API v6)
+13:45:38 Rest        GET voice/regions: 601.72 ms
+13:45:39 Gateway     Connecting
+13:45:39 Gateway     Connecting ApiClient
+13:45:39 Rest        GET gateway: 37.53 ms
+13:45:39 Gateway     Received Hello
+13:45:39 Gateway     Heartbeat Started
+13:45:39 Gateway     Identifying
+13:45:39 Gateway     Sent Heartbeat
+13:45:39 Gateway     Sent Identify
+13:45:39 Gateway     Received HeartbeatAck
+13:45:39 Gateway     Latency = 125 ms
+13:45:41 Gateway     Received Dispatch (READY)
+13:45:41 Gateway     GuildDownloader Started
+13:45:41 Gateway     Sending Status
+13:45:41 Gateway     Sent StatusUpdate
+13:45:41 Gateway     Connected
+13:45:41 Gateway     Raising Event
+13:45:41 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:45:41 Gateway     Connected to Wynvin's hideout
+13:45:41 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:45:41 Gateway     Connected to JustaTestServer
+13:45:41 Gateway     Received Dispatch (TYPING_START)
+13:45:41 Gateway     Ignored Dispatch (PRESENCES_REPLACE)
+13:45:41 Gateway     GuildDownloader Stopped
+13:45:41 Gateway     Sent StatusUpdate
+13:45:41 Gateway     Ready
+13:45:44 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:45:44 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:45:44 Rest        POST channels/536019646554439691/messages: 119.97 ms
+13:45:45 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:46:26 Discord     Discord.Net v2.0.1 (API v6)
+13:46:26 Rest        GET voice/regions: 525.86 ms
+13:46:41 Discord     Discord.Net v2.0.1 (API v6)
+13:46:41 Rest        GET voice/regions: 495.8 ms
+13:46:41 Gateway     Connecting
+13:46:41 Gateway     Connecting ApiClient
+13:46:42 Rest        GET gateway: 33.67 ms
+13:46:42 Gateway     Received Hello
+13:46:42 Gateway     Heartbeat Started
+13:46:42 Gateway     Identifying
+13:46:42 Gateway     Sent Heartbeat
+13:46:42 Gateway     Sent Identify
+13:46:42 Gateway     Received HeartbeatAck
+13:46:42 Gateway     Latency = 156 ms
+13:46:42 Gateway     Received Dispatch (READY)
+13:46:42 Gateway     GuildDownloader Started
+13:46:42 Gateway     Sending Status
+13:46:42 Gateway     Sent StatusUpdate
+13:46:42 Gateway     Connected
+13:46:42 Gateway     Raising Event
+13:46:42 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:46:42 Gateway     Connected to Wynvin's hideout
+13:46:42 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:46:42 Gateway     Connected to JustaTestServer
+13:46:43 Gateway     GuildDownloader Stopped
+13:46:43 Gateway     Sent StatusUpdate
+13:46:43 Gateway     Ready
+13:46:45 Gateway     Received Dispatch (TYPING_START)
+13:46:47 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:46:47 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:46:47 Rest        POST channels/536019646554439691/messages: 195.57 ms
+13:47:12 Discord     Discord.Net v2.0.1 (API v6)
+13:47:13 Rest        GET voice/regions: 564.99 ms
+13:47:13 Gateway     Connecting
+13:47:13 Gateway     Connecting ApiClient
+13:47:13 Rest        GET gateway: 60.75 ms
+13:47:14 Gateway     Received Hello
+13:47:14 Gateway     Heartbeat Started
+13:47:14 Gateway     Identifying
+13:47:14 Gateway     Sent Heartbeat
+13:47:14 Gateway     Sent Identify
+13:47:14 Gateway     Received HeartbeatAck
+13:47:14 Gateway     Latency = 172 ms
+13:47:14 Gateway     Received Dispatch (READY)
+13:47:14 Gateway     GuildDownloader Started
+13:47:14 Gateway     Sending Status
+13:47:14 Gateway     Sent StatusUpdate
+13:47:14 Gateway     Connected
+13:47:14 Gateway     Raising Event
+13:47:14 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:47:14 Gateway     Connected to Wynvin's hideout
+13:47:14 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:47:14 Gateway     Connected to JustaTestServer
+13:47:15 Gateway     GuildDownloader Stopped
+13:47:15 Gateway     Sent StatusUpdate
+13:47:15 Gateway     Ready
+13:47:15 Gateway     Received Dispatch (TYPING_START)
+13:47:17 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:47:17 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:47:17 Rest        POST channels/536019646554439691/messages: 161.52 ms
+13:47:32 Discord     Discord.Net v2.0.1 (API v6)
+13:47:32 Rest        GET voice/regions: 531.32 ms
+13:47:33 Gateway     Connecting
+13:47:33 Gateway     Connecting ApiClient
+13:47:33 Rest        GET gateway: 36 ms
+13:47:33 Gateway     Received Hello
+13:47:33 Gateway     Heartbeat Started
+13:47:33 Gateway     Identifying
+13:47:33 Gateway     Sent Heartbeat
+13:47:33 Gateway     Sent Identify
+13:47:33 Gateway     Received HeartbeatAck
+13:47:33 Gateway     Latency = 156 ms
+13:47:33 Gateway     Received Dispatch (READY)
+13:47:33 Gateway     GuildDownloader Started
+13:47:33 Gateway     Sending Status
+13:47:33 Gateway     Sent StatusUpdate
+13:47:33 Gateway     Connected
+13:47:33 Gateway     Raising Event
+13:47:33 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:47:34 Gateway     Connected to JustaTestServer
+13:47:34 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:47:34 Gateway     Connected to Wynvin's hideout
+13:47:34 Gateway     GuildDownloader Stopped
+13:47:34 Gateway     Sent StatusUpdate
+13:47:34 Gateway     Ready
+13:47:35 Gateway     Received Dispatch (TYPING_START)
+13:47:37 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:47:37 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:47:38 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:47:38 Rest        POST channels/536019646554439691/messages: 211.92 ms
+13:47:38 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:47:38 Rest        POST channels/536019646554439691/messages: 170.92 ms
+13:48:48 Discord     Discord.Net v2.0.1 (API v6)
+13:48:48 Rest        GET voice/regions: 508.82 ms
+13:48:49 Gateway     Connecting
+13:48:49 Gateway     Connecting ApiClient
+13:48:49 Rest        GET gateway: 35.15 ms
+13:48:49 Gateway     Received Hello
+13:48:49 Gateway     Heartbeat Started
+13:48:49 Gateway     Identifying
+13:48:49 Gateway     Sent Heartbeat
+13:48:49 Gateway     Sent Identify
+13:48:49 Gateway     Received HeartbeatAck
+13:48:49 Gateway     Latency = 157 ms
+13:48:50 Gateway     Received Dispatch (READY)
+13:48:50 Gateway     GuildDownloader Started
+13:48:50 Gateway     Sending Status
+13:48:50 Gateway     Sent StatusUpdate
+13:48:50 Gateway     Connected
+13:48:50 Gateway     Raising Event
+13:48:50 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:48:50 Gateway     Connected to Wynvin's hideout
+13:48:50 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:48:50 Gateway     Connected to JustaTestServer
+13:48:50 Gateway     GuildDownloader Stopped
+13:48:50 Gateway     Sent StatusUpdate
+13:48:50 Gateway     Ready
+13:48:52 Gateway     Received Dispatch (TYPING_START)
+13:48:54 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:48:55 Rest        POST channels/536019646554439691/messages: 180.53 ms
+13:48:55 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:49:01 Gateway     Received Dispatch (TYPING_START)
+13:49:02 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:49:03 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:49:06 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:49:07 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:49:13 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:49:41 Discord     Discord.Net v2.0.1 (API v6)
+13:49:42 Rest        GET voice/regions: 576.06 ms
+13:49:42 Gateway     Connecting
+13:49:42 Gateway     Connecting ApiClient
+13:49:42 Rest        GET gateway: 49.37 ms
+13:49:42 Gateway     Received Hello
+13:49:42 Gateway     Heartbeat Started
+13:49:42 Gateway     Identifying
+13:49:42 Gateway     Sent Heartbeat
+13:49:42 Gateway     Sent Identify
+13:49:43 Gateway     Received HeartbeatAck
+13:49:43 Gateway     Latency = 140 ms
+13:49:43 Gateway     Received Dispatch (READY)
+13:49:43 Gateway     GuildDownloader Started
+13:49:43 Gateway     Sending Status
+13:49:43 Gateway     Sent StatusUpdate
+13:49:43 Gateway     Connected
+13:49:43 Gateway     Raising Event
+13:49:43 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:49:43 Gateway     Connected to Wynvin's hideout
+13:49:43 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:49:43 Gateway     Connected to JustaTestServer
+13:49:43 Gateway     GuildDownloader Stopped
+13:49:43 Gateway     Sent StatusUpdate
+13:49:43 Gateway     Ready
+13:49:44 Gateway     Received Dispatch (TYPING_START)
+13:49:47 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:49:47 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:49:47 Rest        POST channels/536019646554439691/messages: 228.52 ms
+13:49:49 Gateway     Received Dispatch (TYPING_START)
+13:49:53 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:49:53 Rest        POST channels/536019646554439691/messages: 209.42 ms
+13:49:53 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:49:55 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:54:32 Discord     Discord.Net v2.0.1 (API v6)
+13:54:33 Rest        GET voice/regions: 729.73 ms
+13:54:33 Gateway     Connecting
+13:54:33 Gateway     Connecting ApiClient
+13:54:33 Rest        GET gateway: 36.2 ms
+13:54:34 Gateway     Received Hello
+13:54:34 Gateway     Heartbeat Started
+13:54:34 Gateway     Identifying
+13:54:34 Gateway     Sent Heartbeat
+13:54:34 Gateway     Sent Identify
+13:54:34 Gateway     Received HeartbeatAck
+13:54:34 Gateway     Latency = 156 ms
+13:54:34 Gateway     Received Dispatch (READY)
+13:54:34 Gateway     GuildDownloader Started
+13:54:34 Gateway     Sending Status
+13:54:34 Gateway     Sent StatusUpdate
+13:54:34 Gateway     Connected
+13:54:34 Gateway     Raising Event
+13:54:34 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:54:34 Gateway     Connected to Wynvin's hideout
+13:54:34 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:54:34 Gateway     Connected to JustaTestServer
+13:54:34 Gateway     GuildDownloader Stopped
+13:54:34 Gateway     Sent StatusUpdate
+13:54:34 Gateway     Ready
+13:54:35 Gateway     Received Dispatch (TYPING_START)
+13:54:40 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:54:40 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:54:40 Rest        POST channels/536019646554439691/messages: 130.55 ms
+13:54:40 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:54:40 Rest        POST channels/536019646554439691/messages: 296.12 ms
+13:54:40 Gateway     Received Dispatch (MESSAGE_UPDATE)
+13:54:45 Gateway     Received Dispatch (TYPING_START)
+13:54:47 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:54:48 Gateway     Received Dispatch (TYPING_START)
+13:54:51 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:54:51 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:54:51 Rest        POST channels/536019646554439691/messages: 205.44 ms
+13:54:55 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:54:59 Gateway     Received Dispatch (TYPING_START)
+13:55:02 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:55:02 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:55:02 Rest        POST channels/536019646554439691/messages: 301.01 ms
+13:55:02 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:55:02 Gateway     Received Dispatch (MESSAGE_UPDATE)
+13:55:02 Rest        POST channels/536019646554439691/messages: 332.82 ms
+13:55:03 Gateway     Received Dispatch (TYPING_START)
+13:55:05 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:55:07 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:55:09 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:55:10 Gateway     Received Dispatch (TYPING_START)
+13:55:11 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:55:14 Gateway     Received Dispatch (TYPING_START)
+13:55:15 Gateway     Sent Heartbeat
+13:55:15 Gateway     Received HeartbeatAck
+13:55:15 Gateway     Latency = 78 ms
+13:55:18 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:55:19 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:55:22 Gateway     Received Dispatch (TYPING_START)
+13:55:24 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:55:24 Gateway     Received Dispatch (TYPING_START)
+13:55:26 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:55:27 Gateway     Received Dispatch (TYPING_START)
+13:55:30 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:55:45 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:55:56 Gateway     Sent Heartbeat
+13:55:56 Gateway     Received HeartbeatAck
+13:55:56 Gateway     Latency = 62 ms
+13:56:09 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:56:37 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:56:38 Gateway     Sent Heartbeat
+13:56:38 Gateway     Received HeartbeatAck
+13:56:38 Gateway     Latency = 78 ms
+13:57:05 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:57:14 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:57:27 Discord     Discord.Net v2.0.1 (API v6)
+13:57:28 Rest        GET voice/regions: 547.1 ms
+13:57:28 Gateway     Connecting
+13:57:28 Gateway     Connecting ApiClient
+13:57:28 Rest        GET gateway: 62.81 ms
+13:57:29 Gateway     Received Hello
+13:57:29 Gateway     Heartbeat Started
+13:57:29 Gateway     Identifying
+13:57:29 Gateway     Sent Heartbeat
+13:57:29 Gateway     Sent Identify
+13:57:29 Gateway     Received HeartbeatAck
+13:57:29 Gateway     Latency = 140 ms
+13:57:29 Gateway     Received Dispatch (READY)
+13:57:29 Gateway     GuildDownloader Started
+13:57:29 Gateway     Sending Status
+13:57:29 Gateway     Sent StatusUpdate
+13:57:29 Gateway     Connected
+13:57:29 Gateway     Raising Event
+13:57:29 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:57:29 Gateway     Connected to Wynvin's hideout
+13:57:29 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:57:29 Gateway     Connected to JustaTestServer
+13:57:30 Gateway     GuildDownloader Stopped
+13:57:30 Gateway     Sent StatusUpdate
+13:57:30 Gateway     Ready
+13:57:30 Gateway     Received Dispatch (TYPING_START)
+13:57:32 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:57:33 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:57:33 Rest        POST channels/536019646554439691/messages: 268.97 ms
+13:57:33 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:57:33 Rest        POST channels/536019646554439691/messages: 202.81 ms
+13:57:33 Gateway     Received Dispatch (MESSAGE_UPDATE)
+13:57:36 Gateway     Received Dispatch (TYPING_START)
+13:57:38 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:58:07 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:58:09 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:58:10 Gateway     Sent Heartbeat
+13:58:10 Gateway     Received HeartbeatAck
+13:58:10 Gateway     Latency = 78 ms
+13:58:57 Discord     Discord.Net v2.0.1 (API v6)
+13:58:58 Rest        GET voice/regions: 554.45 ms
+13:58:58 Gateway     Connecting
+13:58:58 Gateway     Connecting ApiClient
+13:58:58 Rest        GET gateway: 50.24 ms
+13:58:59 Gateway     Received Hello
+13:58:59 Gateway     Heartbeat Started
+13:58:59 Gateway     Identifying
+13:58:59 Gateway     Sent Heartbeat
+13:58:59 Gateway     Sent Identify
+13:58:59 Gateway     Received HeartbeatAck
+13:58:59 Gateway     Latency = 141 ms
+13:58:59 Gateway     Received Dispatch (READY)
+13:58:59 Gateway     GuildDownloader Started
+13:58:59 Gateway     Sending Status
+13:58:59 Gateway     Sent StatusUpdate
+13:58:59 Gateway     Connected
+13:58:59 Gateway     Raising Event
+13:58:59 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:58:59 Gateway     Connected to Wynvin's hideout
+13:58:59 Gateway     Received Dispatch (GUILD_AVAILABLE)
+13:58:59 Gateway     Connected to JustaTestServer
+13:58:59 Gateway     GuildDownloader Stopped
+13:58:59 Gateway     Sent StatusUpdate
+13:58:59 Gateway     Ready
+13:59:01 Gateway     Received Dispatch (TYPING_START)
+13:59:02 Gateway     Received Dispatch (TYPING_START)
+13:59:05 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:05 Rest        POST channels/536019646554439691/messages: 249.7 ms
+13:59:05 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:06 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:06 Rest        POST channels/536019646554439691/messages: 125.17 ms
+13:59:06 Gateway     Received Dispatch (MESSAGE_UPDATE)
+13:59:07 Gateway     Received Dispatch (TYPING_START)
+13:59:10 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:10 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:10 Rest        POST channels/536019646554439691/messages: 207.51 ms
+13:59:13 Gateway     Received Dispatch (TYPING_START)
+13:59:14 Gateway     Received Dispatch (TYPING_START)
+13:59:16 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:16 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:16 Rest        POST channels/536019646554439691/messages: 191.58 ms
+13:59:25 Gateway     Received Dispatch (TYPING_START)
+13:59:35 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:35 Rest        POST channels/536019646554439691/messages: 99.16 ms
+13:59:35 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:37 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:59:37 Gateway     Received Dispatch (TYPING_START)
+13:59:38 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:59:39 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:59:39 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:39 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:39 Rest        POST channels/536019646554439691/messages: 178.48 ms
+13:59:40 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:40 Rest        POST channels/536019646554439691/messages: 354.93 ms
+13:59:40 Gateway     Received Dispatch (MESSAGE_UPDATE)
+13:59:40 Gateway     Sent Heartbeat
+13:59:40 Gateway     Received HeartbeatAck
+13:59:40 Gateway     Latency = 78 ms
+13:59:42 Gateway     Received Dispatch (TYPING_START)
+13:59:45 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:45 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:45 Rest        POST channels/536019646554439691/messages: 123.11 ms
+13:59:47 Gateway     Received Dispatch (TYPING_START)
+13:59:49 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:49 Gateway     Received Dispatch (MESSAGE_CREATE)
+13:59:49 Rest        POST channels/536019646554439691/messages: 297.95 ms
+13:59:52 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:59:54 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:59:55 Gateway     Received Dispatch (PRESENCE_UPDATE)
+13:59:55 Gateway     Received Dispatch (TYPING_START)
+14:00:00 Gateway     Received Dispatch (MESSAGE_CREATE)
+14:00:01 Gateway     Received Dispatch (MESSAGE_CREATE)
+14:00:01 Rest        POST channels/536019646554439691/messages: 118.92 ms
+14:00:02 Gateway     Received Dispatch (PRESENCE_UPDATE)
+14:00:03 Gateway     Received Dispatch (TYPING_START)
+14:00:05 Gateway     Received Dispatch (MESSAGE_CREATE)
+14:00:05 Gateway     Received Dispatch (MESSAGE_CREATE)
+14:00:05 Rest        POST channels/536019646554439691/messages: 105.74 ms
+14:00:06 Gateway     Received Dispatch (PRESENCE_UPDATE)
+14:00:09 Gateway     Received Dispatch (PRESENCE_UPDATE)
+14:00:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+14:00:18 Gateway     Received Dispatch (PRESENCE_UPDATE)
+14:00:21 Gateway     Sent Heartbeat
+14:00:21 Gateway     Received HeartbeatAck
+14:00:21 Gateway     Latency = 78 ms
+14:00:25 Gateway     Received Dispatch (PRESENCE_UPDATE)
