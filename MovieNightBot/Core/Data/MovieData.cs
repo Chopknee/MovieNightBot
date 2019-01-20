@@ -9,38 +9,67 @@ using Discord.Commands;
 using Newtonsoft.Json;
 
 namespace MovieNightBot.Core.Data {
-    public class Movies {
-        //This is where all information movies is kept
-        private volatile static Dictionary<string, MovieCollection> serverMovies = new Dictionary<string, MovieCollection>();
-        private volatile static Random rand = new Random();
 
-        //Checks if the movie has either been watched or suggested
-        public static bool HasMovie(string serverId, string serverName, string movieTitle) {
-            return HasMovieBeenSuggested(serverId, serverName, movieTitle) || HasMovieBeenWatched(serverId, serverName, movieTitle);
+    //The data model responsible for handling movies.
+    public class Movies {
+        //This is where all information movies is kept, the key is the id of the 'guild'.
+        private volatile static Dictionary<string, MovieCollection> serverMovies = new Dictionary<string, MovieCollection>();
+        private volatile static Random rand = new Random();//Used for the random vote generation
+
+        /**
+         * Checks if a movie has been either suggested, or watched.
+         * string guildId
+         * string guildName
+         * string movieTitle
+         * return bool
+         */
+        public static bool HasMovie(string guildId, string guildName, string movieTitle) {
+            return HasMovieBeenSuggested(guildId, guildName, movieTitle) || HasMovieBeenWatched(guildId, guildName, movieTitle);
         }
 
-        //Checks if the movie has been suggested
-        public static bool HasMovieBeenSuggested(string serverId, string serverName, string movieTitle) {
-            MovieCollection movs = GetServerMovies(serverId, serverName);
+        /**
+         * Checks if a movie has been suggested.
+         * string guildId
+         * string guildName
+         * string movieTitle
+         * return bool
+         */
+        public static bool HasMovieBeenSuggested(string guildId, string guildName, string movieTitle) {
+            MovieCollection movs = GetServerMovies(guildId, guildName);
             bool res = false;
             foreach (Movie m in movs.waitingMovies) {
-                res = m.Title == movieTitle;
+                res = m.Title.Equals(movieTitle);
+                if (res) { break; }
             }
             return res;
         }
 
-        //Checks if the movie has been watched
-        public static bool HasMovieBeenWatched(string serverId, string serverName, string movieTitle) {
-            MovieCollection movs = GetServerMovies(serverId, serverName);
+        /**
+         * Checks if a movie has been watched.
+         * string guildId
+         * string guildName
+         * string movieTitle
+         * return bool
+         */
+        public static bool HasMovieBeenWatched(string guildId, string guildName, string movieTitle) {
+            MovieCollection movs = GetServerMovies(guildId, guildName);
             bool res = false;
             foreach (Movie m in movs.watchedMovies) {
-                res = m.Title == movieTitle;
+                res = m.Title.Equals(movieTitle);
+                if (res) { break; }
             }
             return res;
         }
 
-        public static void SetMovieToWatched(string serverId, string serverName, string movieTitle) {
-            MovieCollection movs = GetServerMovies(serverId, serverName);
+        /**
+         * Sets the state of a movie to watched. The movie will not appear in future votes.
+         * string guildId
+         * string guildName
+         * string movieTitle
+         * return bool
+         */
+        public static bool SetMovieToWatched(string guildId, string guildName, string movieTitle) {
+            MovieCollection movs = GetServerMovies(guildId, guildName);
             Movie theMovie = null;
             for (int i = 0; i < movs.waitingMovies.Count; i++) {
                 if (movs.waitingMovies[i].Title.Equals(movieTitle)) {
@@ -48,15 +77,24 @@ namespace MovieNightBot.Core.Data {
                     movs.waitingMovies.RemoveAt(i);
                     movs.watchedMovies.Add(theMovie);
                     theMovie.watchedDate = DateTime.Now.ToString();
-                    SaveMoviesFile(serverId, serverName);
-                    return;
+                    SaveMoviesFile(guildId, guildName);
+                    return true;
                 }
             }
+            //If execution reaches this point, we know something has gone terribly wrong.
             Console.WriteLine($"Attempting to set movie {movieTitle} to watched has failed. Could not find it in suggested movies.");
+            return false;
         }
 
-        public static void SetMovieToUnwatched(string serverId, string serverName, string movieTitle) {
-            MovieCollection movs = GetServerMovies(serverId, serverName);
+        /**
+         * Puts a previously watched movie back into the wait list. The movie will appear in future votes.
+         * string guildId
+         * string guildName
+         * string movieTitle
+         * return bool
+         */
+        public static bool SetMovieToUnwatched(string guildId, string guildName, string movieTitle) {
+            MovieCollection movs = GetServerMovies(guildId, guildName);
             Movie theMovie = null;
             for (int i = 0; i < movs.watchedMovies.Count; i++) {
                 if (movs.watchedMovies[i].Title.Equals(movieTitle)) {
@@ -64,33 +102,52 @@ namespace MovieNightBot.Core.Data {
                     movs.watchedMovies.RemoveAt(i);
                     movs.waitingMovies.Add(theMovie);
                     theMovie.watchedDate = "";
-                    SaveMoviesFile(serverId, serverName);
-                    return;
+                    SaveMoviesFile(guildId, guildName);
+                    return true;
                 }
             }
+            //Reaching this point means the move is not in the list
             Console.WriteLine($"Attempting to set movie {movieTitle} to suggestions has failed. Could not find it in suggested movies.");
+            return false;
         }
 
-        public static void SuggestMovie(string serverId, string serverName, string movieTitle) {
-            MovieCollection movs = GetServerMovies(serverId, serverName);
-            movs.waitingMovies.Add(new Movie { Title = movieTitle, suggestDate = DateTime.Now.ToString(), watchedDate="" });
-            SaveMoviesFile(serverId, serverName);
+        /**
+         * Adds a movie to the suggestions list. This movie will show in future votes.
+         * string serverId
+         * string guildId
+         * string guildName
+         */
+        public static void SuggestMovie(string serverId, string guildId, string guildName) {
+            MovieCollection movs = GetServerMovies(serverId, guildId);
+            movs.waitingMovies.Add(new Movie { Title = guildName, suggestDate = DateTime.Now.ToString(), watchedDate="" });
+            SaveMoviesFile(serverId, guildId);
         }
 
-        public static MovieCollection GetServerMovies(string serverId, string serverName) {
-            //Gets the movies associated with the specified server
-            Console.WriteLine($"Looking for server {serverId}:{serverName} data.");
-            //Loads it if necessarry
-            if (!serverMovies.ContainsKey(serverId)) {
-                Console.WriteLine($"Server {serverId}:{serverName} is not loaded.");
-                LoadMoviesFile(serverId, serverName);
+        /**
+         * Function that returns the list of movies associated with the specified guild. If the server key is not in the dictionary,
+         * load the file associated with that server.
+         * string guildId
+         * string guildName
+         * return MovieCollection
+         */
+        public static MovieCollection GetServerMovies(string guildId, string guildName) {
+            Console.WriteLine($"Looking for server {guildId}:{guildName} data.");
+            if (!serverMovies.ContainsKey(guildId)) {
+                Console.WriteLine($"Server {guildId}:{guildName} is not loaded.");
+                LoadMoviesFile(guildId, guildName);
             }
-            Console.WriteLine($"Server {serverId}:{serverName} is now loaded.");
-            return serverMovies[serverId];
+            Console.WriteLine($"Server {guildId}:{guildName} is now loaded.");
+            return serverMovies[guildId];
         }
 
-        public static Movie[] GetMovieVote(string serverId, string serverName) {
-            MovieCollection serverMoviesCollection = GetServerMovies(serverId, serverName);
+        /**
+         * Generates a random array of 5 movies pulled from the suggestions/wait list.
+         * string guildId
+         * string guildName
+         * return Movie[]
+         */
+        public static Movie[] GetMovieVote(string guildId, string guildName) {
+            MovieCollection serverMoviesCollection = GetServerMovies(guildId, guildName);
             List<Movie> allMovies = new List<Movie>();
             allMovies.AddRange(serverMoviesCollection.waitingMovies);
             int count = Math.Min(serverMoviesCollection.MovieVoteCount, allMovies.Count);
@@ -103,43 +160,94 @@ namespace MovieNightBot.Core.Data {
             return movies;
         }
 
-        private static void LoadMoviesFile(string serverId, string serverName) {
-            if (!File.Exists(@"ServerFiles\" + $"{serverId}.txt")) {
-                MovieCollection mc = new MovieCollection{ ServerName = serverName, ServerId = serverId, DateCreated = DateTime.Now.ToString() };
-                serverMovies.Add(serverId, mc);
-                SaveMoviesFile(serverId, serverName);
-                return;
-            }
-            string fileText;
-            using (System.IO.StreamReader file = new System.IO.StreamReader(@"ServerFiles\" + $"{serverId}.txt")) {
-                fileText = file.ReadToEnd();
-            }
-            if (fileText.Equals("")) {
-                MovieCollection mc = new MovieCollection { ServerName = serverName, ServerId = serverId, DateCreated = DateTime.Now.ToString() };
-                serverMovies.Add(serverId, mc);
-                SaveMoviesFile(serverId, serverName);
-                return;
-            }
-            MovieCollection parsed = JsonConvert.DeserializeObject<MovieCollection>(fileText);
-            serverMovies.Add(serverId, parsed);
+        /**
+         * Returns an array of all watched movies on the specified server.
+         * string guildId
+         * string guidlName
+         * return Movie[]
+         */
+        public static Movie[] GetWatchedMovies(string guildId, string guildName) {
+            MovieCollection serverCollection = GetServerMovies(guildId, guildName);
+            return serverCollection.watchedMovies.ToArray();
         }
 
-        private static void SaveMoviesFile(string serverId, string serverName) {
-            File.WriteAllText(@"ServerFiles\" + $"{serverId}.txt", JsonConvert.SerializeObject(serverMovies[serverId], Formatting.Indented));
+        /**
+         * Returns an array of all suggested/waiting movies on the specified server.
+         * string guildId
+         * string guidlName
+         * return Movie[]
+         */
+        public static Movie[] GetWaitingMovies(string guildId, string guildName) {
+            MovieCollection serverCollection = GetServerMovies(guildId, guildName);
+            return serverCollection.waitingMovies.ToArray();
+        }
+
+        /**
+         * Attempts to load a server's movies file. If none exists, an empty one is generated.
+         * string guildId
+         * string guidlName
+         */
+        private static bool LoadMoviesFile(string guildId, string guildName) {
+            try {
+                if (!File.Exists(@"ServerFiles\" + $"{guildId}.txt")) {
+                    MovieCollection mc = new MovieCollection { ServerName = guildName, ServerId = guildId, DateCreated = DateTime.Now.ToString() };
+                    serverMovies.Add(guildId, mc);
+                    SaveMoviesFile(guildId, guildName);
+                    return true;
+                }
+                string fileText;
+                using (System.IO.StreamReader file = new System.IO.StreamReader(@"ServerFiles\" + $"{guildId}.txt")) {
+                    fileText = file.ReadToEnd();
+                }
+                if (fileText.Equals("")) {
+                    MovieCollection mc = new MovieCollection { ServerName = guildName, ServerId = guildId, DateCreated = DateTime.Now.ToString() };
+                    serverMovies.Add(guildId, mc);
+                    SaveMoviesFile(guildId, guildName);
+                    return true;
+                }
+                MovieCollection parsed = JsonConvert.DeserializeObject<MovieCollection>(fileText);
+                serverMovies.Add(guildId, parsed);
+                return true;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
+                return false;
+            }
+        }
+
+        /**
+         * Saves the specified server's movies file.
+         * string guildId
+         * string guidlName
+         * return bool
+         */
+        private static bool SaveMoviesFile(string guildId, string guildName) {
+            try {
+                File.WriteAllText(@"ServerFiles\" + $"{guildId}.txt", JsonConvert.SerializeObject(serverMovies[guildId], Formatting.Indented));
+                return true;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
+                return false;
+            }
         }
     }
 
+    /**
+     * A simple object represingting a server's movies list.
+     */
     [Serializable]
     public class MovieCollection {
         public string ServerName;
         public string ServerId;
         public string DateCreated;
         public int MovieVoteCount = 5;//By default set to 5
-        //These fields are for the use of JSON when being converted into text objects. (I hope)
+        //Holds all the movies right here. The JSON library I'm using can serialize lists (yay!)
         public List<Movie> waitingMovies = new List<Movie>();
         public List<Movie> watchedMovies = new List<Movie>();
     }
 
+    /**
+     * A simple movie object.
+     */
     [Serializable]
     public class Movie {
         public string Title { get; set; }
@@ -147,10 +255,3 @@ namespace MovieNightBot.Core.Data {
         public string watchedDate { get; set; }
     }
 }
-/*
- * A server will have a list of;
- *  suggested movies
- *  currently voting movies? //Probs not save this
- *  watched movies
- * 
- */

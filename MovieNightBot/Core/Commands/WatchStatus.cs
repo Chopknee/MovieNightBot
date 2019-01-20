@@ -9,15 +9,9 @@ using MovieNightBot.Core.Data;
 using System.Globalization;
 
 namespace MovieNightBot.Core.Commands {
+    //Setting / unsetting watched
     public class WatchStatus : ModuleBase<SocketCommandContext> {
-        /**
-         * Users can suggest movies. [command] [movie name]
-         * 
-         * In the future, this will filter out attempts at adding movies twice.
-         * -Look for different versions using caps/no caps
-         * -Filter extra spaces
-         * -(Maybe) Filter l33t sp3ak and other attempts to duplicate movies
-         */
+
         [Command("setwatched"), Summary("Sets a movie as having been watched. That movie will no longer show up in votes.")]
         public async Task SetAsWatched([Remainder]string Input = "") {
             //Input sanitization

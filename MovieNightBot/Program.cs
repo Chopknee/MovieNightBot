@@ -10,11 +10,13 @@ namespace MovieNightBot {
     class Program {
         private DiscordSocketClient client;
         private CommandService Commands;
+        private static DateTime startDate;
 
         static void Main(string[] args)
         => new Program().MainAsync().GetAwaiter().GetResult();
 
         private async Task MainAsync() {
+            startDate = DateTime.Now;
             client = new DiscordSocketClient(new DiscordSocketConfig {
                 LogLevel = LogSeverity.Debug
             });
@@ -29,7 +31,7 @@ namespace MovieNightBot {
             await Commands.AddModulesAsync(Assembly.GetEntryAssembly(), null);
 
             client.Ready += ClientReady;
-            client.Log += ClientLog;
+            client.Log += Log;
 
             string Token = "";
             using (var Stream = new FileStream((Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)).Replace(@"bin\Debug\netcoreapp2.1", @"Data\Token.txt"), FileMode.Open, FileAccess.Read))
@@ -65,8 +67,10 @@ namespace MovieNightBot {
             await client.SetGameAsync("Getting developed!");
         }
 
-        private async Task ClientLog(LogMessage Message) {
+        private Task Log(LogMessage Message) {
             Console.WriteLine($"{DateTime.Now} st {Message.Source}] {Message.Message}");
+            File.AppendAllText(@"Logs\" + startDate.Day + "-" + startDate.Month + "-" + startDate.Year + ".txt", Message.ToString() + "\n");
+            return Task.CompletedTask;
         }
     }
 }

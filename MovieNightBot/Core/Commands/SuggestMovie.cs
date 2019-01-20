@@ -20,6 +20,7 @@ namespace MovieNightBot.Core.Commands {
          */
         [Command("suggest"), Summary("Add movie command")]
         public async Task Suggest([Remainder]string Input = "") {
+            
             if (Input.Equals(""))  return; //Filter out empty suggestions
             if (Input.Length > 150) return;//Title too long, probably spam
             TextInfo myTI = new CultureInfo("en-US", false).TextInfo;

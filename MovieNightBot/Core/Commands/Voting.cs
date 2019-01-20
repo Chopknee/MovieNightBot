@@ -17,7 +17,6 @@ namespace MovieNightBot.Core.Commands {
 
         [Command("beginvote"), Summary("Start the voging process for a movie.")]
         public async Task BeginVote() {
-            Console.WriteLine("Test");
             if (movieVoteOptions.ContainsKey("" + Context.Guild.Id)) {
                 await Context.Channel.SendMessageAsync($"{Context.User.Username}, a vote has already been started. If you wish to end the current vote, use m!showvote.");
                 return;
