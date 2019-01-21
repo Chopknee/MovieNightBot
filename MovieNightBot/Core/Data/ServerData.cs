@@ -11,10 +11,12 @@ using Newtonsoft.Json;
 namespace MovieNightBot.Core.Data {
 
     //The data model responsible for handling movies.
-    public class Movies {
+    public class ServerData {
         //This is where all information movies is kept, the key is the id of the 'guild'.
         private volatile static Dictionary<string, MovieCollection> serverMovies = new Dictionary<string, MovieCollection>();
         private volatile static Random rand = new Random();//Used for the random vote generation
+
+        public const string ROLE_NAME = "Movie Master";
 
         /**
          * Checks if a movie has been either suggested, or watched.
@@ -77,6 +79,27 @@ namespace MovieNightBot.Core.Data {
                     movs.waitingMovies.RemoveAt(i);
                     movs.watchedMovies.Add(theMovie);
                     theMovie.watchedDate = DateTime.Now.ToString();
+                    SaveMoviesFile(guildId, guildName);
+                    return true;
+                }
+            }
+            //If execution reaches this point, we know something has gone terribly wrong.
+            Console.WriteLine($"Attempting to set movie {movieTitle} to watched has failed. Could not find it in suggested movies.");
+            return false;
+        }
+
+        /**
+         * Removes a movie from the suggestions list.
+         * string guildId
+         * string guildName
+         * string movieTitle
+         * return bool
+         */
+        public static bool RemoveMovie(string guildId, string guildName, string movieTitle) {
+            MovieCollection movs = GetServerMovies(guildId, guildName);
+            for (int i = 0; i < movs.waitingMovies.Count; i++) {
+                if (movs.waitingMovies[i].Title.Equals(movieTitle)) {
+                    movs.waitingMovies.RemoveAt(i);
                     SaveMoviesFile(guildId, guildName);
                     return true;
                 }
@@ -180,6 +203,18 @@ namespace MovieNightBot.Core.Data {
         public static Movie[] GetWaitingMovies(string guildId, string guildName) {
             MovieCollection serverCollection = GetServerMovies(guildId, guildName);
             return serverCollection.waitingMovies.ToArray();
+        }
+
+        /**
+         * Set the count of movies to vote on.
+         * string guildId
+         * string guidlName
+         * int count
+         */
+        public static void SetMovieVoteCount(string guildId, string guildName, int count) {
+            MovieCollection serverCollection = GetServerMovies(guildId, guildName);
+            serverCollection.MovieVoteCount = count;
+            SaveMoviesFile(guildId, guildName);
         }
 
         /**

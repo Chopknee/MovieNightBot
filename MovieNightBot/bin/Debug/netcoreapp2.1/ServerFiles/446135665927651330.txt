@@ -5,75 +5,126 @@
   "MovieVoteCount": 5,
   "waitingMovies": [
     {
-      "Title": "Shrek 3",
-      "suggestDate": "1/19/2019 5:36:12 PM",
-      "watchedDate": ""
-    },
-    {
-      "Title": "Mac And Me",
-      "suggestDate": "1/19/2019 5:37:13 PM",
+      "Title": "Birdemic 2",
+      "suggestDate": "1/19/2019 3:40:48 PM",
       "watchedDate": ""
     },
     {
       "Title": "Blade Runner",
-      "suggestDate": "1/19/2019 5:37:25 PM",
+      "suggestDate": "1/19/2019 3:40:52 PM",
       "watchedDate": ""
     },
     {
-      "Title": "Birdemic 2",
-      "suggestDate": "1/19/2019 5:37:33 PM",
+      "Title": "Shrek 3",
+      "suggestDate": "1/19/2019 3:41:16 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Mac and Me",
+      "suggestDate": "1/19/2019 4:37:33 PM",
       "watchedDate": ""
     },
     {
       "Title": "Sharknado",
-      "suggestDate": "1/19/2019 5:37:38 PM",
+      "suggestDate": "1/19/2019 7:48:45 PM",
+      "watchedDate": ""
+    },
+    {
+      "Title": "Pokemon: The First Movie",
+      "suggestDate": "1/19/2019 3:40:58 PM",
       "watchedDate": ""
     },
     {
       "Title": "The Interview",
-      "suggestDate": "1/19/2019 5:37:40 PM",
+      "suggestDate": "1/20/2019 10:30:27 PM",
       "watchedDate": ""
     },
     {
       "Title": "UHF",
-      "suggestDate": "1/19/2019 5:37:54 PM",
+      "suggestDate": "1/20/2019 11:35:15 PM",
       "watchedDate": ""
     },
     {
-      "Title": "Black Mirror",
-      "suggestDate": "1/19/2019 5:38:06 PM",
-      "watchedDate": ""
-    },
-    {
-      "Title": "Pokémon: The First Movie",
-      "suggestDate": "1/19/2019 5:38:24 PM",
-      "watchedDate": ""
-    },
-    {
-      "Title": "Finding Nemo",
-      "suggestDate": "1/19/2019 9:28:28 PM",
-      "watchedDate": ""
-    },
-    {
-      "Title": "Ghost Busters",
-      "suggestDate": "1/19/2019 10:45:25 PM",
-      "watchedDate": ""
-    },
-    {
-      "Title": "Alien",
-      "suggestDate": "1/19/2019 10:45:33 PM",
-      "watchedDate": ""
-    },
-    {
-      "Title": "Aliens",
-      "suggestDate": "1/19/2019 10:45:39 PM",
-      "watchedDate": ""
-    },
-    {
-      "Title": "Chopknee's Choice",
-      "suggestDate": "1/19/2019 10:46:25 PM",
+      "Title": "The Wickerman",
+      "suggestDate": "1/20/2019 11:36:28 PM",
       "watchedDate": ""
     }
   ],
-  "watchedMovies": []
+  "watchedMovies": [
+    {
+      "Title": "Coraline",
+      "suggestDate": "1/19/2019 10:47:25 PM",
+      "watchedDate": "10/6/2018 6:00:00 PM"
+    },
+    {
+      "Title": "Avatar The Last Airbender",
+      "suggestDate": "1/19/2019 10:47:33 PM",
+      "watchedDate": "10/13/2018 6:00:00 PM"
+    },
+    {
+      "Title": "Space Jam",
+      "suggestDate": "1/19/2019 10:47:39 PM",
+      "watchedDate": "10/20/2018 6:00:00 PM"
+    },
+    {
+      "Title": "The Blair Witch Project",
+      "suggestDate": "1/19/2019 10:47:46 PM",
+      "watchedDate": "10/27/2018 6:00:00 PM"
+    },
+    {
+      "Title": "The 5Th Element",
+      "suggestDate": "1/19/2019 10:47:54 PM",
+      "watchedDate": "11/03/2018 6:00:00 PM"
+    },
+    {
+      "Title": "The Star Wars Holiday Special",
+      "suggestDate": "1/19/2019 10:48:05 PM",
+      "watchedDate": "11/10/2018 6:00:00 PM"
+    },
+    {
+      "Title": "The Martian",
+      "suggestDate": "1/19/2019 10:48:15 PM",
+      "watchedDate": "11/17/2018 6:00:00 PM"
+    },
+    {
+      "Title": "Ghost In The Shell (1995)",
+      "suggestDate": "1/19/2019 10:48:26 PM",
+      "watchedDate": "11/24/2018 6:00:00 PM"
+    },
+    {
+      "Title": "The Room",
+      "suggestDate": "1/19/2019 10:48:32 PM",
+      "watchedDate": "12/1/2018 6:00:00 PM"
+    },
+    {
+      "Title": "Naussica Valley Of The Winds",
+      "suggestDate": "1/19/2019 10:48:40 PM",
+      "watchedDate": "12/08/2018 6:00:00 PM"
+    },
+    {
+      "Title": "The Nightmare Before Christmas",
+      "suggestDate": "1/19/2019 10:48:54 PM",
+      "watchedDate": "12/15/2018 6:00:00 PM"
+    },
+    {
+      "Title": "Birdemic: Shock And Terror",
+      "suggestDate": "1/19/2019 10:49:05 PM",
+      "watchedDate": "12/22/2019 6:00:00 PM"
+    },
+    {
+      "Title": "Shrek",
+      "suggestDate": "1/19/2019 10:49:09 PM",
+      "watchedDate": "1/5/2019 6:00:00 PM"
+    },
+    {
+      "Title": "Paul Blart Mall Cop",
+      "suggestDate": "1/19/2019 10:49:17 PM",
+      "watchedDate": "1/12/2019 6:00:00 PM"
+    },
+    {
+      "Title": "Shrek 2",
+      "suggestDate": "1/19/2019 10:49:30 PM",
+      "watchedDate": "1/19/2019 6:00:00 PM"
+    }
+  ]
 }

@@ -6,7 +6,7 @@ namespace MovieNightBot.Core.Commands {
     public class MoviesInfo : ModuleBase<SocketCommandContext> {
         [Command("watched"), Summary("Hello world command")]
         public async Task ListWatchedMovies() {
-            Movie[] serverMovies = Movies.GetWatchedMovies(Context.Guild.Id + "", Context.Guild.Name);
+            Movie[] serverMovies = ServerData.GetWatchedMovies(Context.Guild.Id + "", Context.Guild.Name);
             string mess = $"On the server {Context.Guild.Name}, they have watched the following;";
             foreach (Movie m in serverMovies) {
                 mess += $"\n**{m.Title}** watched on {m.watchedDate}";
@@ -16,7 +16,7 @@ namespace MovieNightBot.Core.Commands {
 
         [Command("suggested"), Summary("Show all suggested movies.")]
         public async Task ListSuggestedMovies() {
-            Movie[] serverMovies = Movies.GetWaitingMovies(Context.Guild.Id + "", Context.Guild.Name);
+            Movie[] serverMovies = ServerData.GetWaitingMovies(Context.Guild.Id + "", Context.Guild.Name);
             string mess = $"On the server {Context.Guild.Name}, the following have been suggested;";
             foreach (Movie m in serverMovies) {
                 mess += $"\n**{m.Title}**";

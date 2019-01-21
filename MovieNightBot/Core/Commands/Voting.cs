@@ -6,6 +6,8 @@ using System.Linq;
 
 using Discord;
 using Discord.Commands;
+using Discord.WebSocket;
+
 using MovieNightBot.Core.Data;
 
 namespace MovieNightBot.Core.Commands {
@@ -23,7 +25,7 @@ namespace MovieNightBot.Core.Commands {
             }
 
             await Context.Channel.SendMessageAsync("Vote for these titles;");
-            Movie[] movs = Movies.GetMovieVote("" + Context.Guild.Id, Context.Guild.Name);
+            Movie[] movs = ServerData.GetMovieVote("" + Context.Guild.Id, Context.Guild.Name);
             Console.WriteLine(movs.Length);
             movieVoteOptions["" + Context.Guild.Id] = movs;
             EmbedBuilder builder = new EmbedBuilder()
@@ -146,5 +148,34 @@ namespace MovieNightBot.Core.Commands {
                 Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
             }
         }
+
+        [Command("moviecount"), Summary("Vote for one of the movies listed.")]
+        public async Task SetMovieCount([Remainder]string Input = "") {
+            SocketGuildUser user = Context.User as SocketGuildUser;
+            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == ServerData.ROLE_NAME);
+
+            if (user.Roles.Contains(role)) {
+                try {
+                    int count = -1;
+                    //Input sanitization and filtering
+                    if (Input.Equals("")) { Console.WriteLine("Empty argument."); return; }//Empty argument
+                    if (!int.TryParse(Input, out count)) { Console.WriteLine("Not a number."); return; }//Convert to integer/filter out non integer input
+                    if (count < 2) {//Valid range check
+                        Console.WriteLine("Can't be less than 2.");
+                        await Context.Channel.SendMessageAsync($"{Context.User.Username}, vote count can't be less than 2.");
+                        return;
+                    }
+
+                    //Set the limit in the server file.
+                    ServerData.SetMovieVoteCount(Context.Guild.Id + "", Context.Guild.Name, count);
+                    await Context.Channel.SendMessageAsync($"{Context.User.Username}, vote count has been set to {count}.");
+                } catch (Exception ex) {
+                    Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
+                }
+            } else {
+                await Context.Channel.SendMessageAsync($"{Context.User.Username}, you need to have the role {ServerData.ROLE_NAME} to use this command.");
+            }
+        }
+
     }
 }
