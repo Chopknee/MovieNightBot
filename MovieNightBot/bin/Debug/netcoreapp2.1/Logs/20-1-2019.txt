@@ -2215,3 +2215,358 @@
 23:38:04 Gateway     Latency = 62 ms
 23:38:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
 23:38:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:42:49 Discord     Discord.Net v2.0.1 (API v6)
+23:42:50 Rest        GET voice/regions: 574.7 ms
+23:42:50 Gateway     Connecting
+23:42:50 Gateway     Connecting ApiClient
+23:42:50 Rest        GET gateway: 36.73 ms
+23:42:51 Gateway     Received Hello
+23:42:51 Gateway     Heartbeat Started
+23:42:51 Gateway     Identifying
+23:42:51 Gateway     Sent Heartbeat
+23:42:51 Gateway     Sent Identify
+23:42:51 Gateway     Received HeartbeatAck
+23:42:51 Gateway     Latency = 140 ms
+23:42:51 Gateway     Received Dispatch (READY)
+23:42:51 Gateway     GuildDownloader Started
+23:42:51 Gateway     Sending Status
+23:42:51 Gateway     Sent StatusUpdate
+23:42:51 Gateway     Connected
+23:42:51 Gateway     Raising Event
+23:42:51 Gateway     Received Dispatch (GUILD_AVAILABLE)
+23:42:51 Gateway     Connected to JustaTestServer
+23:42:51 Gateway     Received Dispatch (GUILD_AVAILABLE)
+23:42:51 Gateway     Connected to Wynvin's hideout
+23:42:52 Gateway     GuildDownloader Stopped
+23:42:52 Gateway     Sent StatusUpdate
+23:42:52 Gateway     Ready
+23:42:53 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:42:55 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:42:56 Gateway     Received Dispatch (TYPING_START)
+23:43:00 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:43:00 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:43:01 Gateway     Received Dispatch (MESSAGE_CREATE)
+23:43:02 Gateway     Received Dispatch (MESSAGE_CREATE)
+23:43:02 Rest        POST channels/494514551426121739/messages: 337.52 ms
+23:43:03 Gateway     Received Dispatch (TYPING_START)
+23:43:09 Gateway     Received Dispatch (MESSAGE_CREATE)
+23:43:09 Gateway     Received Dispatch (MESSAGE_CREATE)
+23:43:09 Rest        POST channels/494514551426121739/messages: 104.41 ms
+23:43:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:43:17 Gateway     Received Dispatch (TYPING_START)
+23:43:23 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:43:25 Gateway     Received Dispatch (TYPING_START)
+23:43:26 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:43:32 Gateway     Sent Heartbeat
+23:43:32 Gateway     Received HeartbeatAck
+23:43:32 Gateway     Latency = 62 ms
+23:43:33 Gateway     Received Dispatch (TYPING_START)
+23:43:40 Gateway     Received Dispatch (MESSAGE_CREATE)
+23:44:04 Gateway     Received Dispatch (TYPING_START)
+23:44:08 Gateway     Received Dispatch (MESSAGE_CREATE)
+23:44:08 Gateway     Received Dispatch (MESSAGE_CREATE)
+23:44:08 Rest        POST channels/494514551426121739/messages: 154.98 ms
+23:44:14 Gateway     Sent Heartbeat
+23:44:14 Gateway     Received HeartbeatAck
+23:44:14 Gateway     Latency = 78 ms
+23:44:19 Gateway     Received Dispatch (TYPING_START)
+23:44:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:44:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:44:23 Gateway     Received Dispatch (MESSAGE_CREATE)
+23:44:23 Gateway     Received Dispatch (MESSAGE_CREATE)
+23:44:24 Rest        POST channels/494514551426121739/messages: 178.41 ms
+23:44:33 Gateway     Received Dispatch (TYPING_START)
+23:44:37 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:44:42 Gateway     Received Dispatch (TYPING_START)
+23:44:51 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:44:51 Gateway     Received Dispatch (MESSAGE_CREATE)
+23:44:55 Gateway     Sent Heartbeat
+23:44:55 Gateway     Received HeartbeatAck
+23:44:55 Gateway     Latency = 78 ms
+23:44:58 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:45:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:45:36 Gateway     Sent Heartbeat
+23:45:36 Gateway     Received HeartbeatAck
+23:45:36 Gateway     Latency = 78 ms
+23:45:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:46:02 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:46:17 Gateway     Sent Heartbeat
+23:46:17 Gateway     Received HeartbeatAck
+23:46:17 Gateway     Latency = 78 ms
+23:46:52 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:46:59 Gateway     Sent Heartbeat
+23:46:59 Gateway     Received HeartbeatAck
+23:46:59 Gateway     Latency = 94 ms
+23:47:07 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:47:14 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:47:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:47:40 Gateway     Sent Heartbeat
+23:47:40 Gateway     Received HeartbeatAck
+23:47:40 Gateway     Latency = 62 ms
+23:48:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:48:21 Gateway     Sent Heartbeat
+23:48:21 Gateway     Received HeartbeatAck
+23:48:21 Gateway     Latency = 78 ms
+23:48:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:49:02 Gateway     Sent Heartbeat
+23:49:02 Gateway     Received HeartbeatAck
+23:49:02 Gateway     Latency = 78 ms
+23:49:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:49:44 Gateway     Sent Heartbeat
+23:49:44 Gateway     Received HeartbeatAck
+23:49:44 Gateway     Latency = 78 ms
+23:49:58 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:50:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:50:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:50:25 Gateway     Sent Heartbeat
+23:50:25 Gateway     Received HeartbeatAck
+23:50:25 Gateway     Latency = 78 ms
+23:51:06 Gateway     Sent Heartbeat
+23:51:06 Gateway     Received HeartbeatAck
+23:51:06 Gateway     Latency = 79 ms
+23:51:37 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:51:47 Gateway     Sent Heartbeat
+23:51:47 Gateway     Received HeartbeatAck
+23:51:47 Gateway     Latency = 78 ms
+23:51:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:51:52 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:52:29 Gateway     Sent Heartbeat
+23:52:29 Gateway     Received HeartbeatAck
+23:52:29 Gateway     Latency = 172 ms
+23:53:10 Gateway     Sent Heartbeat
+23:53:10 Gateway     Received HeartbeatAck
+23:53:10 Gateway     Latency = 62 ms
+23:53:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:53:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:53:51 Gateway     Sent Heartbeat
+23:53:51 Gateway     Received HeartbeatAck
+23:53:51 Gateway     Latency = 78 ms
+23:54:07 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:54:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:54:32 Gateway     Sent Heartbeat
+23:54:33 Gateway     Received HeartbeatAck
+23:54:33 Gateway     Latency = 78 ms
+23:54:37 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:54:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:54:52 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:54:52 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:54:58 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:55:07 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:55:14 Gateway     Sent Heartbeat
+23:55:14 Gateway     Received HeartbeatAck
+23:55:14 Gateway     Latency = 78 ms
+23:55:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:55:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:55:55 Gateway     Sent Heartbeat
+23:55:55 Gateway     Received HeartbeatAck
+23:55:55 Gateway     Latency = 78 ms
+23:56:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:56:36 Gateway     Sent Heartbeat
+23:56:36 Gateway     Received HeartbeatAck
+23:56:36 Gateway     Latency = 109 ms
+23:56:52 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:57:07 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:57:17 Gateway     Sent Heartbeat
+23:57:18 Gateway     Received HeartbeatAck
+23:57:18 Gateway     Latency = 94 ms
+23:57:39 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:57:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:57:59 Gateway     Sent Heartbeat
+23:57:59 Gateway     Received HeartbeatAck
+23:57:59 Gateway     Latency = 62 ms
+23:58:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:58:37 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:58:40 Gateway     Sent Heartbeat
+23:58:40 Gateway     Received HeartbeatAck
+23:58:40 Gateway     Latency = 78 ms
+23:59:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:59:21 Gateway     Sent Heartbeat
+23:59:21 Gateway     Received HeartbeatAck
+23:59:21 Gateway     Latency = 125 ms
+23:59:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:59:25 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:59:37 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:59:51 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:59:53 Gateway     Received Dispatch (PRESENCE_UPDATE)
+23:59:58 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:00:03 Gateway     Sent Heartbeat
+00:00:03 Gateway     Received HeartbeatAck
+00:00:03 Gateway     Latency = 79 ms
+00:00:11 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:00:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:00:38 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:00:44 Gateway     Sent Heartbeat
+00:00:44 Gateway     Received HeartbeatAck
+00:00:44 Gateway     Latency = 79 ms
+00:00:48 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:00:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:00:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:01:25 Gateway     Sent Heartbeat
+00:01:25 Gateway     Received HeartbeatAck
+00:01:25 Gateway     Latency = 78 ms
+00:01:52 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:02:06 Gateway     Sent Heartbeat
+00:02:06 Gateway     Received HeartbeatAck
+00:02:06 Gateway     Latency = 78 ms
+00:02:07 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:02:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:02:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:02:38 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:02:48 Gateway     Sent Heartbeat
+00:02:48 Gateway     Received HeartbeatAck
+00:02:48 Gateway     Latency = 78 ms
+00:03:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:03:29 Gateway     Sent Heartbeat
+00:03:29 Gateway     Received HeartbeatAck
+00:03:29 Gateway     Latency = 78 ms
+00:03:42 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:03:42 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:03:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:04:05 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:04:10 Gateway     Sent Heartbeat
+00:04:10 Gateway     Received HeartbeatAck
+00:04:10 Gateway     Latency = 78 ms
+00:04:23 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:04:38 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:04:51 Gateway     Sent Heartbeat
+00:04:51 Gateway     Received HeartbeatAck
+00:04:51 Gateway     Latency = 78 ms
+00:04:59 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:05:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:05:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:05:25 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:05:33 Gateway     Sent Heartbeat
+00:05:33 Gateway     Received HeartbeatAck
+00:05:33 Gateway     Latency = 78 ms
+00:05:35 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:05:35 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:05:43 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:05:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:06:14 Gateway     Sent Heartbeat
+00:06:14 Gateway     Received HeartbeatAck
+00:06:14 Gateway     Latency = 78 ms
+00:06:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:06:53 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:06:55 Gateway     Sent Heartbeat
+00:06:55 Gateway     Received HeartbeatAck
+00:06:55 Gateway     Latency = 93 ms
+00:07:10 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:07:26 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:07:35 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:07:36 Gateway     Sent Heartbeat
+00:07:36 Gateway     Received HeartbeatAck
+00:07:36 Gateway     Latency = 78 ms
+00:08:00 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:08:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:08:18 Gateway     Sent Heartbeat
+00:08:18 Gateway     Received HeartbeatAck
+00:08:18 Gateway     Latency = 78 ms
+00:08:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:08:51 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:08:59 Gateway     Sent Heartbeat
+00:08:59 Gateway     Received HeartbeatAck
+00:08:59 Gateway     Latency = 78 ms
+00:09:08 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:09:23 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:09:38 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:09:40 Gateway     Sent Heartbeat
+00:09:40 Gateway     Received HeartbeatAck
+00:09:40 Gateway     Latency = 78 ms
+00:09:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:09:59 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:10:21 Gateway     Sent Heartbeat
+00:10:21 Gateway     Received HeartbeatAck
+00:10:21 Gateway     Latency = 78 ms
+00:10:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:11:03 Gateway     Sent Heartbeat
+00:11:03 Gateway     Received HeartbeatAck
+00:11:03 Gateway     Latency = 157 ms
+00:11:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:11:44 Gateway     Sent Heartbeat
+00:11:44 Gateway     Received HeartbeatAck
+00:11:44 Gateway     Latency = 79 ms
+00:11:45 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:11:53 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:12:25 Gateway     Sent Heartbeat
+00:12:25 Gateway     Received HeartbeatAck
+00:12:25 Gateway     Latency = 94 ms
+00:12:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:13:06 Gateway     Sent Heartbeat
+00:13:06 Gateway     Received HeartbeatAck
+00:13:06 Gateway     Latency = 78 ms
+00:13:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:13:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:13:48 Gateway     Sent Heartbeat
+00:13:48 Gateway     Received HeartbeatAck
+00:13:48 Gateway     Latency = 78 ms
+00:14:08 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:14:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:14:29 Gateway     Sent Heartbeat
+00:14:29 Gateway     Received HeartbeatAck
+00:14:29 Gateway     Latency = 93 ms
+00:14:59 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:15:10 Gateway     Sent Heartbeat
+00:15:10 Gateway     Received HeartbeatAck
+00:15:10 Gateway     Latency = 78 ms
+00:15:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:15:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:15:51 Gateway     Sent Heartbeat
+00:15:52 Gateway     Received HeartbeatAck
+00:15:52 Gateway     Latency = 78 ms
+00:16:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:16:23 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:16:33 Gateway     Sent Heartbeat
+00:16:33 Gateway     Received HeartbeatAck
+00:16:33 Gateway     Latency = 78 ms
+00:16:38 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:17:14 Gateway     Sent Heartbeat
+00:17:14 Gateway     Received HeartbeatAck
+00:17:14 Gateway     Latency = 94 ms
+00:17:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:17:55 Gateway     Sent Heartbeat
+00:17:55 Gateway     Received HeartbeatAck
+00:17:55 Gateway     Latency = 78 ms
+00:18:04 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:18:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:18:36 Gateway     Sent Heartbeat
+00:18:37 Gateway     Received HeartbeatAck
+00:18:37 Gateway     Latency = 78 ms
+00:18:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:18:52 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:18:53 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:19:18 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:19:18 Gateway     Sent Heartbeat
+00:19:18 Gateway     Received HeartbeatAck
+00:19:18 Gateway     Latency = 78 ms
+00:19:59 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:19:59 Gateway     Sent Heartbeat
+00:19:59 Gateway     Received HeartbeatAck
+00:19:59 Gateway     Latency = 62 ms
+00:20:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:20:22 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:20:40 Gateway     Sent Heartbeat
+00:20:40 Gateway     Received HeartbeatAck
+00:20:40 Gateway     Latency = 78 ms
+00:21:08 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:21:22 Gateway     Sent Heartbeat
+00:21:22 Gateway     Received HeartbeatAck
+00:21:22 Gateway     Latency = 79 ms
+00:21:49 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:22:03 Gateway     Sent Heartbeat
+00:22:03 Gateway     Received HeartbeatAck
+00:22:03 Gateway     Latency = 79 ms
+00:22:12 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:22:44 Gateway     Sent Heartbeat
+00:22:44 Gateway     Received HeartbeatAck
+00:22:44 Gateway     Latency = 78 ms
+00:22:59 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:23:13 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:23:19 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:23:23 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:23:25 Gateway     Sent Heartbeat
+00:23:25 Gateway     Received HeartbeatAck
+00:23:25 Gateway     Latency = 93 ms
+00:23:56 Gateway     Received Dispatch (PRESENCE_UPDATE)
+00:24:07 Gateway     Sent Heartbeat
+00:24:07 Gateway     Received HeartbeatAck
+00:24:07 Gateway     Latency = 62 ms

@@ -64,7 +64,7 @@ namespace MovieNightBot {
         }
 
         private async Task ClientReady() {
-            await client.SetGameAsync("Getting developed!");
+            await client.SetGameAsync("Confused? Use m!help");
         }
 
         private Task Log(LogMessage Message) {
