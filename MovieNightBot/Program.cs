@@ -95,7 +95,7 @@ namespace MovieNightBot {
 
         private Task Log(LogMessage Message) {
             Console.WriteLine($"{DateTime.Now} st {Message.Source}] {Message.Message}");
-            File.AppendAllText(@"Logs\" + $"{startDate.Day}-{startDate.Month}-{startDate.Year}:{startDate.Hour}:{startDate.Minute}.txt", Message.ToString() + "\n");
+            File.AppendAllText(@"Logs\" + $"{startDate.Day}-{startDate.Month}-{startDate.Year}.{startDate.Hour}.{startDate.Minute}.txt", Message.ToString() + "\n");
             return Task.CompletedTask;
         }
     }
