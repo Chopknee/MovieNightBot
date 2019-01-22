@@ -1,8 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject>MovieNightBot.Program</StartupObject>
+    <Authors>Chopknee</Authors>
+    <Company>N/A</Company>
+    <Product>Movie Night Bot</Product>
+    <Description>A simple discord bot with a single purpose. Tracks suggested movies, then can generate a random list of movies to vote for.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/Chopknee/MovieNightBot</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>

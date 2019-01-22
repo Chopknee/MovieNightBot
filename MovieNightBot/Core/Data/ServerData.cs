@@ -224,14 +224,14 @@ namespace MovieNightBot.Core.Data {
          */
         private static bool LoadMoviesFile(string guildId, string guildName) {
             try {
-                if (!File.Exists(@"ServerFiles\" + $"{guildId}.txt")) {
+                if (!File.Exists(@"Data\" + $"{guildId}.txt")) {
                     MovieCollection mc = new MovieCollection { ServerName = guildName, ServerId = guildId, DateCreated = DateTime.Now.ToString() };
                     serverMovies.Add(guildId, mc);
                     SaveMoviesFile(guildId, guildName);
                     return true;
                 }
                 string fileText;
-                using (System.IO.StreamReader file = new System.IO.StreamReader(@"ServerFiles\" + $"{guildId}.txt")) {
+                using (System.IO.StreamReader file = new System.IO.StreamReader(@"Data\" + $"{guildId}.txt")) {
                     fileText = file.ReadToEnd();
                 }
                 if (fileText.Equals("")) {
@@ -257,7 +257,7 @@ namespace MovieNightBot.Core.Data {
          */
         private static bool SaveMoviesFile(string guildId, string guildName) {
             try {
-                File.WriteAllText(@"ServerFiles\" + $"{guildId}.txt", JsonConvert.SerializeObject(serverMovies[guildId], Formatting.Indented));
+                File.WriteAllText(@"Data\" + $"{guildId}.txt", JsonConvert.SerializeObject(serverMovies[guildId], Formatting.Indented));
                 return true;
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
