@@ -12,14 +12,25 @@ namespace MovieNightBot {
         private CommandService Commands;
         private static DateTime startDate;
 
+        public static volatile string CurrentDirectory;
+        public static volatile string DataDirectory;
+        public static volatile string LogDirectory;
+        public static volatile string TokenDirectory;
+
         public static void Main(string[] args)
         => new Program().MainAsync().GetAwaiter().GetResult();
 
         private async Task MainAsync() {
+            //CurrentDirectory = Directory.GetCurrentDirectory();
+            DataDirectory = "Data";
+            LogDirectory = "Logs";
+            TokenDirectory = DataDirectory + "/Token";
             //Ensure that needed directories have been created (prevents errors and user confusion)
-            Directory.CreateDirectory("Logs");
-            Directory.CreateDirectory("Data");
-            Directory.CreateDirectory(@"Data\Token");
+            Directory.CreateDirectory(DataDirectory);
+            Directory.CreateDirectory(LogDirectory);
+            Directory.CreateDirectory(TokenDirectory);
+
+            
 
             startDate = DateTime.Now;
             client = new DiscordSocketClient(new DiscordSocketConfig {
@@ -40,11 +51,11 @@ namespace MovieNightBot {
 
             string Token = "";
             //Robust token file checking, first look for the file.
-            if (!File.Exists(@"Data\Token\Token.txt")) {
+            if (!File.Exists($"{TokenDirectory}/Token.txt")) {
                 await Log(new LogMessage(LogSeverity.Error, "", $"{DateTime.Now} at Initialization] Token file missing. Please look in Data\\Token for the file named Token.txt. This is where your bot's token need to go."));
                 //Attempt to make an empty token file.
                 try {
-                    File.WriteAllText(@"Data\Token\Token.txt", "[PASTE BOT TOKEN OVER THIS TEXT]");
+                    File.WriteAllText($"{TokenDirectory}/Token.txt", "[PASTE BOT TOKEN OVER THIS TEXT]");
                 } catch (Exception ex) {
                     await Log(new LogMessage(LogSeverity.Error, "", $"{DateTime.Now} at Initialization] {ex.Message}\n{ex.StackTrace}"));
                 }
@@ -52,19 +63,19 @@ namespace MovieNightBot {
             }
             //Try to load the token file.
             try {
-                using (System.IO.StreamReader file = new System.IO.StreamReader(@"Data\Token\Token.txt")) {
+                using (System.IO.StreamReader file = new System.IO.StreamReader($"{TokenDirectory}/Token.txt")) { 
                     Token = file.ReadToEnd();
                 }
             } catch (Exception ex) {
                 await Log(new LogMessage(LogSeverity.Error, "", $"{DateTime.Now} at Initialization] {ex.Message}\n{ex.StackTrace}"));
             }
-            if (Token.Equals("")) {
+            if (Token.Equals("") || Token.Equals("[PASTE BOT TOKEN OVER THIS TEXT]")) {
                 await Log(new LogMessage(LogSeverity.Error, "", $"{DateTime.Now} at Initialization] Token file is empty. Please look in Data\\Token for the file named Token.txt. This is where your bot's token need to go."));
                 return;
             }
 
 
-            Console.WriteLine(Token);
+            Console.WriteLine("Token was loaded successfully; " + Token);
 
             await client.LoginAsync(TokenType.Bot, Token);
             await client.StartAsync();
@@ -95,7 +106,7 @@ namespace MovieNightBot {
 
         private Task Log(LogMessage Message) {
             Console.WriteLine($"{DateTime.Now} st {Message.Source}] {Message.Message}");
-            File.AppendAllText(@"Logs\" + $"{startDate.Day}-{startDate.Month}-{startDate.Year}.{startDate.Hour}.{startDate.Minute}.txt", Message.ToString() + "\n");
+            File.AppendAllText(LogDirectory + $"/{startDate.Day}-{startDate.Month}-{startDate.Year}.{startDate.Hour}.{startDate.Minute}.txt", Message.ToString() + "\n");
             return Task.CompletedTask;
         }
     }

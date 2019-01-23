@@ -8,4 +8,3 @@ C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.pdb
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.dll
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.pdb
-C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.csprojAssemblyReference.cache

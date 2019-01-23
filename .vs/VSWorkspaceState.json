@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MovieNightBot",
-    "\\MovieNightBot\\Data"
+    "\\MovieNightBot"
   ],
-  "SelectedNode": "\\MovieNightBot\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
