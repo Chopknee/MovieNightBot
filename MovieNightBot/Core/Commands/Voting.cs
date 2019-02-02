@@ -8,7 +8,9 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 
+
 using MovieNightBot.Core.Data;
+using Discord.Rest;
 
 namespace MovieNightBot.Core.Commands {
     public class Voting : ModuleBase<SocketCommandContext> {
@@ -17,6 +19,8 @@ namespace MovieNightBot.Core.Commands {
         //YEAH, a dictionary in a dictionary
         public volatile static Dictionary<string, Dictionary<string, int>> currentVotes = new Dictionary<string, Dictionary<string, int>>();
 
+        private volatile static RestUserMessage VoteMessage;
+
         [Command("beginvote"), Summary("Start the voging process for a movie.")]
         public async Task BeginVote() {
             if (movieVoteOptions.ContainsKey("" + Context.Guild.Id)) {
@@ -24,25 +28,10 @@ namespace MovieNightBot.Core.Commands {
                 return;
             }
 
-            await Context.Channel.SendMessageAsync("Vote for these titles;");
             Movie[] movs = ServerData.GetMovieVote("" + Context.Guild.Id, Context.Guild.Name);
-            Console.WriteLine(movs.Length);
-            movieVoteOptions["" + Context.Guild.Id] = movs;
-            EmbedBuilder builder = new EmbedBuilder()
-                .WithTitle("What movie will we watch tonight?")
-                .WithDescription($"use m!vote 0 - {movs.Length} to add your vote! You may only vote once!")
-                .WithColor(new Color(0xE314C7))
-                .WithTimestamp(DateTime.Now)
-                .WithAuthor(author => {
-                    author
-                    .WithName("Movie Night Bot");
-                });
-            for (int i = 0; i < movs.Length; i++) {
-                builder.AddField($"{(i+1)}] {movs[i].Title}", $"**m!vote** {(i+1)}");
-            }
-            Embed embed = builder.Build();
+            Embed embed = MakeVoteEmbed(movs, null);
             currentVotes.Add("" + Context.Guild.Id, new Dictionary<string, int>());
-            await Context.Channel.SendMessageAsync("Movie Vote!!!", embed: embed).ConfigureAwait(false);
+            VoteMessage = await Context.Channel.SendMessageAsync("Movie Vote!!!", embed: embed).ConfigureAwait(false);
         }
 
         [Command("showvote"), Summary("Ends the voting process and shows the final result.")]
@@ -135,6 +124,7 @@ namespace MovieNightBot.Core.Commands {
                 if (serverVotes.ContainsKey(Context.User.Id + "")) {
                     if (serverVotes[Context.User.Id + ""] == vote) {
                         await Context.Channel.SendMessageAsync($"{Context.User.Username}, your vote was already cast for option {vote + 1}.");
+                        return;
                     } else {
                         //Update the user vote
                         serverVotes[Context.User.Id + ""] = vote;
@@ -144,6 +134,11 @@ namespace MovieNightBot.Core.Commands {
                     serverVotes[Context.User.Id + ""] = vote;
                     await Context.Channel.SendMessageAsync($"{Context.User.Username}, you have cast your vote for option {vote + 1}.");
                 }
+                //Update the vote embed.
+                await VoteMessage.ModifyAsync(VoteMessage => {
+                    VoteMessage.Content = "Movie Vote!!!";
+                    VoteMessage.Embed = MakeVoteEmbed(movieVoteOptions[Context.Guild.Id + ""], serverVotes);
+                });
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
             }
@@ -177,5 +172,42 @@ namespace MovieNightBot.Core.Commands {
             }
         }
 
+        private Embed MakeVoteEmbed(Movie[] movies, Dictionary<string, int> serverVotes) {
+            int[] votes = GetVoteTotals(serverVotes, movies);
+            EmbedBuilder builder = new EmbedBuilder()
+                .WithTitle("What movie will we watch tonight?")
+                .WithDescription($"use m!vote 0 - {movies.Length} to add your vote! You may only vote once!")
+                .WithColor(new Color(0xE314C7))
+                .WithTimestamp(DateTime.Now)
+                .WithAuthor(author => {
+                    author
+                    .WithName("Movie Night Bot");
+                });
+            for (int i = 0; i < movies.Length; i++) {
+                if (serverVotes == null) {
+                    builder.AddField($"{(i + 1)}. {movies[i].Title}", $"**m!vote** {(i + 1)}\n---------- 0/0");
+                } else {
+                    //Votes have been cast, build the votes embed
+                    string voteTally = "";
+                    int perc = (int)Math.Round(((float)votes[i] / serverVotes.Count)*10);//Gives me a value between 0 and 10
+                    for (int t = 1; t <= 10; t++) {
+                        //0 means no x, greater than 0 means x will be shown.
+                        voteTally = (perc >= t) ? "x" : "-";
+                    }
+                    voteTally += $" {votes[i]} / {serverVotes.Count}";
+                    builder.AddField($"{(i + 1)}. {movies[i].Title}", $"**m!vote** {(i + 1)}\n{voteTally}");
+                }
+            }
+            return builder.Build();
+        }
+
+        private int[] GetVoteTotals(Dictionary<string, int> serverVotes, Movie[] movies) {
+            int[] votes = new int[movies.Length];
+            //This ends the vote, then tallies up the numbers.
+            foreach (KeyValuePair<string, int> entry in serverVotes) {
+                votes[entry.Value] += 1;//Tally up the votes
+            }
+            return votes;
+        }
     }
 }
