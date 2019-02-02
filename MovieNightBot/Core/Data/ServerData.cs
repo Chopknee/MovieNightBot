@@ -16,7 +16,7 @@ namespace MovieNightBot.Core.Data {
         private volatile static Dictionary<string, MovieCollection> serverMovies = new Dictionary<string, MovieCollection>();
         private volatile static Random rand = new Random();//Used for the random vote generation
 
-        public const string ROLE_NAME = "Movie Master";
+        public const string ADMIN_ROLE_NAME = "Movie Master";
 
         /**
          * Checks if a movie has been either suggested, or watched.
@@ -217,6 +217,12 @@ namespace MovieNightBot.Core.Data {
             SaveMoviesFile(guildId, guildName);
         }
 
+        public static void SetTiebreakerOption(string guildId, string guildName, int option) {
+            MovieCollection serverCollection = GetServerMovies(guildId, guildName);
+            serverCollection.TiebreakerMethod = option;
+            SaveMoviesFile(guildId, guildName);
+        }
+
         /**
          * Attempts to load a server's movies file. If none exists, an empty one is generated.
          * string guildId
@@ -275,6 +281,7 @@ namespace MovieNightBot.Core.Data {
         public string ServerId;
         public string DateCreated;
         public int MovieVoteCount = 5;//By default set to 5
+        public int TiebreakerMethod = 0;//0 = new vote, 1 = tiebreaker vote
         //Holds all the movies right here. The JSON library I'm using can serialize lists (yay!)
         public List<Movie> waitingMovies = new List<Movie>();
         public List<Movie> watchedMovies = new List<Movie>();

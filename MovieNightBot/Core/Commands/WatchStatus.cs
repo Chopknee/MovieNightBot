@@ -52,7 +52,7 @@ namespace MovieNightBot.Core.Commands {
         [Command("remove"), Summary("Returns a previously watched movie to the voting lists.")]
         public async Task RemoveMovie([Remainder]string Input = "") {
             SocketGuildUser user = Context.User as SocketGuildUser;
-            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == ServerData.ROLE_NAME);
+            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == ServerData.ADMIN_ROLE_NAME);
 
             if (user.Roles.Contains(role)) {
                 //Input sanitization
@@ -69,7 +69,7 @@ namespace MovieNightBot.Core.Commands {
                 if (ServerData.RemoveMovie(Context.Guild.Id + "", Context.Guild.Name, Input))
                     await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} has been removed.");
             } else {
-                await Context.Channel.SendMessageAsync($"{Context.User.Username}, you need to have the role {ServerData.ROLE_NAME} to use this command.");
+                await Context.Channel.SendMessageAsync($"{Context.User.Username}, you need to have the role {ServerData.ADMIN_ROLE_NAME} to use this command.");
             }
         }
     }

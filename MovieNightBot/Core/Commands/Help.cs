@@ -35,6 +35,8 @@ namespace MovieNightBot.Core.Commands {
             builder.AddField("m!showvote", "Ends the currently running vote and displays the winning vote.");
             builder.AddField("m!vote [Title Number]", "During a vote cycle users cast votes using this command.");
             builder.AddField("m!moviecount [Number]", "**^** Sets the number of movies that will show up on a vote.");
+            builder.AddField("m!tieoption [option]", "**^** Sets how the bot handles tied votes.\n Option **breaker** will make a new vote using only the tied movies.\n" +
+                "Option **random** will make a new vote with a random selection of movies.");
             Embed embed = builder.Build();
             await Context.User.SendMessageAsync("You Need Some Help", embed: embed).ConfigureAwait(false);
         }

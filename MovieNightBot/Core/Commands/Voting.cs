@@ -106,6 +106,7 @@ namespace MovieNightBot.Core.Commands {
         [Command("vote"), Summary("Vote for one of the movies listed.")]
         public async Task Vote([Remainder]string Input = "") {
             try {
+                Movie[] movs = movieVoteOptions[Context.Guild.Id + ""];
                 int vote = -1;
                 //Input sanitization and filtering
                 if (!currentVotes.ContainsKey("" + Context.Guild.Id)) { Console.WriteLine("No vote has been started."); return; } //No vote started
@@ -123,16 +124,16 @@ namespace MovieNightBot.Core.Commands {
                     
                 if (serverVotes.ContainsKey(Context.User.Id + "")) {
                     if (serverVotes[Context.User.Id + ""] == vote) {
-                        await Context.Channel.SendMessageAsync($"{Context.User.Username}, your vote was already cast for option {vote + 1}.");
+                        await Context.Channel.SendMessageAsync($"{Context.User.Username}, your vote was already cast for {movs[vote].Title}.");
                         return;
                     } else {
                         //Update the user vote
                         serverVotes[Context.User.Id + ""] = vote;
-                        await Context.Channel.SendMessageAsync($"{Context.User.Username}, your vote has been updated to option {vote + 1}.");
+                        await Context.Channel.SendMessageAsync($"{Context.User.Username}, your vote has been updated to {movs[vote].Title}.");
                     }
                 } else {
                     serverVotes[Context.User.Id + ""] = vote;
-                    await Context.Channel.SendMessageAsync($"{Context.User.Username}, you have cast your vote for option {vote + 1}.");
+                    await Context.Channel.SendMessageAsync($"{Context.User.Username}, you voted for {movs[vote].Title}.");
                 }
                 //Update the vote embed.
                 await VoteMessage.ModifyAsync(VoteMessage => {
@@ -147,7 +148,7 @@ namespace MovieNightBot.Core.Commands {
         [Command("moviecount"), Summary("Vote for one of the movies listed.")]
         public async Task SetMovieCount([Remainder]string Input = "") {
             SocketGuildUser user = Context.User as SocketGuildUser;
-            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == ServerData.ROLE_NAME);
+            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == ServerData.ADMIN_ROLE_NAME);
 
             if (user.Roles.Contains(role)) {
                 try {
@@ -168,7 +169,7 @@ namespace MovieNightBot.Core.Commands {
                     Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
                 }
             } else {
-                await Context.Channel.SendMessageAsync($"{Context.User.Username}, you need to have the role {ServerData.ROLE_NAME} to use this command.");
+                await Context.Channel.SendMessageAsync($"{Context.User.Username}, you need to have the role {ServerData.ADMIN_ROLE_NAME} to use this command.");
             }
         }
 
