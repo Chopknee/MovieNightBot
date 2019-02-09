@@ -27,11 +27,17 @@ namespace MovieNightBot.Core.Commands {
                 await Context.Channel.SendMessageAsync($"{Context.User.Username}, a vote has already been started. If you wish to end the current vote, use **m!showvote**.");
                 return;
             }
-
+            
             Movie[] movs = ServerData.GetMovieVote("" + Context.Guild.Id, Context.Guild.Name);
-            Embed embed = MakeVoteEmbed(movs, null);
-            currentVotes.Add("" + Context.Guild.Id, new Dictionary<string, int>());
-            VoteMessage = await Context.Channel.SendMessageAsync("Movie Vote!!!", embed: embed).ConfigureAwait(false);
+            movieVoteOptions.Add("" + Context.Guild.Id, movs);
+            try {
+                Embed embed = MakeVoteEmbed(movs, null);
+                currentVotes.Add("" + Context.Guild.Id, new Dictionary<string, int>());
+                Console.WriteLine("You can see me!");
+                VoteMessage = await Context.Channel.SendMessageAsync("Movie Vote!!!", embed: embed).ConfigureAwait(false);
+            }catch(Exception ex) {
+                Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
+            }
         }
 
         [Command("showvote"), Summary("Ends the voting process and shows the final result.")]
@@ -174,7 +180,10 @@ namespace MovieNightBot.Core.Commands {
         }
 
         private Embed MakeVoteEmbed(Movie[] movies, Dictionary<string, int> serverVotes) {
-            int[] votes = GetVoteTotals(serverVotes, movies);
+            int[] votes = null;
+            if (serverVotes != null) {
+                votes = GetVoteTotals(serverVotes, movies);
+            }
             EmbedBuilder builder = new EmbedBuilder()
                 .WithTitle("What movie will we watch tonight?")
                 .WithDescription($"use m!vote 0 - {movies.Length} to add your vote! You may only vote once!")
@@ -193,7 +202,7 @@ namespace MovieNightBot.Core.Commands {
                     int perc = (int)Math.Round(((float)votes[i] / serverVotes.Count)*10);//Gives me a value between 0 and 10
                     for (int t = 1; t <= 10; t++) {
                         //0 means no x, greater than 0 means x will be shown.
-                        voteTally = (perc >= t) ? "x" : "-";
+                        voteTally += (perc >= t) ? "x" : "-";
                     }
                     voteTally += $" {votes[i]} / {serverVotes.Count}";
                     builder.AddField($"{(i + 1)}. {movies[i].Title}", $"**m!vote** {(i + 1)}\n{voteTally}");

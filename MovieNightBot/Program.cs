@@ -95,7 +95,7 @@ namespace MovieNightBot {
             if (!(Message.HasStringPrefix("m!", ref ArgPos) || Message.HasMentionPrefix(client.CurrentUser, ref ArgPos))) return;
 
             var Result = await Commands.ExecuteAsync(Context, ArgPos, null);
-
+            Console.WriteLine("You can see me! BEFORE COMMAND RUNS");
             if (!Result.IsSuccess) await Log(new LogMessage(LogSeverity.Error, "", $"{DateTime.Now} at Commands] Something went wrong with executing a" +
                 $" command. Text: {Context.Message.Content} | Error: {Result.ErrorReason}"));
         }
