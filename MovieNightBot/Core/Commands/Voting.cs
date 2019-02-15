@@ -40,6 +40,33 @@ namespace MovieNightBot.Core.Commands {
             }
         }
 
+        [Command("makevote"), Summary("Start a vote from a custom list of things. Separate different options with a semicolon. ;")]
+        public async Task MakeVote([Remainder] string Input = "") {
+            if (Input == "") {
+                await Context.Channel.SendMessageAsync("Can't start a vote on nothing.");
+                return;
+            }
+            string[] things = Input.Split(";");
+            if (things.Length < 2) {
+                await Context.Channel.SendMessageAsync("Can't start a vote on one item.");
+                return;
+            }
+            Movie[] movs = new Movie[things.Length];
+            for (int i = 0; i < movs.Length; i++) {
+                movs[i] = new Movie();
+                movs[i].Title = things[i];
+            }
+            movieVoteOptions.Add("" + Context.Guild.Id, movs);
+            try {
+                Embed embed = MakeVoteEmbed(movs, null);
+                currentVotes.Add("" + Context.Guild.Id, new Dictionary<string, int>());
+                Console.WriteLine("You can see me!");
+                VoteMessage = await Context.Channel.SendMessageAsync("Movie Vote!!!", embed: embed).ConfigureAwait(false);
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
+            }
+        }
+
         [Command("showvote"), Summary("Ends the voting process and shows the final result.")]
         public async Task ShowVote() {
             try {
