@@ -11,12 +11,14 @@
     <dependencies>
       <group targetFramework=".NETCoreApp2.1">
         <dependency id="Discord.Net" version="2.0.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.NETCore.App" version="2.1.0" exclude="Build,Analyzers" />
+        <dependency id="MySql.Data.EntityFrameworkCore" version="8.0.15" exclude="Build,Analyzers" />
         <dependency id="Newtonsoft.Json" version="12.0.1" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\linux-arm\MovieNightBot.runtimeconfig.json" target="lib\netcoreapp2.1\MovieNightBot.runtimeconfig.json" />
-    <file src="C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\linux-arm\MovieNightBot.dll" target="lib\netcoreapp2.1\MovieNightBot.dll" />
+    <file src="C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.runtimeconfig.json" target="lib\netcoreapp2.1\MovieNightBot.runtimeconfig.json" />
+    <file src="C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.dll" target="lib\netcoreapp2.1\MovieNightBot.dll" />
   </files>
 </package>

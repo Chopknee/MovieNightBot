@@ -5,6 +5,7 @@ using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
 using System.IO;
+using MovieNightBot.Core.Data;
 
 namespace MovieNightBot {
     public class Program {
@@ -16,15 +17,17 @@ namespace MovieNightBot {
         public static volatile string DataDirectory;
         public static volatile string LogDirectory;
         public static volatile string TokenDirectory;
+        public static volatile string DatabaseConfigFile;
 
         public static void Main(string[] args)
-        => new Program().MainAsync().GetAwaiter().GetResult();
-
+            => new Program().MainAsync().GetAwaiter().GetResult();
+        
         private async Task MainAsync() {
             //CurrentDirectory = Directory.GetCurrentDirectory();
             DataDirectory = "Data";
             LogDirectory = "Logs";
             TokenDirectory = DataDirectory + "/Token";
+            DatabaseConfigFile = "Data/Config.txt";
             //Ensure that needed directories have been created (prevents errors and user confusion)
             Directory.CreateDirectory(DataDirectory);
             Directory.CreateDirectory(LogDirectory);

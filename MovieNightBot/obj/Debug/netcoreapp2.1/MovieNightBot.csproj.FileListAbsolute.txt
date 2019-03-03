@@ -2,10 +2,10 @@ C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.runtimeconfig.json
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.runtimeconfig.dev.json
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.dll
+C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.pdb
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.csproj.CoreCompileInputs.cache
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.AssemblyInfoInputs.cache
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.AssemblyInfo.cs
-C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.pdb
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.dll
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.pdb
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.csprojAssemblyReference.cache
