@@ -19,6 +19,8 @@ namespace MovieNightBot {
         public static volatile string TokenDirectory;
         public static volatile string DatabaseConfigFile;
 
+        public const string ADMIN_ROLE_NAME = "Movie Master";
+
         public static void Main(string[] args)
             => new Program().MainAsync().GetAwaiter().GetResult();
         
@@ -32,7 +34,8 @@ namespace MovieNightBot {
             Directory.CreateDirectory(DataDirectory);
             Directory.CreateDirectory(LogDirectory);
             Directory.CreateDirectory(TokenDirectory);
-
+            
+            MoviesData.Model = new JSONServerModel();
             
 
             startDate = DateTime.Now;

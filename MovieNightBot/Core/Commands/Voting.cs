@@ -27,8 +27,8 @@ namespace MovieNightBot.Core.Commands {
                 await Context.Channel.SendMessageAsync($"{Context.User.Username}, a vote has already been started. If you wish to end the current vote, use **m!showvote**.");
                 return;
             }
-            
-            Movie[] movs = ServerData.GetMovieVote("" + Context.Guild.Id, Context.Guild.Name);
+
+            Movie[] movs = MoviesData.Model.GetRandomVote(Context.Guild);
             movieVoteOptions.Add("" + Context.Guild.Id, movs);
             try {
                 Embed embed = MakeVoteEmbed(movs, null);
@@ -181,7 +181,7 @@ namespace MovieNightBot.Core.Commands {
         [Command("moviecount"), Summary("Vote for one of the movies listed.")]
         public async Task SetMovieCount([Remainder]string Input = "") {
             SocketGuildUser user = Context.User as SocketGuildUser;
-            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == ServerData.ADMIN_ROLE_NAME);
+            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == MoviesData.Model.GetAdminRoleName(Context.Guild));
 
             if (user.Roles.Contains(role)) {
                 try {
@@ -196,13 +196,13 @@ namespace MovieNightBot.Core.Commands {
                     }
 
                     //Set the limit in the server file.
-                    ServerData.SetMovieVoteCount(Context.Guild.Id + "", Context.Guild.Name, count);
+                    MoviesData.Model.SetMovieVoteCount(Context.Guild, count);
                     await Context.Channel.SendMessageAsync($"{Context.User.Username}, vote count has been set to {count}.");
                 } catch (Exception ex) {
                     Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
                 }
             } else {
-                await Context.Channel.SendMessageAsync($"{Context.User.Username}, you need to have the role {ServerData.ADMIN_ROLE_NAME} to use this command.");
+                await Context.Channel.SendMessageAsync($"{Context.User.Username}, you need to have the role {MoviesData.Model.GetAdminRoleName(Context.Guild)} to use this command.");
             }
         }
 

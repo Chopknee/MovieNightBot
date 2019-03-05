@@ -24,11 +24,11 @@ namespace MovieNightBot.Core.Commands {
             Input = myTI.ToTitleCase(Input);//Make it so every word starts with an upper case
             Console.WriteLine(Input);
             //Check if the movie has been suggested
-            if (!ServerData.HasMovieBeenSuggested(Context.Guild.Id + "", Context.Guild.Name, Input)) {
+            if (!MoviesData.Model.MovieHasBeenSuggested(Context.Guild, Input)) {
                 await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} has not been suggested yet.");
                 return;
             }
-            ServerData.SetMovieToWatched(Context.Guild.Id + "", Context.Guild.Name, Input);
+            MoviesData.Model.SetMovieToWatched(Context.Guild, Input, true);
             await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} is now set to watched and will no longer appear on votes.\nTo undo this, you can use **m!unwatch {Input}**.");
         }
 
@@ -41,18 +41,18 @@ namespace MovieNightBot.Core.Commands {
             Input = Input.Trim();//Clear spaces
             Input = myTI.ToTitleCase(Input);//Make it so every word starts with an upper case
             //Check if the movie has been suggested
-            if (!ServerData.HasMovieBeenWatched(Context.Guild.Id + "", Context.Guild.Name, Input)) {
+            if (!MoviesData.Model.MovieHasBeenWatched(Context.Guild, Input)) {
                 await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} has not been watched yet.");
                 return;
             }
-            ServerData.SetMovieToUnwatched(Context.Guild.Id + "", Context.Guild.Name, Input);
+            MoviesData.Model.SetMovieToWatched(Context.Guild, Input, false);
             await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} has been added back to the wait list and will show in future votes.\nTo undo this, you can use **m!setwatched {Input}**.");
         }
 
-        [Command("remove"), Summary("Returns a previously watched movie to the voting lists.")]
+        [Command("remove"), Summary("Removes a movie from the lists completely.")]
         public async Task RemoveMovie([Remainder]string Input = "") {
             SocketGuildUser user = Context.User as SocketGuildUser;
-            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == ServerData.ADMIN_ROLE_NAME);
+            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == MoviesData.Model.GetAdminRoleName(Context.Guild));
 
             if (user.Roles.Contains(role)) {
                 //Input sanitization
@@ -62,14 +62,14 @@ namespace MovieNightBot.Core.Commands {
                 Input = Input.Trim();//Clear spaces
                 Input = myTI.ToTitleCase(Input);//Make it so every word starts with an upper case
                                                 //Check if the movie has been suggested
-                if (!ServerData.HasMovieBeenSuggested(Context.Guild.Id + "", Context.Guild.Name, Input)) {
+                if (!MoviesData.Model.MovieHasBeenSuggested(Context.Guild, Input)) {
                     await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} has not been watched yet.");
                     return;
                 }
-                if (ServerData.RemoveMovie(Context.Guild.Id + "", Context.Guild.Name, Input))
+                if (MoviesData.Model.RemoveMovie(Context.Guild, Input))
                     await Context.Channel.SendMessageAsync($"{Context.User.Username}, the movie {Input} has been removed.");
             } else {
-                await Context.Channel.SendMessageAsync($"{Context.User.Username}, you need to have the role {ServerData.ADMIN_ROLE_NAME} to use this command.");
+                await Context.Channel.SendMessageAsync($"{Context.User.Username}, you need to have the role {MoviesData.Model.GetAdminRoleName(Context.Guild)} to use this command.");
             }
         }
     }

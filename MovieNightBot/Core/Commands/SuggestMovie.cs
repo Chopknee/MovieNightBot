@@ -27,8 +27,8 @@ namespace MovieNightBot.Core.Commands {
             Input = Input.Trim();//Clear spaces
             Input = myTI.ToTitleCase(Input);//Make it so every word starts with an upper case
 
-            if (!ServerData.HasMovie(Context.Guild.Id + "", Context.Guild.Name, Input)) {
-                ServerData.SuggestMovie(Context.Guild.Id + "", Context.Guild.Name, Input);
+            if (!MoviesData.Model.HasMovie(Context.Guild, Input)) {
+                MoviesData.Model.SuggestMovie(Context.Guild, Input);
                 await Context.Channel.SendMessageAsync($"Your suggestion of {Input} has been added to the list.");
                 return;
             }

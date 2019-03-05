@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MovieNightBot"
+    "\\MovieNightBot",
+    "\\MovieNightBot\\bin",
+    "\\MovieNightBot\\bin\\Debug",
+    "\\MovieNightBot\\bin\\Release"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\MovieNightBot\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

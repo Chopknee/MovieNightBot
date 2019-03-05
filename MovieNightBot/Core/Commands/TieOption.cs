@@ -16,7 +16,7 @@ namespace MovieNightBot.Core.Commands {
         [Command("tieoption"), Summary("Set how the bot handles ties.")]
         public async Task SetTieOption([Remainder]string Input = "") {//Because we could all use some from time to time.
             SocketGuildUser user = Context.User as SocketGuildUser;
-            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == ServerData.ADMIN_ROLE_NAME);
+            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == MoviesData.Model.GetAdminRoleName(Context.Guild));
             int option = 0;
             switch (Input) {
                 case "breaker":
@@ -31,7 +31,7 @@ namespace MovieNightBot.Core.Commands {
             }
             if (user.Roles.Contains(role)) {
                 //This user is allowed to configure settings.
-                ServerData.SetTiebreakerOption(Context.Guild.Id + "", Context.Guild.Name, option);
+                MoviesData.Model.SetTiebreakerOption(Context.Guild, option);
                 await Context.User.SendMessageAsync($"MovieNightBot will now use the {Input} method for ties.");
             }
         }
