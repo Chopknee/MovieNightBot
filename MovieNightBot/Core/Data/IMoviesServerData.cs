@@ -24,6 +24,9 @@ namespace MovieNightBot.Core.Data {
         //Functions about the server
         bool SetMovieVoteCount(SocketGuild guild, int count);
         bool SetTiebreakerOption(SocketGuild guild, int option);
+
+        bool Initialized();
+        bool InitializeNewServer(SocketGuild guild);
     }
 
     /**
@@ -47,5 +50,7 @@ namespace MovieNightBot.Core.Data {
         public string Title { get; set; }
         public string suggestDate { get; set; }
         public string watchedDate { get; set; }
+        public int TotalVotes;
+        public int TimesUpForVote;
     }
 }

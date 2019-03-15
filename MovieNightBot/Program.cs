@@ -6,6 +6,8 @@ using Discord.WebSocket;
 using Discord.Commands;
 using System.IO;
 using MovieNightBot.Core.Data;
+using MovieNightBot.Core.Commands;
+using Discord.Rest;
 
 namespace MovieNightBot {
     public class Program {
@@ -23,7 +25,7 @@ namespace MovieNightBot {
 
         public static void Main(string[] args)
             => new Program().MainAsync().GetAwaiter().GetResult();
-        
+
         private async Task MainAsync() {
             //CurrentDirectory = Directory.GetCurrentDirectory();
             DataDirectory = "Data";
@@ -34,9 +36,9 @@ namespace MovieNightBot {
             Directory.CreateDirectory(DataDirectory);
             Directory.CreateDirectory(LogDirectory);
             Directory.CreateDirectory(TokenDirectory);
-            
+
+            //MoviesData.Model = new MYSQLMoviesModel();
             MoviesData.Model = new JSONServerModel();
-            
 
             startDate = DateTime.Now;
             client = new DiscordSocketClient(new DiscordSocketConfig {
@@ -50,6 +52,7 @@ namespace MovieNightBot {
             });
 
             client.MessageReceived += ClientMessageReceived;
+            client.ReactionAdded += ReactionAdded;
             await Commands.AddModulesAsync(Assembly.GetEntryAssembly(), null);
 
             client.Ready += ClientReady;
@@ -98,12 +101,44 @@ namespace MovieNightBot {
 
             int ArgPos = 0;
 
-            if (!(Message.HasStringPrefix("m!", ref ArgPos) || Message.HasMentionPrefix(client.CurrentUser, ref ArgPos))) return;
+            if (!(Message.HasStringPrefix("m!", ref ArgPos) 
+                || Message.HasStringPrefix("M!", ref ArgPos)
+                || Message.HasMentionPrefix(client.CurrentUser, ref ArgPos)))
+                return;
 
             var Result = await Commands.ExecuteAsync(Context, ArgPos, null);
-            Console.WriteLine("You can see me! BEFORE COMMAND RUNS");
+
             if (!Result.IsSuccess) await Log(new LogMessage(LogSeverity.Error, "", $"{DateTime.Now} at Commands] Something went wrong with executing a" +
                 $" command. Text: {Context.Message.Content} | Error: {Result.ErrorReason}"));
+        }
+
+
+        private async Task ReactionAdded(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction) {
+            try {
+                //Always ignore reactions created by this bot.
+                if (reaction.UserId == client.CurrentUser.Id) { return; }
+                //Try to get the message that was sent. (We can't tell what user sent the message that was reacted to unless this is done apparently...
+                IUserMessage mess = await userMessage.DownloadAsync();
+                //If the message is null, don't continue
+                if (mess == null) { return; }
+                //If the author of the message that was reacted to is this bot, we can continue
+                if (mess.Author.Id == client.CurrentUser.Id) {
+                    //User has voted
+                    foreach (IEmote moji in MojiCommand.VoteMoji) {
+                        if (moji.Equals(reaction.Emote)) {
+                            //Tell the voting system that a user has requested a vote!!!
+                            await MojiCommand.Vote(mess, channel, reaction);
+                            break;
+                        }
+                    }
+                    //Other emoji situations
+                    foreach (IEmote moji in MojiCommand.CommandMoji) {
+                        await MojiCommand.CommandEmoji(mess, channel, reaction);
+                    }
+                }
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
+            }
         }
 
         private async Task ClientReady() {

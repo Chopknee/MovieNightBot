@@ -18,7 +18,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.runtimeconfig.json" target="lib\netcoreapp2.1\MovieNightBot.runtimeconfig.json" />
-    <file src="C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.dll" target="lib\netcoreapp2.1\MovieNightBot.dll" />
+    <file src="C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.runtimeconfig.json" target="lib\netcoreapp2.1\MovieNightBot.runtimeconfig.json" />
+    <file src="C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\MovieNightBot.dll" target="lib\netcoreapp2.1\MovieNightBot.dll" />
   </files>
 </package>

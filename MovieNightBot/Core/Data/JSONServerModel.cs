@@ -294,6 +294,14 @@ namespace MovieNightBot.Core.Data {
                 return false;
             }
         }
+
+        public bool Initialized() {
+            throw new NotImplementedException();
+        }
+
+        public bool InitializeNewServer(SocketGuild guild) {
+            throw new NotImplementedException();
+        }
     }
 
     public class JSONServerMovies : ServerData {
@@ -302,4 +310,6 @@ namespace MovieNightBot.Core.Data {
         public List<Movie> waitingMovies = new List<Movie>();
         public List<Movie> watchedMovies = new List<Movie>();
     }
+
+    public class DataException : Exception {}
 }

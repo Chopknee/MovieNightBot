@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MovieNightBot.Core.Data;
 using Discord.Commands;
+using Discord;
 
 namespace MovieNightBot.Core.Commands {
     public class MoviesInfo : ModuleBase<SocketCommandContext> {
@@ -11,7 +12,7 @@ namespace MovieNightBot.Core.Commands {
             foreach (Movie m in serverMovies) {
                 mess += $"\n**{m.Title}** watched on {m.watchedDate}";
             }
-            await Context.Channel.SendMessageAsync(mess);
+            await Context.User.SendMessageAsync(mess);
         }
 
         [Command("suggested"), Summary("Show all suggested movies.")]
@@ -21,7 +22,7 @@ namespace MovieNightBot.Core.Commands {
             foreach (Movie m in serverMovies) {
                 mess += $"\n**{m.Title}**";
             }
-            await Context.Channel.SendMessageAsync(mess);
+            await Context.User.SendMessageAsync(mess);
         }
     }
 }

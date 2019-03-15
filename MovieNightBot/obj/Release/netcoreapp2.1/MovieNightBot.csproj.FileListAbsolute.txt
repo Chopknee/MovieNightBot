@@ -8,3 +8,15 @@ C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.1\MovieNightBot.AssemblyInfo.cs
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.1\MovieNightBot.dll
 C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.1\MovieNightBot.pdb
+C:\Users\Brian\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.1\MovieNightBot.csprojAssemblyReference.cache
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\bin\Release\netcoreapp2.1\MovieNightBot.deps.json
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\bin\Release\netcoreapp2.1\MovieNightBot.runtimeconfig.json
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\bin\Release\netcoreapp2.1\MovieNightBot.runtimeconfig.dev.json
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\bin\Release\netcoreapp2.1\MovieNightBot.dll
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\bin\Release\netcoreapp2.1\MovieNightBot.pdb
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.1\MovieNightBot.csprojAssemblyReference.cache
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.1\MovieNightBot.csproj.CoreCompileInputs.cache
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.1\MovieNightBot.AssemblyInfoInputs.cache
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.1\MovieNightBot.AssemblyInfo.cs
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.1\MovieNightBot.dll
+C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\obj\Release\netcoreapp2.1\MovieNightBot.pdb

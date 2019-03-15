@@ -14,7 +14,7 @@ using MovieNightBot.Core.Data;
 namespace MovieNightBot.Core.Commands {
     //Setting / unsetting watched
     public class WatchStatus : ModuleBase<SocketCommandContext> {
-        [Command("setwatched"), Summary("Sets a movie as having been watched. That movie will no longer show up in votes.")]
+        [Command("set_watched"), Summary("Sets a movie as having been watched. That movie will no longer show up in votes.")]
         public async Task SetAsWatched([Remainder]string Input = "") {
             //Input sanitization
             if (Input.Equals("")) { Console.WriteLine("A suggestion was made with no text."); return;  }; //Filter out empty suggestions

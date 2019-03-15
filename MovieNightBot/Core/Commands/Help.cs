@@ -17,7 +17,8 @@ namespace MovieNightBot.Core.Commands {
             EmbedBuilder builder = new EmbedBuilder()
                 .WithTitle("MovieNightBot Help")
                 .WithDescription("I heard you asked for some help. We all need some from time to time, so here it is.\n" +
-                "Commands marked with ^ require the user to have the role \"Movie Master\".")
+                "Commands marked with :no_entry: require the user to have the role \"Movie Master\", unless the server owner has changed it.\n" +
+                "Valid command prefixes include m! M! or you may @ movie night bot.")
                 .WithColor(new Color(0xFFFFFF))
                 .WithTimestamp(DateTime.Now)
                 .WithAuthor(author => {
@@ -28,14 +29,15 @@ namespace MovieNightBot.Core.Commands {
             builder.AddField("m!suggest [Title]", "Adds the supplied movie to the suggestions list. There is a chance this movie will now show up on future votes.");
             builder.AddField("m!watched", "Lists all movies that have been watched.");
             builder.AddField("m!suggested", "Lists all movies that have been suggested.");
-            builder.AddField("m!setwatched [Title]", "Sets the specified movie as having been watched. This movie will not show up on future votes.");
+            builder.AddField("m!set_watched [Title]", "Sets the specified movie as having been watched. This movie will not show up on future votes.");
             builder.AddField("m!unwatch [Title]", "Removes the specified movie from the watched list.");
-            builder.AddField("m!remove [Title]", "**^** Removes the specified movie from the suggestions list.");
-            builder.AddField("m!beginvote", "Selects a number of random movie suggestions to be voted on.");
-            builder.AddField("m!showvote", "Ends the currently running vote and displays the winning vote.");
+            builder.AddField("m!remove [Title]", ":no_entry:  Removes the specified movie from the suggestions list.");
+            builder.AddField("m!begin_vote", "Selects a number of random movie suggestions to be voted on.");
+            builder.AddField("m!make_vote", "Selects a number of random movie suggestions to be voted on.");
+            builder.AddField("m!show_vote", "Ends the currently running vote and displays the winning vote.");
             builder.AddField("m!vote [Title Number]", "During a vote cycle users cast votes using this command.");
-            builder.AddField("m!moviecount [Number]", "**^** Sets the number of movies that will show up on a vote.");
-            builder.AddField("m!tieoption [option]", "**^** Sets how the bot handles tied votes.\n Option **breaker** will make a new vote using only the tied movies.\n" +
+            builder.AddField("m!movie_vote_count [Number]", ":no_entry:  Sets the number of movies that will show up on a vote.");
+            builder.AddField("m!tieoption [option]", ":no_entry:  Sets how the bot handles tied votes.\n Option **breaker** will make a new vote using only the tied movies.\n" +
                 "Option **random** will make a new vote with a random selection of movies.");
             Embed embed = builder.Build();
             await Context.User.SendMessageAsync("You Need Some Help", embed: embed).ConfigureAwait(false);
