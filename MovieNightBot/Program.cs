@@ -23,10 +23,18 @@ namespace MovieNightBot {
 
         public const string ADMIN_ROLE_NAME = "Movie Master";
 
+        public static Program Instance {
+            get {
+                return instance;
+            }
+        }
+        private static volatile Program instance;
+
         public static void Main(string[] args)
             => new Program().MainAsync().GetAwaiter().GetResult();
 
         private async Task MainAsync() {
+            instance = this;
             //CurrentDirectory = Directory.GetCurrentDirectory();
             DataDirectory = "Data";
             LogDirectory = "Logs";
@@ -52,7 +60,9 @@ namespace MovieNightBot {
             });
 
             client.MessageReceived += ClientMessageReceived;
-            client.ReactionAdded += ReactionAdded;
+
+            //client.ReactionAdded += ReactionAdded;
+
             await Commands.AddModulesAsync(Assembly.GetEntryAssembly(), null);
 
             client.Ready += ClientReady;
@@ -112,40 +122,57 @@ namespace MovieNightBot {
                 $" command. Text: {Context.Message.Content} | Error: {Result.ErrorReason}"));
         }
 
+        ////This is actually no longer needed!
+        //private async Task ReactionAdded(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction) {
+        //    //BEGIN OLD DEPRICATED CODE HERE!!
+        //    try {
+        //        //Always ignore reactions created by this bot.
+        //        if (reaction.UserId == client.CurrentUser.Id) { return; }
+        //        //Try to get the message that was sent. (We can't tell what user sent the message that was reacted to unless this is done apparently...
+        //        IUserMessage mess = await userMessage.DownloadAsync();
+        //        //If the message is null, don't continue
+        //        if (mess == null) { return; }
+        //        //If the author of the message that was reacted to is this bot, we can continue
+        //        if (mess.Author.Id == client.CurrentUser.Id) {
+        //            //User has voted
+        //            foreach (IEmote moji in MojiCommand.VoteMoji) {
+        //                if (moji.Equals(reaction.Emote)) {
+        //                    //Tell the voting system that a user has requested a vote!!!
+        //                    await MojiCommand.Vote(mess, channel, reaction);
+        //                    break;
+        //                }
+        //            }
+        //            //Other emoji situations
+        //            foreach (IEmote moji in MojiCommand.CommandMoji) {
+        //                await MojiCommand.CommandEmoji(mess, channel, reaction);
+        //            }
+        //        }
+        //    } catch (Exception ex) {
+        //        Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
+        //    }
+        //}
 
-        private async Task ReactionAdded(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction) {
-            try {
-                //Always ignore reactions created by this bot.
-                if (reaction.UserId == client.CurrentUser.Id) { return; }
-                //Try to get the message that was sent. (We can't tell what user sent the message that was reacted to unless this is done apparently...
-                IUserMessage mess = await userMessage.DownloadAsync();
-                //If the message is null, don't continue
-                if (mess == null) { return; }
-                //If the author of the message that was reacted to is this bot, we can continue
-                if (mess.Author.Id == client.CurrentUser.Id) {
-                    //User has voted
-                    foreach (IEmote moji in MojiCommand.VoteMoji) {
-                        if (moji.Equals(reaction.Emote)) {
-                            //Tell the voting system that a user has requested a vote!!!
-                            await MojiCommand.Vote(mess, channel, reaction);
-                            break;
-                        }
-                    }
-                    //Other emoji situations
-                    foreach (IEmote moji in MojiCommand.CommandMoji) {
-                        await MojiCommand.CommandEmoji(mess, channel, reaction);
-                    }
-                }
-            } catch (Exception ex) {
-                Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
-            }
+        public static void SubscribeToReactionAdded(Func<Cacheable<IUserMessage, ulong>, ISocketMessageChannel, SocketReaction, Task> theMethod) {
+            Instance.client.ReactionAdded += theMethod;
+        }
+
+        public static void UnSubscribeReactionAdded(Func<Cacheable<IUserMessage, ulong>, ISocketMessageChannel, SocketReaction, Task> theMethod) {
+            Instance.client.ReactionAdded -= theMethod;
+        }
+
+        public static void SubscribeToReactionRemoved( Func<Cacheable<IUserMessage, ulong>, ISocketMessageChannel, SocketReaction, Task> theMethod ) {
+            Instance.client.ReactionRemoved += theMethod;
+        }
+
+        public static void UnSubscribeToReactionRemoved ( Func<Cacheable<IUserMessage, ulong>, ISocketMessageChannel, SocketReaction, Task> theMethod ) {
+            Instance.client.ReactionRemoved -= theMethod;
         }
 
         private async Task ClientReady() {
             await client.SetGameAsync("Confused? Use m!help");
         }
 
-        private Task Log(LogMessage Message) {
+        public Task Log(LogMessage Message) {
             Console.WriteLine($"{DateTime.Now} st {Message.Source}] {Message.Message}");
             File.AppendAllText(LogDirectory + $"/{startDate.Day}-{startDate.Month}-{startDate.Year}.{startDate.Hour}.{startDate.Minute}.txt", Message.ToString() + "\n");
             return Task.CompletedTask;

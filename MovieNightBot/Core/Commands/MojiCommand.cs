@@ -38,9 +38,9 @@ namespace MovieNightBot.Core.Commands {
             }
         }
 
-        public static async Task Vote ( IUserMessage Message, ISocketMessageChannel channel, SocketReaction reaction ) {
-            await Voting.Vote(Message, channel, reaction);
-        }
+        //public static async Task Vote ( IUserMessage Message, ISocketMessageChannel channel, SocketReaction reaction ) {
+        //    await Voting.Vote(Message, channel, reaction);
+        //}
 
         public static async Task CommandEmoji ( IUserMessage Message, ISocketMessageChannel channel, SocketReaction reaction ) {
             //The only reason (for now) to use this is if a vote is in need of stopping.
@@ -48,6 +48,14 @@ namespace MovieNightBot.Core.Commands {
             if (reaction.Emote.Equals(CommandMoji[0])) {
                 //Stop command.
             }
+        }
+
+        public static bool IsReset(IEmote moji) {
+            return moji.Equals((CommandMoji[1] as IEmote));
+        }
+
+        public static bool IsStop ( IEmote moji ) {
+            return moji.Equals(( CommandMoji[0] as IEmote ));
         }
 
         public static int EmojiToVoteNumber ( IEmote moji ) {
