@@ -11,7 +11,7 @@ using Discord.Rest;
 
 namespace MovieNightBot {
     public class Program {
-        private DiscordSocketClient client;
+        public DiscordSocketClient client;
         private CommandService Commands;
         private static DateTime startDate;
 
@@ -121,36 +121,6 @@ namespace MovieNightBot {
             if (!Result.IsSuccess) await Log(new LogMessage(LogSeverity.Error, "", $"{DateTime.Now} at Commands] Something went wrong with executing a" +
                 $" command. Text: {Context.Message.Content} | Error: {Result.ErrorReason}"));
         }
-
-        ////This is actually no longer needed!
-        //private async Task ReactionAdded(Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction) {
-        //    //BEGIN OLD DEPRICATED CODE HERE!!
-        //    try {
-        //        //Always ignore reactions created by this bot.
-        //        if (reaction.UserId == client.CurrentUser.Id) { return; }
-        //        //Try to get the message that was sent. (We can't tell what user sent the message that was reacted to unless this is done apparently...
-        //        IUserMessage mess = await userMessage.DownloadAsync();
-        //        //If the message is null, don't continue
-        //        if (mess == null) { return; }
-        //        //If the author of the message that was reacted to is this bot, we can continue
-        //        if (mess.Author.Id == client.CurrentUser.Id) {
-        //            //User has voted
-        //            foreach (IEmote moji in MojiCommand.VoteMoji) {
-        //                if (moji.Equals(reaction.Emote)) {
-        //                    //Tell the voting system that a user has requested a vote!!!
-        //                    await MojiCommand.Vote(mess, channel, reaction);
-        //                    break;
-        //                }
-        //            }
-        //            //Other emoji situations
-        //            foreach (IEmote moji in MojiCommand.CommandMoji) {
-        //                await MojiCommand.CommandEmoji(mess, channel, reaction);
-        //            }
-        //        }
-        //    } catch (Exception ex) {
-        //        Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
-        //    }
-        //}
 
         public static void SubscribeToReactionAdded(Func<Cacheable<IUserMessage, ulong>, ISocketMessageChannel, SocketReaction, Task> theMethod) {
             Instance.client.ReactionAdded += theMethod;

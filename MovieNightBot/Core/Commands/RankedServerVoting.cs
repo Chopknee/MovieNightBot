@@ -37,11 +37,12 @@ namespace MovieNightBot.Core.Commands {
                 Embed embed = serverVote.MakeVoteEmbed();
                 //Send the message out
                 RestUserMessage mess = await Context.Channel.SendMessageAsync("Movie Vote!!!", embed: embed).ConfigureAwait(false);
-                Emoji[] votes = new Emoji[movs.Length];
+                Emoji[] votes = new Emoji[movs.Length+1];
                 //React with the voting reactions
                 for (int i = 0; i < movs.Length; i++) {
                     votes[i] = MojiCommand.VoteMoji[i];
                 }
+                votes[votes.Length - 1] = MojiCommand.CommandMoji[1];
                 await mess.AddReactionsAsync(votes);
 
                 //Finally add this vote object to the dictionary for later reference
@@ -57,7 +58,7 @@ namespace MovieNightBot.Core.Commands {
         }
 
         [Command("end_vote"), Summary("Ends a previously started vote.")]
-        [RequireBotPermission(GuildPermission.AddReactions)]
+        [RequireBotPermission(GuildPermission.ManageMessages)]
         public async Task EndVote() {
             try {
                 //Now, tally the votes and show the results
@@ -74,7 +75,7 @@ namespace MovieNightBot.Core.Commands {
                 }
 
                 //Now tally and respond (response is automagic
-                ServersAndVotes[Context.Guild.Id].TallyResults();
+                await ServersAndVotes[Context.Guild.Id].TallyResults();
                 //That should be it then! The rest is taken care of by the object!!! Horay for OOP!
                 ServersAndVotes.Remove(Context.Guild.Id);
 

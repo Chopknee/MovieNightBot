@@ -28,6 +28,14 @@ namespace MovieNightBot.Core.Data {
 
         //Keeping this around to prevent calls to the data model
         private int maxUserVotes;
+        private int numVotes = 0;
+        private struct BallotItem {
+            public Movie movieTitle;
+            public int votes;
+            public float score;
+        }
+
+        BallotItem[] ballotItems;
 
         public RankedServerVote(SocketGuild guild, Movie[] movieOptions, ISocketMessageChannel channel) {
             this.associatedGuild = guild;
@@ -38,36 +46,57 @@ namespace MovieNightBot.Core.Data {
             Program.SubscribeToReactionRemoved(UnReactCallback);
 
             maxUserVotes = MoviesData.Model.GetVoteCount(guild);
+            ballotItems = new BallotItem[movieOptions.Length];
+
+            for (int i = 0; i < ballotItems.Length; i++) {
+                ballotItems[i] = new BallotItem();
+                ballotItems[i].movieTitle = movieOptions[i];
+                ballotItems[i].votes = 0;
+                ballotItems[i].score = 0;
+            }
+
         }
 
         //This will be called whenever
         public async Task ReactCallback( Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction ) {
-            //Need to check if the emoji even belongs to this server, and if the message being reacted to is the correct one.
-            if (this.channel.Id == channel.Id && reaction.MessageId == voteMessage.Id) {
-                //Check how to deal with this reaction.
-                if (VerifyAsVote(reaction)) {
-                    await PlaceVote(userMessage, channel, reaction);
-                }
+            try {
+                //Need to check if the emoji even belongs to this server, and if the message being reacted to is the correct one.
+                if (this.channel.Id == channel.Id && reaction.MessageId == voteMessage.Id && reaction.UserId != Program.Instance.client.CurrentUser.Id) {
+                    //Check how to deal with this reaction.
+                    if (VerifyAsVote(reaction)) {
+                        await PlaceVote(userMessage, channel, reaction);
+                    }
 
-                //This is the reset command
-                if (MojiCommand.IsReset(reaction.Emote)) {
-                    await ResetVote(userMessage, channel, reaction);
+                    //This is the reset command
+                    if (MojiCommand.IsReset(reaction.Emote)) {
+                        await ResetVote(userMessage, channel, reaction);
+                    }
+
+                    if (MojiCommand.IsStop(reaction.Emote)) {
+                        await EndVote(userMessage, channel, reaction);
+                    }
                 }
+            } catch(Exception ex) {
+                await Program.Instance.Log(new LogMessage(LogSeverity.Error, "React Callback Voting", "An unknown error occurred.", ex));
             }
         }
 
         public async Task UnReactCallback( Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction ) {
-            //Need to check if the emoji even belongs to this server, and if the message being reacted to is the correct one.
-            if (this.channel.Id == channel.Id && reaction.MessageId == voteMessage.Id) {
-                //Check how to deal with this reaction.
-                if (VerifyAsVote(reaction)) {
-                    await PlaceVote(userMessage, channel, reaction);
-                }
+            try {
+                //Need to check if the emoji even belongs to this server, and if the message being reacted to is the correct one.
+                if (this.channel.Id == channel.Id && reaction.MessageId == voteMessage.Id && reaction.UserId != Program.Instance.client.CurrentUser.Id) {
+                    //Check how to deal with this reaction.
+                    if (VerifyAsVote(reaction)) {
+                        await PlaceVote(userMessage, channel, reaction);
+                    }
 
-                //This is the reset command
-                if (MojiCommand.IsReset(reaction.Emote)) {
-                    await ResetVote(userMessage, channel, reaction);
+                    //This is the reset command
+                    if (MojiCommand.IsReset(reaction.Emote)) {
+                        await ResetVote(userMessage, channel, reaction);
+                    }
                 }
+            } catch (Exception ex) {
+                await Program.Instance.Log(new LogMessage(LogSeverity.Error, "React Remove Callback Voting", "An unknown error occurred.", ex));
             }
         }
 
@@ -89,6 +118,9 @@ namespace MovieNightBot.Core.Data {
 
             //If the execution makes it here, we can safely add the vote to the ballot
             voters[reaction.UserId].Add(vote);
+            Console.WriteLine("Emoji vote placed.");
+
+            numVotes = CalculateBallotScore();
 
             //Update any embeds here!
             await voteMessage.ModifyAsync(VoteMessage => {
@@ -100,12 +132,33 @@ namespace MovieNightBot.Core.Data {
 
         private async Task ResetVote( Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction ) {
             //This is where the user may reset their vote.
+            if (!voters.ContainsKey(reaction.UserId)) {
+                voters.Add(reaction.UserId, new List<int>());
+                //Stop doing anything because the user has nothing to clear.
+                return;
+            }
+
+            voters[reaction.UserId].Clear();
+            numVotes = CalculateBallotScore();
+            //Update any embeds here!
+            await voteMessage.ModifyAsync(VoteMessage => {
+                VoteMessage.Content = "Movie Vote!!!";
+                VoteMessage.Embed = MakeVoteEmbed();
+                return;
+            });
+        }
+
+        private async Task EndVote( Cacheable<IUserMessage, ulong> userMessage, ISocketMessageChannel channel, SocketReaction reaction) {
+            //Possibly an admin only command.
+            await TallyResults();
+
         }
 
         public Embed MakeVoteEmbed () {
+            int voteCount = MoviesData.Model.GetVoteCount(associatedGuild);
             EmbedBuilder builder = new EmbedBuilder()
                 .WithTitle("What movie will we watch tonight?")
-                .WithDescription($"React with the emoji next to the movie you wish to vote for.")
+                .WithDescription($"You may choose up to {voteCount} movie" + ((voteCount > 1)? "s" : "") + ". React in the order of movies you want to view the most first.")
                 .WithColor(new Color(0xE314C7))
                 .WithTimestamp(DateTime.Now)
                 .WithAuthor(author => {
@@ -114,18 +167,17 @@ namespace MovieNightBot.Core.Data {
                 });
             for (int i = 0; i < movieOptions.Length; i++) {
                 if (voters.Count == 0) {
-                    //builder.AddField($"{(i + 1)}. {movies[i].Title}", $"**m!vote** {(i + 1)}\n---------- 0/0");
                     builder.AddField($"{MojiCommand.voteEmojiCodes[i]} {movieOptions[i].Title}", $"---------- 0/0");
                 } else {
                     //Votes have been cast, build the votes embed
-                    //string voteTally = "";
-                    //int perc = (int) Math.Round(( (float) votes[i] / serverVotes.Count ) * 10);//Gives me a value between 0 and 10
-                    //for (int t = 1; t <= 10; t++) {
-                    //    //0 means no x, greater than 0 means x will be shown.
-                    //    voteTally += ( perc >= t ) ? "x" : "-";
-                    //}
-                    //voteTally += $" {votes[i]} / {serverVotes.Count}";
-                    //builder.AddField($"{MojiCommand.voteEmojiCodes[i]} {movieOptions[i].Title}", $"{voteTally}");
+                    string voteTally = "";
+                    int perc = (int) Math.Round(( (float) ballotItems[i].votes / numVotes ) * 10);//Gives me a value between 0 and 10
+                    for (int t = 1; t <= 10; t++) {
+                        //0 means no x, greater than 0 means x will be shown.
+                        voteTally += ( perc >= t ) ? "x" : "-";
+                    }
+                    voteTally += $" {ballotItems[i].votes} / {numVotes}";
+                    builder.AddField($"{MojiCommand.voteEmojiCodes[i]} {movieOptions[i].Title}", $"{voteTally}");
                 }
             }
             DateTime now = DateTime.UtcNow;
@@ -133,14 +185,73 @@ namespace MovieNightBot.Core.Data {
             now = DateTime.Parse(fuu);
             DateTimeOffset offset = new DateTimeOffset(now, new TimeSpan(0, 0, 0));
             builder.WithTimestamp(offset);
-            //builder.AddField("React with " + MojiCommand.commandEmojiCodes[0] + " to end the current vote.", "-");
+            builder.AddField($"React with {MojiCommand.commandEmojiCodes[1]} to reset your vote.", $"React with {MojiCommand.commandEmojiCodes[0]} to end the current vote.\nThe movie will start at - ");
             return builder.Build();
         }
 
         //Tallies the result and displays the outcome in the original embed
-        public Embed TallyResults () {
-            //
-            return null;
+        public async Task TallyResults () {
+            //Recalculate the current ballot
+            int votes = CalculateBallotScore();
+            //Determine the winner
+            int maxWin = -1;
+            for (int i = 0; i < ballotItems.Length; i++) {
+                if (maxWin == -1) {
+                    maxWin = i;
+                    continue;
+                }
+                if (ballotItems[i].score > ballotItems[maxWin].score) {
+                    maxWin = i;
+                }
+            }
+            BallotItem winner = ballotItems[maxWin];
+            //Show the winner in the old embed
+            EmbedBuilder builder = new EmbedBuilder()
+                .WithTitle($"The winning vote was {winner.movieTitle.Title}!")
+                .WithDescription($"To set the movie as watched use the command m!set_watched {winner.movieTitle.Title}")
+                .WithColor(new Color(0xE314C7));
+            DateTime now = DateTime.UtcNow;
+            string fuu = $"{now.Month}/{now.Day}/{now.Year} 21:00:00";
+            now = DateTime.Parse(fuu);
+            DateTimeOffset offset = new DateTimeOffset(now, new TimeSpan(0, 0, 0));
+            builder.WithTimestamp(offset);
+            //We dooone - Remove this from the current setup.
+            RankedServerVoting.ServersAndVotes.Remove(associatedGuild.Id);
+            try {
+                await voteMessage.RemoveAllReactionsAsync();
+            } catch (Exception ex) {//We don't really want to do anything. This is to catch the servers which don't give permissions to the bot.
+            }
+
+            await voteMessage.ModifyAsync(VoteMessage => {
+                VoteMessage.Content = "Movie Vote!!!";
+                VoteMessage.Embed = builder.Build();
+                return;
+            });
+
+        }
+
+        private int CalculateBallotScore() {
+            //Reset old count
+            int numVotes = 0;
+            for (int i = 0; i < ballotItems.Length; i++) {
+                ballotItems[i].score = 0;
+                ballotItems[i].votes = 0;
+            }
+
+            //Generate new count
+            foreach (KeyValuePair<ulong, List<int>> entry in voters) {
+                float divisor = 1f / (float)entry.Value.Count;
+                Console.WriteLine(divisor + " is the divisor.");
+                float weight = 1;
+                foreach (int vt in entry.Value) {
+                    ballotItems[vt].votes += 1;
+                    ballotItems[vt].score += weight;
+                    weight = weight - divisor;
+                    numVotes++;
+                }
+            }
+            return numVotes;
+            //Order the list?
         }
 
         private bool VerifyAsVote(SocketReaction reaction ) {   

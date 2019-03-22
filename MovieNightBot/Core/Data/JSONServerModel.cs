@@ -190,7 +190,7 @@ namespace MovieNightBot.Core.Data {
             JSONServerMovies serverMoviesCollection = GetServerMovies(guild);
             List<Movie> allMovies = new List<Movie>();
             allMovies.AddRange(serverMoviesCollection.waitingMovies);
-            int count = Math.Min(serverMoviesCollection.MovieVoteCount, allMovies.Count);
+            int count = Math.Min(serverMoviesCollection.MovieVoteOptionCount, allMovies.Count);
             Movie[] movies = new Movie[count];
             for (int i = 0; i < count; i++) {
                 int randomIndex = rand.Next(0, allMovies.Count);
@@ -233,9 +233,9 @@ namespace MovieNightBot.Core.Data {
          * string guidlName
          * int count
          */
-        public bool SetMovieVoteCount ( SocketGuild guild, int count ) {
+        public bool SetMovieOptionCount ( SocketGuild guild, int count ) {
             ServerData serverCollection = GetServerMovies(guild);
-            serverCollection.MovieVoteCount = count;
+            serverCollection.MovieVoteOptionCount = count;
             SaveData(guild);
             return true;
         }
@@ -305,13 +305,13 @@ namespace MovieNightBot.Core.Data {
 
         public bool SetVoteCount ( SocketGuild guild, int count ) {
             ServerData serverCollection = GetServerMovies(guild);
-            serverCollection.VoteCount = count;
+            serverCollection.UserVoteLimit = count;
             SaveData(guild);
             return true;
         }
 
         public int GetVoteCount ( SocketGuild guild ) {
-            return GetServerMovies(guild).VoteCount;
+            return GetServerMovies(guild).UserVoteLimit;
         }
 
         public bool SetAdminRoleName ( SocketGuild guild, string name ) {
@@ -319,6 +319,10 @@ namespace MovieNightBot.Core.Data {
             serverCollection.AdminRoleName = name;
             SaveData(guild);
             return true;
+        }
+
+        public int GetMovieOptionCount ( SocketGuild guild ) {
+            return GetServerMovies(guild).MovieVoteOptionCount;
         }
     }
 

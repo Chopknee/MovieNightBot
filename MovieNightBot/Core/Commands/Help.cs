@@ -32,13 +32,15 @@ namespace MovieNightBot.Core.Commands {
             builder.AddField("m!set_watched [Title]", "Sets the specified movie as having been watched. This movie will not show up on future votes.");
             builder.AddField("m!unwatch [Title]", "Removes the specified movie from the watched list.");
             builder.AddField("m!remove [Title]", ":no_entry:  Removes the specified movie from the suggestions list.");
-            builder.AddField("m!begin_vote", "Selects a number of random movie suggestions to be voted on.");
-            builder.AddField("m!make_vote", "Selects a number of random movie suggestions to be voted on.");
-            builder.AddField("m!show_vote", "Ends the currently running vote and displays the winning vote.");
-            builder.AddField("m!vote [Title Number]", "During a vote cycle users cast votes using this command.");
-            builder.AddField("m!movie_vote_count [Number]", ":no_entry:  Sets the number of movies that will show up on a vote.");
-            builder.AddField("m!tieoption [option]", ":no_entry:  Sets how the bot handles tied votes.\n Option **breaker** will make a new vote using only the tied movies.\n" +
+            builder.AddField("m!start_vote", "Selects a number of random movie suggestions to be voted on.");
+            //builder.AddField("m!make_vote", "Selects a number of random movie suggestions to be voted on.");
+            builder.AddField("m!end_vote", $"Ends the currently running vote and displays the winning vote. Reacting to the vote embed with {MojiCommand.CommandMoji[0]} will also end the vote.");
+            builder.AddField("m!user_vote_count [Number]", "Sets the number of movies users will be allowed to vote on. This cannot be greater than the number of movie options that shows on a vote.");
+            builder.AddField("m!movie_option_count [Number]", ":no_entry:  Sets the number of movies that will show up on a vote.");
+            builder.AddField("m!tie_option [option]", ":no_entry:  Sets how the bot handles tied votes.\n Option **breaker** will make a new vote using only the tied movies.\n" +
                 "Option **random** will make a new vote with a random selection of movies.");
+            builder.AddField("m!set_admin_role [Name]", ":no_entry: Sets the name of the role that is allowed to run admin only commands in movie night bot. WARNING, you will not be able to run commands if you have no users with this name!!!");
+            builder.AddField("m!get_admin_role [Name]", "Gets the name of the role that is allowed to run admin only commands for Movie Night Bot. Use for emergencies.");
             Embed embed = builder.Build();
             await Context.User.SendMessageAsync("You Need Some Help", embed: embed).ConfigureAwait(false);
         }

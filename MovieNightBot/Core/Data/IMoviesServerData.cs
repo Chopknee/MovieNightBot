@@ -22,11 +22,14 @@ namespace MovieNightBot.Core.Data {
         string GetAdminRoleName(SocketGuild guild);
 
         //Functions about the server
-        bool SetMovieVoteCount(SocketGuild guild, int count);
+        
         bool SetTiebreakerOption(SocketGuild guild, int option);
         bool SetAdminRoleName ( SocketGuild guild, string name );
-        bool SetVoteCount ( SocketGuild guild, int count );
+        bool SetMovieOptionCount ( SocketGuild guild, int count );//Num movies on a vote
+        bool SetVoteCount ( SocketGuild guild, int count );//Vote limit
 
+        
+        int GetMovieOptionCount ( SocketGuild guild );
         int GetVoteCount ( SocketGuild guild );
 
         bool Initialized();
@@ -41,10 +44,10 @@ namespace MovieNightBot.Core.Data {
         public string ServerName;
         public string ServerId;
         public string DateCreated;
-        public int MovieVoteCount = 5;//By default set to 5
+        public int MovieVoteOptionCount = 5;//By default set to 5
         public int TiebreakerMethod = 0;//0 = new vote, 1 = tiebreaker vote
         public string AdminRoleName = "Movie Master";
-        public int VoteCount = 3;//Number of movies users are allowed to vote on
+        public int UserVoteLimit = 3;//Number of movies users are allowed to vote on
     }
 
     /**
