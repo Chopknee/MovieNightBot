@@ -121,7 +121,6 @@ namespace MovieNightBot.Core.Data {
 
             //If the execution makes it here, we can safely add the vote to the ballot
             voters[reaction.UserId].Add(vote);
-            Console.WriteLine("Emoji vote placed.");
 
             numVotes = CalculateBallotScore();
 
@@ -251,7 +250,6 @@ namespace MovieNightBot.Core.Data {
             //Generate new count
             foreach (KeyValuePair<ulong, List<int>> entry in voters) {
                 float divisor = 1f / (float)serverData.UserVoteLimit;
-                Console.WriteLine(divisor + " is the divisor.");
                 float weight = 1;
                 foreach (int vt in entry.Value) {
                     ballotItems[vt].votes += 1;

@@ -214,13 +214,22 @@ namespace MovieNightBot.Core.Data {
 
         public Movie[] GetMovieSelection(int count) {
             List<Movie> movs = new List<Movie>();
+            IEnumerable<float> scores = from suggestion in GetSuggestedMovies()
+                                       where suggestion.Watched == false
+                                       select suggestion.ClassificationScore;
+            float max = scores.Max();
+
             //Order the list based on the scoring system.
-            IEnumerable<Movie> suggs = GetSuggestedMovies().OrderBy(movie => movie.ClassificationScore);
+            IEnumerable<Movie> suggs = from suggestion in GetSuggestedMovies()
+                                       where suggestion.Watched == false
+                                       //let score = (suggestion.ClassificationScore == 0)? max : suggestion.ClassificationScore
+                                       orderby ((suggestion.ClassificationScore == -1)? max : suggestion.ClassificationScore)//score
+                                       select suggestion;
             //Randomly select the movie
             while (movs.Count < count && suggs.Count() > 0) {
                 if (rand == null) { rand = new Random(); }
                 float val = (float)rand.NextDouble();
-                val = val * val;//Create a curved value to favor higher index numbers
+                val = MathF.Sqrt(val);//Create a curved value to favor higher index numbers
                 int ind = (int)(suggs.Count() * val);
                 movs.Add(suggs.ElementAt(ind));
                 string title = suggs.ElementAt(ind).Title;
@@ -228,6 +237,10 @@ namespace MovieNightBot.Core.Data {
             }
 
             return movs.ToArray();
+        }
+
+        private static float Max(float max, float inp) {
+            return Math.Max(max, inp);
         }
     }
 
@@ -339,9 +352,14 @@ namespace MovieNightBot.Core.Data {
 
         private float CalculateClassificationScore() {
             if (timesUpForVote == 0) {
-                return 100;
+                return -1;
             }
             return totalVotes * totalScore / timesUpForVote;
+        }
+
+        public string ToString() {
+            string str = $"Title: {Title.PadRight(255)}, Vote Times: {TimesUpForVote}, Total Votes: {TotalVotes}, Total Score {TotalScore}, Classification Score: {ClassificationScore}";
+            return str;
         }
 
     }
