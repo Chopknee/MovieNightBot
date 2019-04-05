@@ -26,15 +26,18 @@ namespace MovieNightBot.Core.Commands {
                 TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
                 Input = Input.Trim();//Clear spaces
                 Input = myTI.ToTitleCase(Input);//Make it so every word starts with an upper case
-
-                if (MoviesData.Model.MovieHasBeenSuggested(Context.Guild, Input)) {
-                    await Context.Channel.SendMessageAsync($"The movie {Input} has already been suggested.");
-                    return;
-                } else if (MoviesData.Model.MovieHasBeenWatched(Context.Guild, Input)) {
-                    await Context.Channel.SendMessageAsync($"The movie {Input} has already been watched.");
-                    return;
+                ServerData sd = ServerData.Get(Context.Guild);
+                Movie m = sd.GetMovie(Input);
+                if (m != null) {
+                    if (m.Watched) {
+                        await Context.Channel.SendMessageAsync($"The movie {Input} has already been watched.");
+                        return;
+                    } else {
+                        await Context.Channel.SendMessageAsync($"The movie {Input} has already been suggested.");
+                        return;
+                    }
                 }
-                MoviesData.Model.SuggestMovie(Context.Guild, Input);
+                sd.AddMovie(Input);
                 await Context.Channel.SendMessageAsync($"Your suggestion of {Input} has been added to the list.");
                 return;
             } catch (DataException ex) {

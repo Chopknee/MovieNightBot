@@ -12,6 +12,8 @@ namespace MovieNightBot.Core.Data {
 
         //All the available options for this vote.
         Movie[] movieOptions;
+        //
+        ServerData serverData;
 
         //The guild which created the vote
         SocketGuild associatedGuild;
@@ -26,11 +28,11 @@ namespace MovieNightBot.Core.Data {
         //The message that shows the status of each user ballot
         public RestUserMessage feedbackMessage;
 
-        //Keeping this around to prevent calls to the data model
-        private int maxUserVotes;
+
+
         private int numVotes = 0;
         private struct BallotItem {
-            public Movie movieTitle;
+            public Movie movie;
             public int votes;
             public float score;
         }
@@ -44,13 +46,14 @@ namespace MovieNightBot.Core.Data {
             this.movieOptions = movieOptions;
             Program.SubscribeToReactionAdded(ReactCallback);
             Program.SubscribeToReactionRemoved(UnReactCallback);
-
-            maxUserVotes = MoviesData.Model.GetVoteCount(guild);
+            //ServerData data = ServerData.Get(guild);
+            //maxUserVotes = MoviesData.Model.GetVoteCount(guild);
             ballotItems = new BallotItem[movieOptions.Length];
+            serverData = ServerData.Get(guild);
 
             for (int i = 0; i < ballotItems.Length; i++) {
                 ballotItems[i] = new BallotItem();
-                ballotItems[i].movieTitle = movieOptions[i];
+                ballotItems[i].movie = movieOptions[i];
                 ballotItems[i].votes = 0;
                 ballotItems[i].score = 0;
             }
@@ -105,7 +108,7 @@ namespace MovieNightBot.Core.Data {
                 voters.Add(reaction.UserId, new List<int>());
             }
             List<int> ballot = voters[reaction.UserId];
-            if (ballot.Count >= maxUserVotes) {
+            if (ballot.Count >= serverData.UserVoteLimit) {
                 //We need to send the user a fraggin message??? Nope. Maxed out votes, ignore this particular reaction?? Assuming it is even a vote... (which it may very well not be)
                 return;
             }
@@ -155,7 +158,7 @@ namespace MovieNightBot.Core.Data {
         }
 
         public Embed MakeVoteEmbed () {
-            int voteCount = MoviesData.Model.GetVoteCount(associatedGuild);
+            int voteCount = serverData.UserVoteLimit;//MoviesData.Model.GetVoteCount(associatedGuild);
             EmbedBuilder builder = new EmbedBuilder()
                 .WithTitle("What movie will we watch tonight?")
                 .WithDescription($"You may choose up to {voteCount} movie" + ((voteCount > 1)? "s" : "") + ". React in the order of movies you want to view the most first.")
@@ -181,7 +184,7 @@ namespace MovieNightBot.Core.Data {
                 }
             }
             DateTime now = DateTime.UtcNow;
-            string fuu = $"{now.Month}/{now.Day}/{now.Year} 21:00:00";
+            string fuu = $"{now.Month}/{now.Day}/{now.Year} {serverData.MovieTimeHour}:00:00";
             now = DateTime.Parse(fuu);
             DateTimeOffset offset = new DateTimeOffset(now, new TimeSpan(0, 0, 0));
             builder.WithTimestamp(offset);
@@ -193,6 +196,13 @@ namespace MovieNightBot.Core.Data {
         public async Task TallyResults () {
             //Recalculate the current ballot
             int votes = CalculateBallotScore();
+
+            for (int i = 0; i < ballotItems.Length; i++) {
+                ballotItems[i].movie.TotalScore += ballotItems[i].score;
+                ballotItems[i].movie.TotalVotes += ballotItems[i].votes;
+                ballotItems[i].movie.TimesUpForVote += 1;
+            }
+
             //Determine the winner
             int maxWin = -1;
             for (int i = 0; i < ballotItems.Length; i++) {
@@ -207,11 +217,11 @@ namespace MovieNightBot.Core.Data {
             BallotItem winner = ballotItems[maxWin];
             //Show the winner in the old embed
             EmbedBuilder builder = new EmbedBuilder()
-                .WithTitle($"The winning vote was {winner.movieTitle.Title}!")
-                .WithDescription($"To set the movie as watched use the command m!set_watched {winner.movieTitle.Title}")
+                .WithTitle($"The winning vote was {winner.movie.Title}!")
+                .WithDescription($"To set the movie as watched use the command m!set_watched {winner.movie.Title}")
                 .WithColor(new Color(0xE314C7));
             DateTime now = DateTime.UtcNow;
-            string fuu = $"{now.Month}/{now.Day}/{now.Year} 21:00:00";
+            string fuu = $"{now.Month}/{now.Day}/{now.Year} {serverData.MovieTimeHour}:00:00";
             now = DateTime.Parse(fuu);
             DateTimeOffset offset = new DateTimeOffset(now, new TimeSpan(0, 0, 0));
             builder.WithTimestamp(offset);
@@ -240,7 +250,7 @@ namespace MovieNightBot.Core.Data {
 
             //Generate new count
             foreach (KeyValuePair<ulong, List<int>> entry in voters) {
-                float divisor = 1f / (float)entry.Value.Count;
+                float divisor = 1f / (float)serverData.UserVoteLimit;
                 Console.WriteLine(divisor + " is the divisor.");
                 float weight = 1;
                 foreach (int vt in entry.Value) {

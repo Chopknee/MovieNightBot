@@ -28,8 +28,9 @@ namespace MovieNightBot.Core.Commands {
                     await Context.Channel.SendMessageAsync("A vote is already running, please end the current one before starting a new one!");
                     return;
                 }
+                ServerData sd = ServerData.Get(Context.Guild);
                 //Get the movies to vote on
-                Movie[] movs = MoviesData.Model.GetRandomVote(Context.Guild);
+                Movie[] movs = sd.GetMovieSelection(sd.MovieVoteOptionCount);
                 //Generate the ranked vote object
                 RankedServerVote serverVote = new RankedServerVote(Context.Guild, movs, Context.Channel);
 

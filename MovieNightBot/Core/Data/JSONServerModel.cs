@@ -14,237 +14,19 @@ namespace MovieNightBot.Core.Data {
     //The data model responsible for handling movies.
     public class JSONServerModel: IMoviesServerData {
         //This is where all information movies is kept, the key is the id of the 'guild'.
-        private Dictionary<string, JSONServerMovies> serverMovies = new Dictionary<string, JSONServerMovies>();
-        private Random rand = new Random();//Used for the random vote generation
+        private Dictionary<ulong, ServerData> serverMovies = new Dictionary<ulong, ServerData>();
 
-        /**
-         * Checks if a movie has been either suggested, or watched.
-         * string guildId
-         * string guildName
-         * string movieTitle
-         * return bool
-         */
-        public bool HasMovie ( SocketGuild guild, string movieTitle ) {
-            return MovieHasBeenSuggested(guild, movieTitle) || MovieHasBeenWatched(guild, movieTitle);
-        }
-
-        /**
-         * Checks if a movie has been suggested.
-         * string guildId
-         * string guildName
-         * string movieTitle
-         * return bool
-         */
-        public bool MovieHasBeenSuggested ( SocketGuild guild, string movieTitle ) {
-            JSONServerMovies movs = GetServerMovies(guild);
-            bool res = false;
-            foreach (Movie m in movs.waitingMovies) {
-                res = m.Title.Equals(movieTitle);
-                if (res) { break; }
-            }
-            return res;
-        }
-
-        /**
-         * Checks if a movie has been watched.
-         * string guildId
-         * string guildName
-         * string movieTitle
-         * return bool
-         */
-        public bool MovieHasBeenWatched ( SocketGuild guild, string movieTitle ) {
-            JSONServerMovies movs = GetServerMovies(guild);
-            bool res = false;
-            foreach (Movie m in movs.watchedMovies) {
-                res = m.Title.Equals(movieTitle);
-                if (res) { break; }
-            }
-            return res;
-        }
-
-        /**
-         * Sets the state of a movie to watched. The movie will not appear in future votes.
-         * string guildId
-         * string guildName
-         * string movieTitle
-         * return bool
-         */
-        public bool SetMovieToWatched ( SocketGuild guild, string movieTitle, bool watched ) {
-            JSONServerMovies movs = GetServerMovies(guild);
-            Movie theMovie = null;
-            if (watched) {
-                if (!MovieHasBeenWatched(guild, movieTitle)) {
-                    for (int i = 0; i < movs.waitingMovies.Count; i++) {
-                        if (movs.waitingMovies[i].Title.Equals(movieTitle)) {
-                            theMovie = movs.waitingMovies[i];
-                            movs.waitingMovies.RemoveAt(i);
-                            movs.watchedMovies.Add(theMovie);
-                            theMovie.watchedDate = DateTime.Now.ToString();
-                            SaveData(guild);
-                            return true;
-                        }
+        public ServerData GetServerMovies ( SocketGuild guild) {
+            try {
+                if (!serverMovies.ContainsKey(guild.Id)) {
+                    if (!LoadData(guild)) {
+                        Program.Instance.Log(new LogMessage(LogSeverity.Error, "JSON Model", $"An unknown error ocurred while loading a server file."));
                     }
                 }
-            } else {
-                if (!MovieHasBeenSuggested(guild, movieTitle)) {
-                    for (int i = 0; i < movs.waitingMovies.Count; i++) {
-                        if (movs.watchedMovies[i].Title.Equals(movieTitle)) {
-                            theMovie = movs.watchedMovies[i];
-                            movs.watchedMovies.RemoveAt(i);
-                            movs.waitingMovies.Add(theMovie);
-                            theMovie.watchedDate = DateTime.Now.ToString();
-                            SaveData(guild);
-                            return true;
-                        }
-                    }
-                }
+                return serverMovies[guild.Id];
+            } catch (Exception ex) {
+                throw ex;
             }
-            //If execution reaches this point, we know something has gone terribly wrong.
-            Program.Instance.Log(new LogMessage(LogSeverity.Info, "JSON Model", $"Attempting to set movie {movieTitle} to " + ( ( watched ) ? "watched" : "suggested" ) + " has failed."));
-            return false;
-        }
-
-        /**
-         * Removes a movie from the suggestions list.
-         * string guildId
-         * string guildName
-         * string movieTitle
-         * return bool
-         */
-        public bool RemoveMovie ( SocketGuild guild, string movieTitle ) {
-            JSONServerMovies movs = GetServerMovies(guild);
-            for (int i = 0; i < movs.waitingMovies.Count; i++) {
-                if (movs.waitingMovies[i].Title.Equals(movieTitle)) {
-                    movs.waitingMovies.RemoveAt(i);
-                    SaveData(guild);
-                    return true;
-                }
-            }
-            //If execution reaches this point, we know something has gone terribly wrong.
-            Program.Instance.Log(new LogMessage(LogSeverity.Info, "JSON Model", $"Attempting to set movie {movieTitle} to watched has failed. Could not find it in suggested movies."));
-            return false;
-        }
-
-        /**
-         * Puts a previously watched movie back into the wait list. The movie will appear in future votes.
-         * string guildId
-         * string guildName
-         * string movieTitle
-         * return bool
-         */
-        public bool SetMovieToUnwatched ( SocketGuild guild, string movieTitle ) {
-            JSONServerMovies movs = GetServerMovies(guild);
-            Movie theMovie = null;
-            for (int i = 0; i < movs.watchedMovies.Count; i++) {
-                if (movs.watchedMovies[i].Title.Equals(movieTitle)) {
-                    theMovie = movs.watchedMovies[i];
-                    movs.watchedMovies.RemoveAt(i);
-                    movs.waitingMovies.Add(theMovie);
-                    theMovie.watchedDate = "";
-                    SaveData(guild);
-                    return true;
-                }
-            }
-            //Reaching this point means the move is not in the list
-            Program.Instance.Log(new LogMessage(LogSeverity.Info, "JSON Model", $"Attempting to set movie {movieTitle} to suggestions has failed. Could not find it in suggested movies."));
-            return false;
-        }
-
-        /**
-         * Adds a movie to the suggestions list. This movie will show in future votes.
-         * string serverId
-         * string guildId
-         * string guildName
-         */
-        public bool SuggestMovie ( SocketGuild guild, string movieTitle ) {
-            JSONServerMovies movs = GetServerMovies(guild);
-            movs.waitingMovies.Add(new Movie { Title = movieTitle, suggestDate = DateTime.Now.ToString(), watchedDate = "" });
-            SaveData(guild);
-            return true;
-        }
-
-        /**
-         * Function that returns the list of movies associated with the specified guild. If the server key is not in the dictionary,
-         * load the file associated with that server.
-         * string guildId
-         * string guildName
-         * return MovieCollection
-         */
-        public JSONServerMovies GetServerMovies ( SocketGuild guild ) {
-            Program.Instance.Log(new LogMessage(LogSeverity.Info, "JSON Model", $"Looking for server {guild.Id}:{guild.Name} data."));
-            if (!serverMovies.ContainsKey(guild.Id.ToString())) {
-                Program.Instance.Log(new LogMessage(LogSeverity.Info, "JSON Model", $"Server {guild.Id}:{guild.Name} is not loaded."));
-                LoadData(guild);
-            }
-            Program.Instance.Log(new LogMessage(LogSeverity.Info, "JSON Model", $"Server {guild.Id}:{guild.Name} is now loaded."));
-            return serverMovies[guild.Id.ToString()];
-        }
-
-        /**
-         * Generates a random array of 5 movies pulled from the suggestions/wait list.
-         * string guildId
-         * string guildName
-         * return Movie[]
-         */
-        public Movie[] GetRandomVote ( SocketGuild guild ) {
-            JSONServerMovies serverMoviesCollection = GetServerMovies(guild);
-            List<Movie> allMovies = new List<Movie>();
-            allMovies.AddRange(serverMoviesCollection.waitingMovies);
-            int count = Math.Min(serverMoviesCollection.MovieVoteOptionCount, allMovies.Count);
-            Movie[] movies = new Movie[count];
-            for (int i = 0; i < count; i++) {
-                int randomIndex = rand.Next(0, allMovies.Count);
-                movies[i] = allMovies[randomIndex];
-                allMovies.RemoveAt(randomIndex);
-            }
-            return movies;
-        }
-
-        /**
-         * Returns an array of all watched movies on the specified server.
-         * string guildId
-         * string guidlName
-         * return Movie[]
-         */
-        public Movie[] GetWatchedMovies ( SocketGuild guild ) {
-            JSONServerMovies serverCollection = GetServerMovies(guild);
-            return serverCollection.watchedMovies.ToArray();
-        }
-
-        /**
-         * Returns an array of all suggested/waiting movies on the specified server.
-         * string guildId
-         * string guidlName
-         * return Movie[]
-         */
-        public Movie[] GetSuggestedMovies ( SocketGuild guild ) {
-            JSONServerMovies serverCollection = GetServerMovies(guild);
-            return serverCollection.waitingMovies.ToArray();
-        }
-
-        public string GetAdminRoleName ( SocketGuild guild ) {
-            JSONServerMovies collection = GetServerMovies(guild);
-            return collection.AdminRoleName;
-        }
-
-        /**
-         * Set the count of movies to vote on.
-         * string guildId
-         * string guidlName
-         * int count
-         */
-        public bool SetMovieOptionCount ( SocketGuild guild, int count ) {
-            ServerData serverCollection = GetServerMovies(guild);
-            serverCollection.MovieVoteOptionCount = count;
-            SaveData(guild);
-            return true;
-        }
-
-        public bool SetTiebreakerOption ( SocketGuild guild, int option ) {
-            ServerData serverCollection = GetServerMovies(guild);
-            serverCollection.TiebreakerMethod = option;
-            SaveData(guild);
-            return true;
         }
 
         /**
@@ -255,8 +37,8 @@ namespace MovieNightBot.Core.Data {
         private bool LoadData ( SocketGuild guild ) {
             try {
                 if (!File.Exists($"{Program.DataDirectory}/{guild.Id}.txt")) {
-                    JSONServerMovies mc = new JSONServerMovies { ServerName = guild.Name, ServerId = guild.Id.ToString(), DateCreated = DateTime.Now.ToString() };
-                    serverMovies.Add(guild.Id.ToString(), mc);
+                    ServerData mc = new ServerData(guild);
+                    serverMovies.Add(guild.Id, mc);
                     SaveData(guild);
                     return true;
                 }
@@ -265,15 +47,16 @@ namespace MovieNightBot.Core.Data {
                     fileText = file.ReadToEnd();
                 }
                 if (fileText.Equals("")) {
-                    JSONServerMovies mc = new JSONServerMovies { ServerName = guild.Name, ServerId = guild.Id.ToString(), DateCreated = DateTime.Now.ToString() };
-                    serverMovies.Add(guild.Id.ToString(), mc);
+                    ServerData mc = new ServerData(guild);
+                    serverMovies.Add(guild.Id, mc);
                     SaveData(guild);
                     return true;
                 }
-                JSONServerMovies parsed = JsonConvert.DeserializeObject<JSONServerMovies>(fileText);
-                serverMovies.Add(guild.Id.ToString(), parsed);
+                ServerData parsed = JsonConvert.DeserializeObject<ServerData>(fileText);
+                serverMovies.Add(guild.Id, parsed);
                 return true;
             } catch (Exception ex) {
+                Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
                 Program.Instance.Log(new LogMessage(LogSeverity.Error, "JSON Model", $"An unknown error ocurred while loading a server file.", ex));
                 return false;
             }
@@ -285,53 +68,44 @@ namespace MovieNightBot.Core.Data {
          * string guidlName
          * return bool
          */
-        private bool SaveData ( SocketGuild guild ) {
+        private void SaveData ( SocketGuild guild ) {
             try {
-                File.WriteAllText($"{Program.DataDirectory}/{guild.Id}.txt", JsonConvert.SerializeObject(serverMovies[guild.Id.ToString()], Formatting.Indented));
-                return true;
+                File.WriteAllText($"{Program.DataDirectory}/{guild.Id}.txt", JsonConvert.SerializeObject(serverMovies[guild.Id], Formatting.Indented));
+                //return true;
             } catch (Exception ex) {
-                Program.Instance.Log(new LogMessage(LogSeverity.Error, "JSON Model", $"An unknown error ocurred while saving server data.", ex));
-                return false;
+                throw ex;
             }
         }
 
-        public bool Initialized () {
-            throw new NotImplementedException();
+        private void SaveData ( ulong GuildId ) {
+            try {
+                if (GuildId == 0) {
+                    Console.WriteLine("For some reason guild id was 0");
+                    throw new Exception("Guild Id was 0 for some reason.");
+                }
+                File.WriteAllText($"{Program.DataDirectory}/{GuildId}.txt", JsonConvert.SerializeObject(serverMovies[GuildId], Formatting.Indented));
+            } catch (Exception ex) {
+                throw ex;
+            }
         }
 
-        public bool InitializeNewServer ( SocketGuild guild ) {
-            throw new NotImplementedException();
+        public ServerData GetServerData ( SocketGuild guild ) {
+            try {
+                ServerData serverCollection = GetServerMovies(guild);
+                return serverCollection as ServerData;
+            } catch (Exception ex) {
+                throw ex;
+            }
         }
 
-        public bool SetVoteCount ( SocketGuild guild, int count ) {
-            ServerData serverCollection = GetServerMovies(guild);
-            serverCollection.UserVoteLimit = count;
-            SaveData(guild);
-            return true;
-        }
-
-        public int GetVoteCount ( SocketGuild guild ) {
-            return GetServerMovies(guild).UserVoteLimit;
-        }
-
-        public bool SetAdminRoleName ( SocketGuild guild, string name ) {
-            ServerData serverCollection = GetServerMovies(guild);
-            serverCollection.AdminRoleName = name;
-            SaveData(guild);
-            return true;
-        }
-
-        public int GetMovieOptionCount ( SocketGuild guild ) {
-            return GetServerMovies(guild).MovieVoteOptionCount;
+        public void UpdateData ( ulong GuildId ) {
+            try {
+                SaveData(GuildId);
+            } catch (Exception ex) {
+                throw ex;
+            }
         }
     }
 
-    public class JSONServerMovies: ServerData {
-
-        //Holds all the movies right here. The JSON library I'm using can serialize lists (yay!)
-        public List<Movie> waitingMovies = new List<Movie>();
-        public List<Movie> watchedMovies = new List<Movie>();
-    }
-
-    public class DataException: Exception { }
+    public class JSONDataException : DataException {}
 }
