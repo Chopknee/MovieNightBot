@@ -344,15 +344,6 @@ namespace MovieNightBot.Core.Data {
             return totalVotes * totalScore / timesUpForVote;
         }
 
-        //public static Movie Conv(OldMovie m, bool watched) {
-        //    Movie mov = new Movie();
-        //    mov.title = m.Title;
-        //    mov.totalVotes = m.TotalVotes;
-        //    mov.watchedDate = m.watchedDate;
-        //    mov.watched = watched;
-        //    mov.suggestDate = m.suggestDate;
-        //    return mov;
-        //}
     }
 
     public class DataException: Exception { }

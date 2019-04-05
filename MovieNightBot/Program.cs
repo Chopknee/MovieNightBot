@@ -50,13 +50,13 @@ namespace MovieNightBot {
 
             startDate = DateTime.Now;
             client = new DiscordSocketClient(new DiscordSocketConfig {
-                LogLevel = LogSeverity.Debug
+                LogLevel = LogSeverity.Error
             });
 
             Commands = new CommandService(new CommandServiceConfig {
                 CaseSensitiveCommands = true,
                 DefaultRunMode = RunMode.Async,
-                LogLevel = LogSeverity.Debug
+                LogLevel = LogSeverity.Error
             });
 
             client.MessageReceived += ClientMessageReceived;
