@@ -1,6 +1,6 @@
 # MovieNightBot
 
-A simple discord bot for tracking movie suggestions and generating a random vote for unwatched movies.
+A simple discord bot for tracking movie suggestions and generating a random vote for unwatched movies. The voting setup uses ranked ballots, meaning that each voter can choose multiple options. Each successive item the user picks carries less weight. The exact reduction of vote weight is determined by the number of items users are allowed to pick.
 
 # Prerequisites
 * Discord.Net
