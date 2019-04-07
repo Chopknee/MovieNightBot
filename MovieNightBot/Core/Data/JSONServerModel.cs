@@ -53,6 +53,7 @@ namespace MovieNightBot.Core.Data {
                     return true;
                 }
                 ServerData parsed = JsonConvert.DeserializeObject<ServerData>(fileText);
+                parsed.AddMoviesListeners();
                 serverMovies.Add(guild.Id, parsed);
                 return true;
             } catch (Exception ex) {

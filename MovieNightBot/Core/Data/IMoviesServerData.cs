@@ -45,8 +45,9 @@ namespace MovieNightBot.Core.Data {
             this.dateCreated = dateCreated;
         }
 
-        public ServerData() {
-            //Console.Write("I was created from the normal constructor!");
+        public ServerData() {}
+
+        public void AddMoviesListeners() {
             foreach (Movie m in movies) {
                 m.OnDataModified += UpdateDataModel;
             }
@@ -145,19 +146,17 @@ namespace MovieNightBot.Core.Data {
         private List<Movie> movies = new List<Movie>();
 
         public Movie[] GetSuggestedMovies() {
-            List<Movie> ms = new List<Movie>();
-            foreach (Movie m in movies) {
-               if (!m.Watched) { ms.Add(m); }
-            }
-            return ms.ToArray();
+            IEnumerable<Movie> suggs = from movie in movies
+                                       where movie.Watched == false
+                                       select movie;
+            return suggs.ToArray();
         }
 
         public Movie[] GetWatchedMovies () {
-            List<Movie> ms = new List<Movie>();
-            foreach (Movie m in movies) {
-                if (m.Watched) { ms.Add(m); }
-            }
-            return ms.ToArray();
+            IEnumerable<Movie> suggs = from movie in movies
+                                       where movie.Watched == true
+                                       select movie;
+            return suggs.ToArray();
         }
 
         public bool MovieHasBeenWatched(string title) {
@@ -334,11 +333,15 @@ namespace MovieNightBot.Core.Data {
             set {
                 watched = value;
                 if (value) {
-                    //watchedDate = DateTime.Now.ToString();
+                    watchedDate = DateTime.Now.ToString();
                 } else {
-                    //watchedDate = "";
+                    watchedDate = "";
+                }
+                if (OnDataModified == null) {
+                    Console.WriteLine("Missing listener for on data modified!");
                 }
                 OnDataModified?.Invoke();
+                Console.WriteLine("Watched Status has been modified!");
             }
         }
         [JsonProperty]
@@ -356,12 +359,6 @@ namespace MovieNightBot.Core.Data {
             }
             return totalVotes * totalScore / timesUpForVote;
         }
-
-        public string ToString() {
-            string str = $"Title: {Title.PadRight(255)}, Vote Times: {TimesUpForVote}, Total Votes: {TotalVotes}, Total Score {TotalScore}, Classification Score: {ClassificationScore}";
-            return str;
-        }
-
     }
 
     public class DataException: Exception { }

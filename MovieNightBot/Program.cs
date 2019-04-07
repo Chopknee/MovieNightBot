@@ -23,6 +23,9 @@ namespace MovieNightBot {
 
         public const string ADMIN_ROLE_NAME = "Movie Master";
 
+        public delegate Task MoviesListModified (Movie m, SocketGuild guild, ISocketMessageChannel channel, SocketUser user);
+        public MoviesListModified OnMoviesListModified;
+
         public static Program Instance {
             get {
                 return instance;

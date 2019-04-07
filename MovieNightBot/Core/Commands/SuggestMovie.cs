@@ -21,8 +21,7 @@ namespace MovieNightBot.Core.Commands {
         [Command("suggest"), Summary("Add movie command")]
         public async Task Suggest([Remainder]string Input = "") {
             try {
-                if (Input.Equals("")) return; //Filter out empty suggestions
-                if (Input.Length > 150) return;//Title too long, probably spam
+                if (Input.Equals("") || Input.Length > 150) return; //Filter out bad input
                 TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
                 Input = Input.Trim();//Clear spaces
                 Input = myTI.ToTitleCase(Input);//Make it so every word starts with an upper case
@@ -39,6 +38,8 @@ namespace MovieNightBot.Core.Commands {
                 }
                 sd.AddMovie(Input);
                 await Context.Channel.SendMessageAsync($"Your suggestion of {Input} has been added to the list.");
+                Movie mov = sd.GetMovie(Input);
+                Program.Instance.OnMoviesListModified?.Invoke(m, Context.Guild, Context.Channel, Context.User);
                 return;
             } catch (DataException ex) {
                 Console.WriteLine(ex.Message + "\n" + ex.StackTrace);

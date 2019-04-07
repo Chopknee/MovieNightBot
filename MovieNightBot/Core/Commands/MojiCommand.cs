@@ -10,7 +10,7 @@ namespace MovieNightBot.Core.Commands {
 
         
         public volatile static string[] voteEmojiCodes = { "🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸", "🇹" };
-        public volatile static string[] commandEmojiCodes = { "🛑", "🔄", "✔️" };
+        public volatile static string[] commandEmojiCodes = { "🛑", "🔄", "✔️", "⏮", "⏪", "⏩", "⏭" };
 
         private volatile static Emoji[] commandMojiStore;
         public static Emoji[] CommandMoji {
@@ -56,6 +56,22 @@ namespace MovieNightBot.Core.Commands {
 
         public static bool IsStop ( IEmote moji ) {
             return moji.Equals(( CommandMoji[0] as IEmote ));
+        }
+
+        public static bool IsLeftEnd( IEmote moji) {
+            return moji.Equals(( CommandMoji[3] as IEmote ));
+        }
+
+        public static bool IsLeft ( IEmote moji ) {
+            return moji.Equals(( CommandMoji[4] as IEmote ));
+        }
+
+        public static bool IsRight ( IEmote moji ) {
+            return moji.Equals(( CommandMoji[5] as IEmote ));
+        }
+
+        public static bool IsRightEnd ( IEmote moji ) {
+            return moji.Equals(( CommandMoji[6] as IEmote ));
         }
 
         public static int EmojiToVoteNumber ( IEmote moji ) {

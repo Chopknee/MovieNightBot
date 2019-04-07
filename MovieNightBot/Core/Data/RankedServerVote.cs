@@ -169,17 +169,17 @@ namespace MovieNightBot.Core.Data {
                 });
             for (int i = 0; i < movieOptions.Length; i++) {
                 if (voters.Count == 0) {
-                    builder.AddField($"{MojiCommand.voteEmojiCodes[i]} {movieOptions[i].Title}", $"---------- 0/0");
+                    builder.AddField($"{MojiCommand.voteEmojiCodes[i]} {movieOptions[i].Title}", $"Score: 0");
                 } else {
                     //Votes have been cast, build the votes embed
-                    string voteTally = "";
-                    int perc = (int) Math.Round(( (float) ballotItems[i].votes / numVotes ) * 10);//Gives me a value between 0 and 10
-                    for (int t = 1; t <= 10; t++) {
-                        //0 means no x, greater than 0 means x will be shown.
-                        voteTally += ( perc >= t ) ? "x" : "-";
-                    }
-                    voteTally += $" {ballotItems[i].votes} / {numVotes}";
-                    builder.AddField($"{MojiCommand.voteEmojiCodes[i]} {movieOptions[i].Title}", $"{voteTally}");
+                    //string voteTally = "";
+                    //int perc = (int) Math.Round(( (float) ballotItems[i].votes / numVotes ) * 10);//Gives me a value between 0 and 10
+                    //for (int t = 1; t <= 10; t++) {
+                    //    //0 means no x, greater than 0 means x will be shown.
+                    //    voteTally += ( perc >= t ) ? "x" : "-";
+                    //}
+                    //voteTally += $" {ballotItems[i].votes} / {numVotes}";
+                    builder.AddField($"{MojiCommand.voteEmojiCodes[i]} {movieOptions[i].Title}", $"Score: {ballotItems[i].score}");
                 }
             }
             DateTime now = DateTime.UtcNow;
@@ -228,7 +228,10 @@ namespace MovieNightBot.Core.Data {
             RankedServerVoting.ServersAndVotes.Remove(associatedGuild.Id);
             try {
                 await voteMessage.RemoveAllReactionsAsync();
-            } catch (Exception ex) {//We don't really want to do anything. This is to catch the servers which don't give permissions to the bot.
+            } catch (Exception ex) {
+                //We don't really want to do anything. This is to catch the servers which don't give permissions to the bot.
+                LogMessage lm = new LogMessage(LogSeverity.Error, "Movie Information Embed", "Unable to remove reactions from the movie information embed! The server likely has not given permission to do this.");
+                await Program.Instance.Log(lm);
             }
 
             await voteMessage.ModifyAsync(VoteMessage => {
@@ -236,6 +239,8 @@ namespace MovieNightBot.Core.Data {
                 VoteMessage.Embed = builder.Build();
                 return;
             });
+
+            await channel.SendMessageAsync($"The winning vote was {winner.movie.Title}! To set the movie as watched use the command \n **m!set_watched {winner.movie.Title}**");
 
         }
 
