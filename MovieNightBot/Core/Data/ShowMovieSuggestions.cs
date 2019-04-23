@@ -96,16 +96,20 @@ namespace MovieNightBot.Core.Data {
                 movs = from m in serverData.GetWatchedMovies() select m;
             } else {
                 //movs = from m in serverData.GetSuggestedMovies() select m;
-                IEnumerable<float> scores = from suggestion in serverData.GetSuggestedMovies()
-                                            where suggestion.Watched == false
-                                            select suggestion.ClassificationScore;
-                float max = scores.Max();
+                //IEnumerable<float> scores = from suggestion in serverData.GetSuggestedMovies()
+                //                            where suggestion.Watched == false
+                //                            select suggestion.ClassificationScore;
+                //float max = scores.Max();
 
-                //Order the list based on the scoring system.
+                ////Order the list based on the scoring system.
+                //movs = from suggestion in serverData.GetSuggestedMovies()
+                //                           where suggestion.Watched == false
+                //                           orderby ( ( suggestion.ClassificationScore == -1 ) ? max : suggestion.ClassificationScore )//score
+                //                           select suggestion;
                 movs = from suggestion in serverData.GetSuggestedMovies()
-                                           where suggestion.Watched == false
-                                           orderby ( ( suggestion.ClassificationScore == -1 ) ? max : suggestion.ClassificationScore )//score
-                                           select suggestion;
+                       where suggestion.Watched == false
+                       orderby suggestion.Title
+                       select suggestion;
             }
 
             movs = movs.Skip(pageNumber * pageSize);
