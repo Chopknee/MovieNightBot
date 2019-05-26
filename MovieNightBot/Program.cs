@@ -106,23 +106,27 @@ namespace MovieNightBot {
         }
 
         private async Task ClientMessageReceived(SocketMessage messageParam) {
-            SocketUserMessage Message = messageParam as SocketUserMessage;
-            SocketCommandContext Context = new SocketCommandContext(client, Message);
+            try {
+                SocketUserMessage Message = messageParam as SocketUserMessage;
+                SocketCommandContext Context = new SocketCommandContext(client, Message);
 
-            if (Context.Message == null || Context.Message.Content == "") return;
-            if (Context.User.IsBot) return;
+                if (Context.Message == null || Context.Message.Content == "") return;
+                if (Context.User.IsBot) return;
 
-            int ArgPos = 0;
+                int ArgPos = 0;
 
-            if (!(Message.HasStringPrefix("m!", ref ArgPos) 
-                || Message.HasStringPrefix("M!", ref ArgPos)
-                || Message.HasMentionPrefix(client.CurrentUser, ref ArgPos)))
-                return;
+                if (!( Message.HasStringPrefix("m!", ref ArgPos)
+                    || Message.HasStringPrefix("M!", ref ArgPos)
+                    || Message.HasMentionPrefix(client.CurrentUser, ref ArgPos) ))
+                    return;
 
-            var Result = await Commands.ExecuteAsync(Context, ArgPos, null);
+                var Result = await Commands.ExecuteAsync(Context, ArgPos, null);
 
-            if (!Result.IsSuccess) await Log(new LogMessage(LogSeverity.Error, "", $"{DateTime.Now} at Commands] Something went wrong with executing a" +
-                $" command. Text: {Context.Message.Content} | Error: {Result.ErrorReason}"));
+                if (!Result.IsSuccess) await Log(new LogMessage(LogSeverity.Error, "", $"{DateTime.Now} at Commands] Something went wrong with executing a" +
+                    $" command. Text: {Context.Message.Content} | Error: {Result.ErrorReason}"));
+            } catch (Exception ex) {
+                
+            }
         }
 
         public static void SubscribeToReactionAdded(Func<Cacheable<IUserMessage, ulong>, ISocketMessageChannel, SocketReaction, Task> theMethod) {

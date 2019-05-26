@@ -142,6 +142,20 @@ namespace MovieNightBot.Core.Data {
         }
         [JsonProperty]
         private int movieTimeHour = 21;
+
+        public bool DrunkoModeEnabled {
+            get {
+                return drunkoModeEnabled;
+            }
+            set {
+                drunkoModeEnabled = value;
+                UpdateDataModel();
+            }
+        }
+
+        [JsonProperty]
+        private bool drunkoModeEnabled = false;
+
         [JsonProperty]
         private List<Movie> movies = new List<Movie>();
 

@@ -177,5 +177,34 @@ namespace MovieNightBot.Core.Moderation {
                 await Context.Channel.SendMessageAsync("I'm not really sure what happened but something went wrong while executing that command, sorry. :flushed:");
             }
         }
+
+        [Command("set_drunko_mode"), Summary("Keeps the drunks from making shit suggestions.")]
+        public async Task SetDrunkoMode ( [Summary("The number of movies to be selected.")] int enabled = 0 ) {
+            try {
+                SocketGuildUser user = Context.User as SocketGuildUser;
+                ServerData sd = ServerData.Get(Context.Guild);
+                var role = ( user as IGuildUser ).Guild.Roles.FirstOrDefault(x => x.Name == sd.AdminRoleName);
+
+                if (user.Roles.Contains(role)) {
+                    if (enabled < 0 || enabled > 1) {
+                        await Context.Channel.SendMessageAsync($"{Context.User.Username} the setting should be either 0 or 1!");
+                    }
+                    if (enabled == 0) {
+                        await Context.Channel.SendMessageAsync($"{Context.User.Username}, movie suggestions are re-enabled.");
+                        sd.DrunkoModeEnabled = false;
+                    } else {
+                        await Context.Channel.SendMessageAsync($"{Context.User.Username}, movie suggestions are disabled temporarily.");
+                        sd.DrunkoModeEnabled = true;
+                    }
+                    
+                }
+            } catch (DataException ex) {
+                await Program.Instance.Log(new LogMessage(LogSeverity.Error, "Server Settings", "A data related exception was raised.", ex));
+                await Context.Channel.SendMessageAsync("I'm not really sure what happened but something went wrong while executing that command, sorry. :flushed:");
+            } catch (Exception ex) {
+                await Program.Instance.Log(new LogMessage(LogSeverity.Error, "Server Settings", "A general exception was raised.", ex));
+                await Context.Channel.SendMessageAsync("I'm not really sure what happened but something went wrong while executing that command, sorry. :flushed:");
+            }
+        }
     }
 }

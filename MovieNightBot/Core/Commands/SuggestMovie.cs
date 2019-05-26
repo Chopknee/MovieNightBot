@@ -26,6 +26,10 @@ namespace MovieNightBot.Core.Commands {
                 Input = Input.Trim();//Clear spaces
                 Input = myTI.ToTitleCase(Input);//Make it so every word starts with an upper case
                 ServerData sd = ServerData.Get(Context.Guild);
+                if (sd.DrunkoModeEnabled == true) {
+                    await Context.Channel.SendMessageAsync("Hey, suggestions are disabled right now.");
+                    return;
+                }
                 Movie m = sd.GetMovie(Input);
                 if (m != null) {
                     if (m.Watched) {
