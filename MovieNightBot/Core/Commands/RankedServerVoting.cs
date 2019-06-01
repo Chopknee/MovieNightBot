@@ -18,7 +18,7 @@ namespace MovieNightBot.Core.Commands {
 
         [Command("start_vote"), Summary("Starts a new ranked vote.")]
         [RequireBotPermission(GuildPermission.AddReactions)]
-        public async Task NewVote () {
+        public async Task NewVote ([Remainder]string selection = "") {
             try {
                 //Create instance of servers and votes if it does not already exist.
                 if (ServersAndVotes == null) { ServersAndVotes = new Dictionary<ulong, RankedServerVote>(); }
@@ -29,8 +29,18 @@ namespace MovieNightBot.Core.Commands {
                     return;
                 }
                 ServerData sd = ServerData.Get(Context.Guild);
-                //Get the movies to vote on
-                Movie[] movs = sd.GetMovieSelection(sd.MovieVoteOptionCount);
+                Movie[] movs = null;
+                if (selection == "") {
+                    //Get the movies to vote on
+                    movs = sd.GetMovieSelection(sd.MovieVoteOptionCount);
+                } else {
+                    string[] titles = selection.Split(";");
+                    movs = new Movie[titles.Length];
+                    for (int i = 0; i < movs.Length; i++) {
+                        movs[i] = new Movie();
+                        movs[i].Title = titles[i];
+                    }
+                }
                 //Generate the ranked vote object
                 RankedServerVote serverVote = new RankedServerVote(Context.Guild, movs, Context.Channel);
 
