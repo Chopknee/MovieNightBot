@@ -40,9 +40,8 @@ namespace MovieNightBot.Core.Commands {
                         return;
                     }
                 }
-                sd.AddMovie(Input);
+                sd.AddMovie(Input, Context.User.Username);
                 await Context.Channel.SendMessageAsync($"Your suggestion of {Input} has been added to the list.");
-                Movie mov = sd.GetMovie(Input);
                 Program.Instance.OnMoviesListModified?.Invoke(m, Context.Guild, Context.Channel, Context.User);
                 return;
             } catch (DataException ex) {

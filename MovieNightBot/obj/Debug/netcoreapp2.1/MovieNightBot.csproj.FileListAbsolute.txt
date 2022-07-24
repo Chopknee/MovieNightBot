@@ -19,4 +19,3 @@ C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\bin\Debug\netcoreapp2.1\
 C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.csproj.CoreCompileInputs.cache
 C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.AssemblyInfoInputs.cache
 C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.AssemblyInfo.cs
-C:\Users\Chopk\source\repos\MovieNightBot\MovieNightBot\obj\Debug\netcoreapp2.1\MovieNightBot.csprojAssemblyReference.cache

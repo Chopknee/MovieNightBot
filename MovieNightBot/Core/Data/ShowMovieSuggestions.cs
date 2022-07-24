@@ -121,7 +121,7 @@ namespace MovieNightBot.Core.Data {
                 }
             } else {
                 foreach (Movie mov in movs) {
-                    builder.AddField($"{mov.Title}", $"**Votes:** {mov.TotalVotes} |**Score:** {mov.TotalScore} |**Times Up for Vote:** {mov.TimesUpForVote}");
+                    builder.AddField($"{mov.Title}", $"**Votes:** {mov.TotalVotes} |**Score:** {mov.TotalScore} |**Times Up for Vote:** {mov.TimesUpForVote} | **Suggested by** {mov.Suggestor}");
                 }
             }
             builder.AddField("Use reactions to navigate the pages!", $"Page {(pageNumber + 1)} of {totalPages}");

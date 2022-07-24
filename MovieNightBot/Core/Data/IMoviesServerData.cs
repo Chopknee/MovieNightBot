@@ -200,8 +200,9 @@ namespace MovieNightBot.Core.Data {
             return false;
         }
 
-        public void AddMovie(string title) {
+        public void AddMovie(string title, string suggestor) {
             Movie m = new Movie(this, title);
+            m.Suggestor = suggestor;
             movies.Add(m);
             UpdateDataModel();
             m.OnDataModified += UpdateDataModel;
@@ -366,6 +367,20 @@ namespace MovieNightBot.Core.Data {
                 return CalculateClassificationScore();
             }
         }
+
+        public string Suggestor {
+            get {
+                return suggestor;
+            }
+
+            set {
+                suggestor = value;
+                OnDataModified?.Invoke();
+            }
+        }
+
+        [JsonProperty]
+        private string suggestor = "Unknown";
 
         private float CalculateClassificationScore() {
             if (timesUpForVote == 0) {
