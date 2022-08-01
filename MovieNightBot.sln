@@ -1,33 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieNightBot", "MovieNightBot\MovieNightBot.csproj", "{8ADB499C-8610-4330-A4B6-54C199FE6C85}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{60867407-4DD0-4206-B489-FE46980E7015}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieNightBot", "MovieNightBot\MovieNightBot.csproj", "{EDA6C602-B64C-49D9-A02F-27A165807A6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|ARM = Debug|ARM
 		Release|Any CPU = Release|Any CPU
-		Release|ARM = Release|ARM
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8ADB499C-8610-4330-A4B6-54C199FE6C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8ADB499C-8610-4330-A4B6-54C199FE6C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8ADB499C-8610-4330-A4B6-54C199FE6C85}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{8ADB499C-8610-4330-A4B6-54C199FE6C85}.Debug|ARM.Build.0 = Debug|Any CPU
-		{8ADB499C-8610-4330-A4B6-54C199FE6C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8ADB499C-8610-4330-A4B6-54C199FE6C85}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8ADB499C-8610-4330-A4B6-54C199FE6C85}.Release|ARM.ActiveCfg = Release|Any CPU
-		{8ADB499C-8610-4330-A4B6-54C199FE6C85}.Release|ARM.Build.0 = Release|Any CPU
+		{EDA6C602-B64C-49D9-A02F-27A165807A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDA6C602-B64C-49D9-A02F-27A165807A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDA6C602-B64C-49D9-A02F-27A165807A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDA6C602-B64C-49D9-A02F-27A165807A6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D7FA76D0-659D-4470-A31A-5B7F25E8EEAA}
+		SolutionGuid = {917C0515-39D1-4BCF-B0B3-C550793C261C}
 	EndGlobalSection
 EndGlobal
