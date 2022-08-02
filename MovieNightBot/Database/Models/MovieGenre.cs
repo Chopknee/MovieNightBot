@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieNightBot.Database.Models {
 	[Table("movie_genre")]
-	public class MovieGenre : BaseModel {
+	public class MovieGenre {
 
 		[Column("movie_id")]
 		public long Id { get; set; }

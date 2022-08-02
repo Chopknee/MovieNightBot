@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Discord.Commands;
+using Discord.WebSocket;
+using System;
+using System.Reflection;
 
 namespace MovieNightBot {
 	public class Application {
 
 		public static string logOutputFilename = "";
 		public static string configFilename = "";
+		public static Config config = null;
 
+		// Application entry point
 		public static void Main(string[] args) {
-
 
 			Console.WriteLine("MovieNightBot.Net starting up...");
 			for (int i = 0; i < args.Length; i++) {
@@ -16,7 +20,7 @@ namespace MovieNightBot {
 					//Log output filename
 					logOutputFilename = Util.GetFilePath(args[i]);
 					Console.WriteLine("Log output filename " + logOutputFilename);
-					
+
 					continue;
 				}
 
@@ -29,12 +33,14 @@ namespace MovieNightBot {
 				}
 			}
 
-			Config config = Config.Init(configFilename);
+			config = Config.Init(configFilename);
 
 			if (config == null) {
 				Console.WriteLine("No valid config file was loaded. Please create one, then include the path to it with -c in the command line arguments.");
 				return;
 			}
+
+			new Application().StartThread().GetAwaiter().GetResult();
 
 			//Database.Controller.Init(config.db_url);
 			//The main test server id is 536019646554439689 // 446135665927651330
@@ -76,5 +82,70 @@ namespace MovieNightBot {
 			}
 		}
 
+		private DiscordSocketClient client = null;
+		private CommandHandler commandHandler = null;
+
+		public async Task StartThread() {
+			client = new DiscordSocketClient();
+			client.Log += Log;
+
+			await client.LoginAsync(Discord.TokenType.Bot, config.token);
+			await client.StartAsync();
+
+			await client.SetGameAsync("Tracking your shitty movie taste");
+
+
+			CommandServiceConfig csc = new CommandServiceConfig();
+			csc.DefaultRunMode = RunMode.Async;
+			CommandService commandService = new CommandService(csc);
+
+			commandHandler = new CommandHandler(client, commandService);
+			await commandHandler.InstallCommandsAsync();
+
+
+			await Task.Delay(-1);
+		}
+
+		private Task Log(Discord.LogMessage message) {
+			Console.WriteLine(message.ToString());
+			return Task.CompletedTask;
+
+		}
+
+
+		internal class CommandHandler {
+
+			private readonly DiscordSocketClient client;
+			private readonly CommandService commands;
+
+			public CommandHandler(DiscordSocketClient client, CommandService commands) {
+				this.client = client;
+				this.commands = commands;
+			}
+
+			public async Task InstallCommandsAsync() {
+				client.MessageReceived += HandleCommandAsync;
+
+				await commands.AddModulesAsync(assembly: Assembly.GetEntryAssembly(), services: null);
+			}
+
+			private async Task HandleCommandAsync(SocketMessage messageParam) {
+				var message = messageParam as SocketUserMessage;
+
+				if (message == null) return;
+
+				int argPos = 0;
+
+				if (!(message.HasStringPrefix(Application.config.message_identifier, ref argPos)) || message.Author.IsBot)
+					return;
+
+				var context = new SocketCommandContext(client, message);
+
+				await commands.ExecuteAsync(
+					context: context,
+					argPos: argPos,
+					services: null);
+			}
+		}
 	}
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieNightBot.Database.Models {
 	[Table("imdb_info")]
-	public class IMDBInfo : BaseModel {
+	public class IMDBInfo {
 
 		[Column("imdb_id")][Key][DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public string Id { get; set; }

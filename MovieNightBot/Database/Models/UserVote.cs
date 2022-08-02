@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieNightBot.Database.Models {
 	[Table("user_votes")]
-	public class UserVote : BaseModel {
+	public class UserVote {
 
 		[Column("id")][Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public long Id { get; set; }
