@@ -9,9 +9,14 @@
 
   <ItemGroup>
     <PackageReference Include="Discord.Net" Version="3.7.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="SQLite" Version="3.13.0" />
     <PackageReference Include="YamlDotNet" Version="12.0.0" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y $(ProjectDir)config.yaml $(ProjectDir)$(OutDir)&#xD;&#xA;xcopy /y $(ProjectDir)movienightbot.db $(ProjectDir)$(OutDir)&#xD;&#xA;" />
+  </Target>
 
 </Project>

@@ -396,3 +396,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+
+#files for debugging the bot
+MovieNightBot/movienightbot.db
+MovieNightBot/config.yaml

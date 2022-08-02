@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MovieNightBot": {
+      "commandName": "Project",
+      "commandLineArgs": "-c config.yaml\r\n-f movienightbot.log"
+    }
+  }
+}
