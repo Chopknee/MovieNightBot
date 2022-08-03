@@ -9,7 +9,7 @@ namespace MovieNightBot.Database.Models {
 		public ulong Id { get; }
 
 		[Column("channel")]
-		public ulong Channel { get; set; }
+		public ulong ChannelId { get; set; }
 
 		[Column("movie_time")]
 		public DateTime MovieTime { get; set; }
@@ -37,5 +37,7 @@ namespace MovieNightBot.Database.Models {
 
 		[Column("allow_tv_shows")]
 		public bool TVShowsAllowed { get; set; }
+
+		public virtual ICollection<Movie> Movies { get; set; }
 	}
 }

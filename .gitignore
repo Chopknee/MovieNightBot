@@ -401,3 +401,4 @@ FodyWeavers.xsd
 #files for debugging the bot
 MovieNightBot/movienightbot.db
 MovieNightBot/config.yaml
+MovieNightBot/obj

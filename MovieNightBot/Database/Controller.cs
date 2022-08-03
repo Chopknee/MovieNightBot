@@ -42,6 +42,10 @@ namespace MovieNightBot.Database {
 
 			modelBuilder.Entity<Models.Movie>()
 				.HasKey(movie => new { movie.Id });
+			//modelBuilder.Entity<Models.Movie>()
+			//	.HasOne(movie => movie.Server)
+			//	.WithMany(server => server.Movies)
+			//	.HasForeignKey(movie => movie.ServerId);
 
 			modelBuilder.Entity<Models.IMDBInfo>()
 				.HasKey(imdb => new { imdb.Id });

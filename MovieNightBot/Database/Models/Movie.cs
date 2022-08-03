@@ -9,8 +9,9 @@ namespace MovieNightBot.Database.Models {
 		public long Id { get; set; }// the "IntegerField" from python peewee (or perhaps sqlite) is not a C# int. Longs must be used, or Arithmetic exceptions are generated.
 
 		[Column("server_id")]
-		public long ServerId { get; set; }
-		public Server Server { get; set; }// Automatically mapped to the server_id field by ServerId
+		public ulong ServerId { get; set; }
+		[ForeignKey("ServerId")]
+		public virtual Server Server { get; set; }// Automatically mapped to the server_id field by ServerId
 
 		[Column("movie_name")]
 		public string Name { get; set; }

@@ -13,7 +13,7 @@ namespace MovieNightBot.Actions {
 
 			using (var controller = Database.Controller.GetDBController()) {
 				Database.Models.Server server = controller.Servers.Single(server => server.Id == Context.Guild.Id);
-				server.Channel = Context.Channel.Id;
+				server.ChannelId = Context.Channel.Id;
 				await controller.SaveChangesAsync();
 			}
 
