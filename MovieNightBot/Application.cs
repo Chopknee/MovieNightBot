@@ -3,6 +3,14 @@ using Discord.WebSocket;
 using System;
 using System.Reflection;
 
+/**
+ * Main todo items:
+ * Port remainder of commands
+ * Determine best method for keeping database in memory for faster loading and manipulation. (while maintaining general safety of the data)
+ *		Possibly done by loading the db file into memory on initial boot, then running read queries with the in-memory version, and writing after successful updates?
+ * 
+ */
+
 namespace MovieNightBot {
 	public class Application {
 
@@ -34,52 +42,15 @@ namespace MovieNightBot {
 			}
 
 			config = Config.Init(configFilename);
+			Database.Controller.Init(config.db_url);
 
 			if (config == null) {
 				Console.WriteLine("No valid config file was loaded. Please create one, then include the path to it with -c in the command line arguments.");
 				return;
 			}
 
+			//Start the discord portion of the bot.
 			new Application().StartThread().GetAwaiter().GetResult();
-
-			//Database.Controller.Init(config.db_url);
-			//The main test server id is 536019646554439689 // 446135665927651330
-			using (var controller = new Database.Controller(Util.GetFilePath(config.db_url))) {
-				//Console.WriteLine(controller.Servers.Count());
-
-				List<Database.Models.Server> servers = controller.Servers.ToList();
-				for (int i = 0; i < servers.Count; i++) {
-					Console.WriteLine(servers[i].Id);
-				}
-				//Console.WriteLine(controller.Movies.Count());
-
-				//List<Database.Models.Movie> movies = controller.Movies.ToList();
-				//for (int i = 0; i < movies.Count; i++) {
-				//	Console.WriteLine(movies[i].Name);
-				//}
-
-				//List<Database.Models.Movie> movieList = controller.Movies.Where(m => m.ServerId == 536019646554439689).ToList();
-				//for (int i = 0; i < movieList.Count; i++) {
-				//	Console.WriteLine(movieList[i].Name + " " + movieList[i].Server.Id);
-				//}
-
-				//List<Database.Models.Movie> movieList = controller.Movies.Where(m => m.ServerId == 446135665927651330).ToList();
-				//for (int i = 0; i < movieList.Count; i++) {
-				//	Database.Models.IMDBInfo imdbdata = movieList[i].IMDB;
-				//	Console.WriteLine(movieList[i].IMDBId + " " + imdbdata);
-				//	Console.WriteLine(movieList[i].Name + " " + movieList[i].Server.Id + " " + ((imdbdata != null) ? imdbdata.Title : "No IMDB data linked."));
-				//}
-
-				//List<Database.Models.IMDBInfo> imdbMovies = controller.IMDBInfo.ToList();
-				//for (int i = 0; i < imdbMovies.Count; i++) {
-				//	Console.WriteLine(imdbMovies[i].Id + " " + imdbMovies[i].ThumbnailPosterURL + " " + imdbMovies[i].FullSizePosterURL);//
-				//}
-
-				//List<Database.Models.MovieGenre> movieGenres = controller.MovieGenres.ToList();
-				//for (int i = 0; i < movieGenres.Count; i++) {
-				//	Console.WriteLine(movieGenres[i].Id + " " + movieGenres[i].Genre);
-				//}
-			}
 		}
 
 		private DiscordSocketClient client = null;

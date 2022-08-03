@@ -5,6 +5,20 @@ using System.Collections.Generic;
 namespace MovieNightBot.Database {
 	public class Controller : DbContext {
 
+		private static string dbPath = string.Empty;
+
+		public static void Init(string dbPath) {
+			Controller.dbPath = dbPath;
+		}
+
+		public static Controller GetDBController() {
+			//TODO: replace with code to generate an empty db file.
+			if (dbPath == String.Empty || !System.IO.File.Exists(dbPath))
+				throw new Exception("Database controller could not be initialized. A database filepath was not specified.");
+
+			return new Database.Controller(Util.GetFilePath(dbPath));
+		}
+
 		public DbSet<Models.Server> Servers { get; set; }
 		public DbSet<Models.Movie> Movies { get; set; }
 		public DbSet<Models.IMDBInfo> IMDBInfo { get; set; }
@@ -44,6 +58,16 @@ namespace MovieNightBot.Database {
 
 			modelBuilder.Entity<Models.UserVote>()
 				.HasKey(uservote => new { uservote.Id });
+		}
+
+		public class Server {
+			public static Models.Server GetByGuildId(ulong guildId) {
+				Models.Server server = null;
+				using (Controller controller = GetDBController()) {
+					server = controller.Servers.Single(server => server.Id == guildId);
+				}
+				return server;
+			}
 		}
 	}
 }

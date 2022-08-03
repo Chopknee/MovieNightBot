@@ -6,7 +6,7 @@ namespace MovieNightBot.Database.Models {
 	public class Server {
 
 		[Column("id")][Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public long Id { get; }
+		public ulong Id { get; }
 
 		[Column("channel")]
 		public long Channel { get; set; }
