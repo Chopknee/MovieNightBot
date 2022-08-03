@@ -20,7 +20,7 @@ namespace MovieNightBot.Actions {
 		[Summary("Sets the number of movies that will show up on a vote.")]
 		public async Task Execute([Summary("2 to 25")] int count) {
 
-			if (!IsAuthenticatedUser() || !CheckForServerChannel()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
+			if (!IsAuthenticatedUser()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
 				return;
 
 			if (count  < 2 || count > 25) {

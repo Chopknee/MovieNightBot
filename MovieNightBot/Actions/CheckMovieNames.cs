@@ -22,7 +22,7 @@ namespace MovieNightBot.Actions {
 		[Summary("Toggles checking suggestions against IMDB database before adding.\nSend `on` to turn on, `off` to turn off.")]
 		public async Task Execute([Summary("(on|off)")] string toggleValue) {
 
-			if (!IsAuthenticatedUser() || !CheckForServerChannel()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
+			if (!IsAuthenticatedUser()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
 				return;
 
 			if (toggleValue == null || toggleValue == string.Empty) {

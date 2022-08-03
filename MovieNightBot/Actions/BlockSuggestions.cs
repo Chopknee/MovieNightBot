@@ -22,7 +22,7 @@ namespace MovieNightBot.Actions {
 		[Summary("Toggles allowing suggestions. Send `on` to disallow suggestions, `off` to allow.")]
 		public async Task Execute([Summary("(on|off)")] string toggleValue) {
 
-			if (!IsAuthenticatedUser() || !CheckForServerChannel()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
+			if (!IsAuthenticatedUser()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
 				return;
 
 			if (toggleValue == null || toggleValue == string.Empty) {

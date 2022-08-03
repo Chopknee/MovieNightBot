@@ -20,7 +20,7 @@ namespace MovieNightBot.Actions {
 		[Summary("Sets the name of the role that is allowed to run admin only commands in movie night bot.\nServer administrators have full privileges by default")]
 		public async Task Execute([Remainder][Summary("(role name)")] string roleName) {
 
-			if (!IsAuthenticatedUser() || !CheckForServerChannel()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
+			if (!IsAuthenticatedUser()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
 				return;
 
 			if (roleName == null || roleName == string.Empty) {
