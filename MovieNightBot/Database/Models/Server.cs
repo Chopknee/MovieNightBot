@@ -9,7 +9,7 @@ namespace MovieNightBot.Database.Models {
 		public ulong Id { get; }
 
 		[Column("channel")]
-		public long Channel { get; set; }
+		public ulong Channel { get; set; }
 
 		[Column("movie_time")]
 		public DateTime MovieTime { get; set; }

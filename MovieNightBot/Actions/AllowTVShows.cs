@@ -5,11 +5,11 @@ namespace MovieNightBot.Actions {
 
 		[Command("allow_tv_shows")]
 		[Summary("Toggles whether to allow tv shows in the IMDB search results (on) or not (off).")]
+		[RequireContext(ContextType.Guild)]
 		public async Task Execute() {
 
-			if (!IsAuthenticatedUser()) { // For non-authenticated users, just return. No need to respond in order to prevent spam.
+			if (!IsAuthenticatedUser()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
 				return;
-			}
 
 			await ReplyAsync(
 				"TV shows are currently " 
@@ -23,9 +23,8 @@ namespace MovieNightBot.Actions {
 		[Summary("Toggles whether to allow tv shows in the IMDB search results (on) or not (off).")]
 		public async Task Execute([Summary("(on|off)")] string toggleValue) {
 
-			if (!IsAuthenticatedUser()) { // For non-authenticated users, just return. No need to respond in order to prevent spam.
+			if (!IsAuthenticatedUser() || !CheckForServerChannel()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
 				return;
-			}
 
 			if (toggleValue == null || toggleValue == string.Empty) {
 				await ReplyAsync("Must give value of on or off for imdb_tv_shows command");

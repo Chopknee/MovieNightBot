@@ -1,7 +1,8 @@
 ﻿using Discord.Commands;
 
 namespace MovieNightBot.Actions {
-	public class AdminAction : ModuleBase<SocketCommandContext> {
+	public class AdminAction : BaseAction {
+
 		public bool IsAuthenticatedUser() {
 			Discord.WebSocket.SocketGuildUser guildUser = Context.Guild.GetUser(Context.User.Id);
 			Database.Models.Server server = Database.Controller.Server.GetByGuildId(Context.Guild.Id);
@@ -16,5 +17,6 @@ namespace MovieNightBot.Actions {
 
 			return guildUser.GuildPermissions.Administrator || found;
 		}
+
 	}
 }

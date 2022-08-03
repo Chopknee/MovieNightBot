@@ -5,26 +5,23 @@ namespace MovieNightBot.Actions {
 
 		[Command("movie_option_count")]
 		[Summary("Sets the number of movies that will show up on a vote.")]
+		[RequireContext(ContextType.Guild)]
 		public async Task Execute() {
 
-			if (!IsAuthenticatedUser()) { // For non-authenticated users, just return. No need to respond in order to prevent spam.
+			if (!IsAuthenticatedUser()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
 				return;
-			}
 
 			await ReplyAsync(
 				$"Current number of movies per vote is {Database.Controller.Server.GetByGuildId(Context.Guild.Id).MovieCountPerVote}."
 				+ "To change it, use the command movie_option_count.");
-
-			return;
 		}
 
 		[Command("movie_option_count")]
 		[Summary("Sets the number of movies that will show up on a vote.")]
 		public async Task Execute([Summary("2 to 25")] int count) {
 
-			if (!IsAuthenticatedUser()) { // For non-authenticated users, just return. No need to respond in order to prevent spam.
+			if (!IsAuthenticatedUser() || !CheckForServerChannel()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
 				return;
-			}
 
 			if (count  < 2 || count > 25) {
 				await ReplyAsync("Failed to update: Number of movies per vote must be between 2 and 25, inclusive");
