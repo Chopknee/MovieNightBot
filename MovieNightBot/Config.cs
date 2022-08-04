@@ -17,10 +17,11 @@ namespace MovieNightBot {
 			return conf;
 		}
 
-		public string token = "";
-		public string db_url = "";
+		public string imdb_api_key = string.Empty;
+		public string token = string.Empty;
+		public string db_url = string.Empty;
 		public int port = 80;
-		public string base_url = "";
+		public string base_url = string.Empty;
 		public string message_identifier = "m!";
 
 	}

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GA8NLTZMsad8pVWe8X1IUcvBjD0GuTqa+BfMEUMWvKlqxcqR4gIr62OUZyIAIrjK7kXHU1K1iC098wGvR4IosQ==",
+  "dgSpecHash": "cdG47j7RD//EaGXtd/z3RBMLAoU8uoLmqoMioG2nKKZhLLNXpuc/sPSIekdeL06IJ4rIqxVeE/faUr/gsuXcng==",
   "success": true,
   "projectFilePath": "C:\\Users\\Chopk\\source\\repos\\MovieNightBot\\MovieNightBot\\MovieNightBot.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Chopk\\.nuget\\packages\\discord.net.rest\\3.7.2\\discord.net.rest.3.7.2.nupkg.sha512",
     "C:\\Users\\Chopk\\.nuget\\packages\\discord.net.webhook\\3.7.2\\discord.net.webhook.3.7.2.nupkg.sha512",
     "C:\\Users\\Chopk\\.nuget\\packages\\discord.net.websocket\\3.7.2\\discord.net.websocket.3.7.2.nupkg.sha512",
+    "C:\\Users\\Chopk\\.nuget\\packages\\imdbapilib\\1.8.1\\imdbapilib.1.8.1.nupkg.sha512",
     "C:\\Users\\Chopk\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.7\\microsoft.data.sqlite.core.6.0.7.nupkg.sha512",
     "C:\\Users\\Chopk\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.7\\microsoft.entityframeworkcore.6.0.7.nupkg.sha512",
     "C:\\Users\\Chopk\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.7\\microsoft.entityframeworkcore.abstractions.6.0.7.nupkg.sha512",
@@ -35,6 +36,7 @@
     "C:\\Users\\Chopk\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.0.6\\sqlitepclraw.provider.e_sqlite3.2.0.6.nupkg.sha512",
     "C:\\Users\\Chopk\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Chopk\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
+    "C:\\Users\\Chopk\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\Chopk\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\Chopk\\.nuget\\packages\\system.interactive.async\\5.0.0\\system.interactive.async.5.0.0.nupkg.sha512",
     "C:\\Users\\Chopk\\.nuget\\packages\\system.linq.async\\5.0.0\\system.linq.async.5.0.0.nupkg.sha512",

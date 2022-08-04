@@ -9,6 +9,7 @@ using System.Reflection;
  * Port remainder of commands
  * Determine best method for keeping database in memory for faster loading and manipulation. (while maintaining general safety of the data)
  *		Possibly done by loading the db file into memory on initial boot, then running read queries with the in-memory version, and writing after successful updates?
+ *	Write tests
  * 
  */
 
@@ -44,20 +45,6 @@ namespace MovieNightBot {
 
 			config = Config.Init(configFilename);
 			Database.Controller.Init(config.db_url);
-
-			using (var controller = Database.Controller.GetDBController()) {
-				var servers = controller.Servers.Include(server => server.Movies);
-				// Console.WriteLine(controller.Servers.Count)
-				//foreach (var server in servers)
-				//	Console.WriteLine(server.Id + " " + server.ChannelId + " " + server.Movies);
-
-				foreach (var mov in controller.Movies) {
-					if (mov.WatchedDate != null)
-						Console.WriteLine(mov.Id + " " + mov.WatchedDate);
-					// mov.ServerId = 536019646554439689;
-				}
-				// controller.SaveChanges();
-			}
 
 			if (config == null) {
 				Console.WriteLine("No valid config file was loaded. Please create one, then include the path to it with -c in the command line arguments.");

@@ -9,35 +9,48 @@ namespace MovieNightBot.Actions {
 		[Summary("View the current server settings.")]
 		[RequireContext(ContextType.Guild)]
 		public async Task Execute() {
+			try {
+				if (!IsAuthenticatedUser()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
+					return;
 
-			if (!IsAuthenticatedUser()) // For non-authenticated users, just return. No need to respond in order to prevent spam.
-				return;
+				Database.Models.Server server = Database.Controller.Server.GetByGuildId(Context.Guild.Id);
 
-			Database.Models.Server server = Database.Controller.Server.GetByGuildId(Context.Guild.Id);
-
-			string[] ignoreAttrs = { "id" };
-
-			//generate an embed
-			var embed = new EmbedBuilder {
-				Title = $"{Context.Guild.Name} Settings",
-				Description = $"Current settings for server '{Context.Guild.Name}'"
-			};
-
-			foreach (PropertyInfo prop in typeof(Database.Models.Server).GetProperties()) {
-				bool bSkip = false;
-				foreach (string ignoreAttr in ignoreAttrs) {
-					if (ignoreAttr == prop.Name) {
-						bSkip = true;
-						break;
-					}
+				if (server == null) {
+					await ReplyAsync(genericErrorMessage);
 				}
-				if (bSkip)
-					continue;
-				//Add the property to the embed
-				embed.AddField(prop.Name, prop.GetValue(server, null));
-			}
+					
 
-			await ReplyAsync(embed: embed.Build());
+				string[] ignoreAttrs = { "Id", "Movies" };
+
+				//generate an embed
+				var embed = new EmbedBuilder {
+					Title = $"{Context.Guild.Name} Settings",
+					Description = $"Current settings for server '{Context.Guild.Name}'"
+				};
+
+				foreach (PropertyInfo prop in typeof(Database.Models.Server).GetProperties()) {
+					bool bSkip = false;
+					foreach (string ignoreAttr in ignoreAttrs) {
+						if (ignoreAttr == prop.Name) {
+							bSkip = true;
+							break;
+						}
+					}
+					if (bSkip)
+						continue;
+
+					if (prop.GetValue(server, null) == null)
+						continue;
+
+					embed.AddField(prop.Name, prop.GetValue(server, null));
+				}
+
+				Console.WriteLine("SERVER SETTINGS");
+
+				await ReplyAsync(embed: embed.Build());
+			} catch (Exception ex) {
+				Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
+			}
 		}
 	}
 }
